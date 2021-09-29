@@ -1,16 +1,14 @@
-################################################################################
+##########################################################################
 ## path
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="${HOME}/.poetry/bin:${PYENV_ROOT}/bin:.:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:${HOME}/.local/bin"
-export MANPATH="/usr/share/man:/usr/local/share/man"
-################################################################################
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:.
+export MANPATH=/usr/share/man:/usr/local/share/man
+##########################################################################
 ## locale
 if [[ ${UID} = 0 ]]; then
     export LANG=C
 else
     export LANG=ja_JP.UTF-8
 fi
-export SHELL=/usr/local/bin/zsh
 export LC_ALL=ja_JP.UTF-8
 export LC_COLLATE=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
@@ -19,12 +17,7 @@ export LC_MONETARY=ja_JP.UTF-8
 export LC_NUMERIC=ja_JP.UTF-8
 export LC_TIME=ja_JP.UTF-8
 export LESSCHARSET=UTF-8
-export FONTCONFIG_PATH=/usr/local/etc/fonts
-## FRONTEMARE
-if [[ $TERM == 'xterm-256color' ]] then
-    [ -f ~/.frontemare.sh ] && source ~/.frontemare.sh
-fi
-################################################################################
+##########################################################################
 ## aliases
 alias rm="rm -i"
 alias mv="mv -i"
@@ -32,12 +25,29 @@ alias du="du -h"
 alias df="df -H"
 alias man="man -a"
 alias gd="dirs -v;echo -n 'select number: ';read newdir;cd +$newdir"
-alias ls="ls --color -Fv"
-alias ll="ls --color -AFhlv"
-alias pbcopy="xsel --input --clipboard"
-alias pbpaste="xsel --output --clipboard"
-alias open="xdg-open"
-################################################################################
+##########################################################################
+## OS dependencies
+if [[ `uname` == "Linux" ]]; then
+    export SHELL=/bin/zsh
+    alias ls="ls --color -Fv"
+    alias ll="ls --color -AFhlv"
+    alias pbcopy="xsel --input --clipboard"
+    alias pbpaste="xsel --output --clipboard"
+    alias open="xdg-open"
+elif [[ `uname  ` == "Darwin" ]]; then
+    export SHELL=/usr/local/bin/zsh
+    alias ls="ls -FGv"
+    alias ll="ls -AFGhlov"
+    alias l@="ls -@1AFGhloTv"
+    alias zcat=gzcat
+    alias cat4tab="cat $@ | sed -e \"s|"$'\t'"|    |g\""
+    if [[ ${TERM} == "xterm-16color" ]]; then
+        alias vi='/usr/local/bin/vim -u $HOME/.vim/defaults.vim "$@"'
+    else
+        alias vi='/usr/local/bin/vim -u $HOME/.vim/vimrc "$@"'
+    fi
+fi
+##########################################################################
 ## functions
 bindkey -d
 bindkey -e
@@ -49,13 +59,13 @@ function cdp {
         local dir
         dir=$(command find -L . -mindepth 1 \( -path '*/\.*' -or -path '*/__pycache__' \) -prune -or -type d -print 2>/dev/null | cut -b3- | fzf --preview 'tree -C {} | head -100' --preview-window down:50%:wrap:hidden --bind '?:toggle-preview') && cd "$dir"
     else
-        pushd "$HOME/Projects/$1" > /dev/null
+        pushd "${HOME}/Projects/$1" > /dev/null
     fi
 }
-################################################################################
+##########################################################################
 ## resource limits
 limit coredumpsize 0
-################################################################################
+##########################################################################
 ## options
 ## Changing Directories
 setopt auto_cd
@@ -97,7 +107,7 @@ setopt long_list_jobs
 setopt prompt_subst
 ## Scripts and Functions
 setopt multios
-################################################################################
+##########################################################################
 ## history
 HISTFILE=${HOME}/.zsh_histroy
 HISTSIZE=4096
@@ -107,7 +117,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
-################################################################################
+##########################################################################
 ## prompt
 autoload colors
 colors
@@ -125,7 +135,7 @@ PROMPT=" $p_cdir$p_rhst$p_info $p_mark "
 PROMPT2="(%_) %(!,#,>) "
 SPROMPT="correct: %R -> %r ? [n,y,a,e]: "
 #RPROMPT="%1(v|%1v|)%2(v| %B%F{yellow}%2v%f%b|)%3(v| %B%F{red}%3v%f%b|)"
-################################################################################
+##########################################################################
 ## completion
 fpath=(${HOME}/.zcomp ${fpath} /usr/local/share/zsh-completions /usr/local/share/zsh/site-functions)
 autoload -Uz compinit
@@ -138,23 +148,35 @@ zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:default' list-dirs-first
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories
-zstyle ':completion:*:sudo:*' command-path /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin $HOME/bin .
-################################################################################
+zstyle ':completion:*:sudo:*' command-path /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin .
+##########################################################################
 ## prediction
 #autoload predict-on
 #predict-on
-################################################################################
+##########################################################################
+## color settings
+# frontemare
+if [[ $TERM == 'xterm-256color' ]]; then
+    [ -f ~/.frontemare.sh ] && source ~/.frontemare.sh
+fi
+##########################################################################
 ## application settings
 # fzf
-export FZF_COMPLETION_TRIGGER='@'
+export FZF_COMPLETION_TRIGGER="@"
 # fzf & frontemare
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # pyenv
+export PYENV_ROOT=${HOME}/.pyenv
+export PATH=${PYENV_ROOT}/bin:${PATH}
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 # pyenv-virtualenv
 eval "$(pyenv virtualenv-init -)"
-################################################################################
+# poetry
+export PATH=${HOME}/.poetry/bin:${PATH}
+# pipx
+export PATH=${PATH}:${HOME}/.local/bin
+##########################################################################
 ## include local settings
 if [[ -f ~/.zshrc.include ]]; then
     source ~/.zshrc.include

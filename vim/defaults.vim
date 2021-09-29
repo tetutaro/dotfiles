@@ -48,7 +48,12 @@ set hidden  " バッファを切り替えてもundoの効力を失わない
 set lazyredraw  " スクリプト実行中に画面を表示しない
 set ttyfast  " 高速ターミナル接続を行う
 set scrolloff=3  " スクロールする時にカーソルの上下に表示する最低限の行数
-set clipboard=unnamedplus,autoselect  " OSのclipboardと共有
+if has('unix')
+    set clipboard=unnamedplus,autoselect  " OSのclipboardと共有
+endif
+if has('mac')
+    set clipboard=unnamed,autoselect
+endif
 set mouse=a  " すべてのモードでマウスが使えるように
 set ttymouse=xterm2  " マウスで色々なことが出来るように
 set mousefocus  " マウスの場所がフォーカスされる
