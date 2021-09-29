@@ -1,0 +1,3 @@
+#compdef cdp
+
+_arguments ':projects:_path_files -W ~/Projects/ -/'
