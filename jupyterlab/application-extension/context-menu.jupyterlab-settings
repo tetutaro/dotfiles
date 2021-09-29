@@ -1,0 +1,386 @@
+{
+    // Application Context Menu
+    // @jupyterlab/application-extension:context-menu
+    // JupyterLab context menu settings.
+    // **********************************************
+
+    // The application context menu.
+    // Note: To disable a context menu item,
+    // copy it to User Preferences and add the
+    // "disabled" key. The following example will disable Download item on files:
+    // {
+    //   "contextMenu": [
+    //     {
+    //       "command": "filebrowser:download",
+    //       "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+    //       "disabled": true
+    //     }
+    //   ]
+    // }
+    // 
+    // Context menu description:
+    "contextMenu": [
+        {
+            "type": "separator",
+            "selector": ".jp-DirListing-content",
+            "rank": 0
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 0
+        },
+        {
+            "command": "notebook:clear-all-cell-outputs",
+            "selector": ".jp-Notebook",
+            "rank": 0
+        },
+        {
+            "command": "docmanager:rename",
+            "selector": "[data-type=\"document-title\"]",
+            "rank": 1
+        },
+        {
+            "command": "filebrowser:create-new-directory",
+            "selector": ".jp-DirListing-content",
+            "rank": 1
+        },
+        {
+            "command": "filebrowser:open",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 1
+        },
+        {
+            "command": "fileeditor:undo",
+            "selector": ".jp-FileEditor",
+            "rank": 1
+        },
+        {
+            "command": "notebook:cut-cell",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 1
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook",
+            "rank": 1
+        },
+        {
+            "command": "terminal:refresh",
+            "selector": ".jp-Terminal",
+            "rank": 1
+        },
+        {
+            "command": "docmanager:delete",
+            "selector": "[data-type=\"document-title\"]",
+            "rank": 2
+        },
+        {
+            "command": "filebrowser:create-new-file",
+            "selector": ".jp-DirListing-content",
+            "rank": 2
+        },
+        {
+            "type": "submenu",
+            "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+            "rank": 2,
+            "submenu": {
+                "id": "jp-contextmenu-open-with",
+                "label": "Open With",
+                "items": []
+            }
+        },
+        {
+            "command": "fileeditor:redo",
+            "selector": ".jp-FileEditor",
+            "rank": 2
+        },
+        {
+            "command": "notebook:copy-cell",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 2
+        },
+        {
+            "command": "notebook:enable-output-scrolling",
+            "selector": ".jp-Notebook",
+            "rank": 2
+        },
+        {
+            "command": "docmanager:clone",
+            "selector": "[data-type=\"document-title\"]",
+            "rank": 3
+        },
+        {
+            "command": "filebrowser:create-new-markdown-file",
+            "selector": ".jp-DirListing-content",
+            "rank": 3
+        },
+        {
+            "command": "filebrowser:open-browser-tab",
+            "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+            "rank": 3
+        },
+        {
+            "command": "fileeditor:cut",
+            "selector": ".jp-FileEditor",
+            "rank": 3
+        },
+        {
+            "command": "notebook:paste-cell-below",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 3
+        },
+        {
+            "command": "notebook:disable-output-scrolling",
+            "selector": ".jp-Notebook",
+            "rank": 3
+        },
+        {
+            "command": "docmanager:show-in-file-browser",
+            "selector": "[data-type=\"document-title\"]",
+            "rank": 4
+        },
+        {
+            "command": "application:close",
+            "selector": "#jp-main-dock-panel .lm-DockPanel-tabBar.jp-Activity .lm-TabBar-tab",
+            "rank": 4
+        },
+        {
+            "command": "application:close-other-tabs",
+            "selector": "#jp-main-dock-panel .lm-DockPanel-tabBar.jp-Activity .lm-TabBar-tab",
+            "rank": 4
+        },
+        {
+            "command": "filebrowser:paste",
+            "selector": ".jp-DirListing-content",
+            "rank": 4
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 4
+        },
+        {
+            "command": "fileeditor:copy",
+            "selector": ".jp-FileEditor",
+            "rank": 4
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 4
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook",
+            "rank": 4
+        },
+        {
+            "command": "application:close-right-tabs",
+            "selector": "#jp-main-dock-panel .lm-DockPanel-tabBar.jp-Activity .lm-TabBar-tab",
+            "rank": 5
+        },
+        {
+            "command": "filebrowser:rename",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 5
+        },
+        {
+            "command": "fileeditor:paste",
+            "selector": ".jp-FileEditor",
+            "rank": 5
+        },
+        {
+            "command": "notebook:delete-cell",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 5
+        },
+        {
+            "command": "notebook:undo-cell-action",
+            "selector": ".jp-Notebook",
+            "rank": 5
+        },
+        {
+            "command": "filemenu:create-console",
+            "selector": "[data-type=\"document-title\"].jp-mod-current",
+            "rank": 6
+        },
+        {
+            "command": "filebrowser:delete",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 6
+        },
+        {
+            "command": "fileeditor:select-all",
+            "selector": ".jp-FileEditor",
+            "rank": 6
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 6
+        },
+        {
+            "command": "notebook:redo-cell-action",
+            "selector": ".jp-Notebook",
+            "rank": 6
+        },
+        {
+            "command": "filebrowser:cut",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 7
+        },
+        {
+            "command": "notebook:split-cell-at-cursor",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 7
+        },
+        {
+            "command": "notebook:restart-kernel",
+            "selector": ".jp-Notebook",
+            "rank": 7
+        },
+        {
+            "command": "filebrowser:copy",
+            "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+            "rank": 8
+        },
+        {
+            "command": "notebook:merge-cells",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 8
+        },
+        {
+            "command": "notebook:merge-cell-above",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 8
+        },
+        {
+            "command": "notebook:merge-cell-below",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 8
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook",
+            "rank": 8
+        },
+        {
+            "command": "filebrowser:duplicate",
+            "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+            "rank": 9
+        },
+        {
+            "command": "filebrowser:download",
+            "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+            "rank": 9
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook .jp-Cell",
+            "rank": 9
+        },
+        {
+            "command": "notebook:create-console",
+            "selector": ".jp-Notebook",
+            "rank": 9
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 10
+        },
+        {
+            "command": "inspector:open",
+            "selector": ".jp-Notebook",
+            "rank": 10
+        },
+        {
+            "command": "notebook:create-output-view",
+            "selector": ".jp-Notebook .jp-CodeCell",
+            "rank": 10
+        },
+        {
+            "command": "filebrowser:shutdown",
+            "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+            "rank": 11
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-Notebook .jp-CodeCell",
+            "rank": 11
+        },
+        {
+            "type": "separator",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 12
+        },
+        {
+            "command": "notebook:clear-cell-output",
+            "selector": ".jp-Notebook .jp-CodeCell",
+            "rank": 12
+        },
+        {
+            "command": "filebrowser:copy-download-link",
+            "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
+            "rank": 13
+        },
+        {
+            "command": "filebrowser:copy-path",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 14
+        },
+        {
+            "command": "filebrowser:toggle-last-modified",
+            "selector": ".jp-DirListing-header",
+            "rank": 14
+        },
+        {
+            "command": "filebrowser:share-main",
+            "selector": ".jp-DirListing-item[data-isdir]",
+            "rank": 15
+        },
+        {
+            "command": "sidebar:switch",
+            "selector": ".jp-SideBar .lm-TabBar-tab",
+            "rank": 500
+        },
+        {
+            "command": "__internal:context-menu-info",
+            "selector": "body",
+            "rank": 9007199254740991
+        },
+        {
+            "command": "console:toggle-show-all-kernel-activity",
+            "selector": ".jp-CodeConsole"
+        },
+        {
+            "command": "console:clear",
+            "selector": ".jp-CodeConsole-content"
+        },
+        {
+            "command": "console:restart-kernel",
+            "selector": ".jp-CodeConsole"
+        },
+        {
+            "command": "fileeditor:create-console",
+            "selector": ".jp-FileEditor"
+        },
+        {
+            "command": "fileeditor:markdown-preview",
+            "selector": ".jp-FileEditor"
+        },
+        {
+            "command": "inspector:open",
+            "selector": ".jp-CodeConsole-promptCell"
+        },
+        {
+            "command": "logconsole:open",
+            "selector": ".jp-Notebook"
+        },
+        {
+            "command": "markdownviewer:edit",
+            "selector": ".jp-RenderedMarkdown"
+        }
+    ]
+}

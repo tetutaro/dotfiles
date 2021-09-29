@@ -9,6 +9,8 @@ preferences of zsh, vim, ...
     * zcomp/* -> ~/.zcomp
 * vim
     * vim/* -> ~/.vim
+* jupyterlab
+    * jupyterlab -> ~/.jupyter/lab/user-settings/@jupyterlab
 * latexmk
     * latexmkrc -> ~/.latexmkrc
 

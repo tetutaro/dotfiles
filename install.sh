@@ -19,5 +19,20 @@ for f in ${PWD}/vim/*; do
     ln -sf $f ${HOME}/.vim/${f##*/}
 done
 
+# JupyterLab
+if [ ! -d ${HOME}/.jupyter ]; then
+    mkdir ${HOME}/.jupyter
+fi
+if [ ! -d ${HOME}/.jupyter/lab ]; then
+    mkdir ${HOME}/.jupyter/lab
+fi
+if [ ! -d ${HOME}/.jupyter/lab/user-settings ]; then
+    mkdir ${HOME}/.jupyter/lab/user-settings
+fi
+if [ -e ${HOME}/.jupyter/lab/user-settings/@jupyterlab ]; then
+    rm -rf ${HOME}/.jupyter/lab/user-settings/@jupyterlab
+fi
+ln -sf ${PWD}/jupyterlab ${HOME}/.jupyter/lab/user-settings/@jupyterlab
+
 # latexmk
 ln -sf ${PWD}/latexmkrc ${HOME}/.latexmkrc

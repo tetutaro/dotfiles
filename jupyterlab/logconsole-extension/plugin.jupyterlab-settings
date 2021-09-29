@@ -1,0 +1,14 @@
+{
+    // Log Console
+    // @jupyterlab/logconsole-extension:plugin
+    // Log Console settings.
+    // ***************************************
+
+    // Status Bar Item flash
+    // Whether to flash on new log message or not
+    "flash": true,
+
+    // Log entry count limit
+    // Maximum number of log entries to store in memory
+    "maxLogEntries": 1000
+}
