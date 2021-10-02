@@ -1,0 +1,10 @@
+urml unicode NotoSerifJP-Regular.otf -l jp90 %!DVIPSFB !Ryumin-Light-UniJIS-UTF16-H
+urmlv	unicode	NotoSerifJP-Regular.otf -w 1 -l jp90 %!DVIPSFB !Ryumin-Light-UniJIS-UTF16-V
+ugbm unicode NotoSansJP-Medium.otf -l jp90 %!DVIPSFB !GothicBBB-Medium-UniJIS-UTF16-H
+ugbmv unicode NotoSansJP-Medium.otf -w 1 -l jp90 %!DVIPSFB !GothicBBB-Medium-UniJIS-UTF16-V
+uprml-h unicode NotoSerifJP-Regular.otf -l jp90 %!DVIPSFB !Ryumin-Light-UniJIS-UTF16-H
+uprml-v unicode NotoSerifJP-Regular.otf -w 1 -l jp90 %!DVIPSFB !Ryumin-Light-UniJIS-UTF16-V
+upgbm-h unicode NotoSansJP-Medium.otf -l jp90 %!DVIPSFB !GothicBBB-Medium-UniJIS-UTF16-H
+upgbm-v unicode NotoSansJP-Medium.otf -w 1 -l jp90 %!DVIPSFB !GothicBBB-Medium-UniJIS-UTF16-V
+uprml-hq unicode NotoSerifJP-Regular.otf -l fwid %!DVIPSFB !Ryumin-Light-UniJIS-UCS2-H
+upgbm-hq unicode NotoSansJP-Medium.otf -l fwid %!DVIPSFB !GothicBBB-Medium-UniJIS-UCS2-H

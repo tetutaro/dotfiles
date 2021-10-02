@@ -4,7 +4,7 @@ $latex = 'uplatex -file-line-error -halt-on-error -interaction=nonstopmode -sync
 $biber = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
 $bibtex = 'upbibtex %O %B';
 $makeindex = 'upmendex %O -o %D %S';
-$dvipdf = 'dvipdfmx -f noto.map %O -o %D %S';
+$dvipdf = 'dvipdfmx -f uptex-noto-jp.map %O -o %D %S';
 #$dvips = 'dvips %O -z -f %S | convbkmk -u > %D';
 #$ps2pdf = 'ps2pdf %O %S %D';
 $max_repeat = 3;
