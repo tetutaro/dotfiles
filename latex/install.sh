@@ -5,18 +5,6 @@ CTAN_MIRROR="http://ftp.jaist.ac.jp/pub/CTAN/"
 TL_REPO="systems/texlive/tlnet/"
 TL_TGZ="install-tl-unx.tar.gz"
 
-## install nesessary packages
-sudo apt update
-sudo apt install -y --upgrade ghostscript evince python3-pandocfilters
-
-## setteing of directories
-if [ ! -d ${HOME}/.texlive ]; then
-    mkdir ${HOME}/.texlive
-fi
-if [ ! -e /usr/local/texlive ]; then
-    sudo ln -s ${HOME}/.texlive /usr/local/texlive
-fi
-
 ## install tlmgr
 if [ ! -f ${TL_TGZ} ]; then
     wget -O ${TL_TGZ} ${CTAN_MIRROR}${TL_REPO}${TL_TGZ}
@@ -28,13 +16,12 @@ rm -f ${TL_TGZ}
 rm -rf ${tl_dir}
 
 ## install texlive packages
-tlmgr=$(find ${HOME}/.texlive -name tlmgr | sort | tail -n 1)
+tlmgr=$(find /usr/local/texlive -name tlmgr | sort | tail -n 1)
 ${tlmgr} option repository ${CTAN_MIRROR}${TL_REPO}
 ${tlmgr} update --self --all
 ${tlmgr} paper a4
 ${tlmgr} install uplatex biber biblatex latexmk collection-langjapanese collection-latexrecommended collection-fontsrecommended collection-latexextra noto
 sudo ${tlmgr} path add
-
 
 ## download and extract Noto {Sans,Serif} Japanese
 wget -O Noto_Sans_JP.zip "https://fonts.google.com/download?family=Noto%20Sans%20JP"
@@ -61,6 +48,6 @@ mv Noto*.otf ${texmf_local}/fonts/opentype/noto/.
 
 ## setup japanese
 mktexlsr
-sudo cjk-gs-integrate --link-texmf --cleanup
-sudo cjk-gs-integrate --link-texmf
+cjk-gs-integrate --link-texmf --cleanup
+cjk-gs-integrate --link-texmf
 kanji-config-updmap-sys --ja nofont
