@@ -31,14 +31,8 @@ def rename(font: str, outputdir: Optional[str]) -> None:
             pat.append(name)
     if len(fam) == 0:
         raise ValueError('invalid fullname')
-    if not (('Regular' in wei) or ('Bold' in wei)):
-        wei = ['Regular'] + wei
-    if len(pat) > 0:
-        fontname = ''.join(fam) + '-' + ''.join(pat) + '-' + ''.join(wei)
-        familyname = ' '.join([' '.join(fam), ' '.join(pat)])
-    else:
-        fontname = ''.join(fam) + '-' + ''.join(wei)
-        familyname = ' '.join(fam)
+    fontname = ''.join(fam) + ''.join(pat) + '-' + ''.join(wei)
+    familyname = ' '.join([' '.join(fam), ' '.join(pat)])
     stylename = ' '.join(wei)
     fullname = ' '.join([familyname, stylename])
     sourceFont.fontname = fontname

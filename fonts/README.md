@@ -4,9 +4,7 @@
 
 * Monospaced fonts (for editor)
 	* [Ricty](https://rictyfonts.github.io/)
-	* [Migu 1M](https://mix-mplus-ipa.osdn.jp/migu/)
 * Proportional fonts (for system and browser)
-	* [Migu 1P](https://mix-mplus-ipa.osdn.jp/migu/)
 	* [Noto Sans Japanese](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
 
 ## Nessesarities
