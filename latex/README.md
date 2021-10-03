@@ -18,6 +18,13 @@
         * `> sudo apt install evince`
     * Mac OSX
         * `> brew install --cask skim`
+* The owner of `/usr/local/texlive` directory
+    * Linux (Ubuntu)
+        * Nothing to do (the owner is root)
+    * Mac OSX
+        * The owner should be you
+        * `sudo mkdir /usr/local/texlive`
+        * `sudo chown -R [username] /usr/local/texlive`
 
 ## Settings
 

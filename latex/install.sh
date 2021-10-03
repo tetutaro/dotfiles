@@ -4,6 +4,7 @@ set -eu
 CTAN_MIRROR="http://ftp.jaist.ac.jp/pub/CTAN/"
 TL_REPO="systems/texlive/tlnet/"
 TL_TGZ="install-tl-unx.tar.gz"
+os=$(uname -s)
 
 ## install tlmgr
 if [ ! -f ${TL_TGZ} ]; then
@@ -21,7 +22,14 @@ ${tlmgr} option repository ${CTAN_MIRROR}${TL_REPO}
 ${tlmgr} update --self --all
 ${tlmgr} paper a4
 ${tlmgr} install uplatex biber biblatex latexmk collection-langjapanese collection-latexrecommended collection-fontsrecommended collection-latexextra noto
-sudo ${tlmgr} path add
+if [ "${os}" == "Darwin" ]; then
+    ${tlmgr} repository add http://contrib.texlive.info/current tlcontrib
+    ${tlmgr} pinning add tlcontrib "*"
+    ${tlmgr} update --self --all
+    ${tlmgr} install cjk-gs-integrate-macos
+    ${tlmgr} install ptex-fontmaps-macos
+fi
+${tlmgr} path add
 
 ## download and extract Noto {Sans,Serif} Japanese
 wget -O Noto_Sans_JP.zip "https://fonts.google.com/download?family=Noto%20Sans%20JP"
@@ -49,5 +57,10 @@ mv Noto*.otf ${texmf_local}/fonts/opentype/noto/.
 ## setup japanese
 mktexlsr
 cjk-gs-integrate --link-texmf --cleanup
-cjk-gs-integrate --link-texmf
+if [ "${os}" == "Darwin" ]; then
+    cjk-gs-integrate-macos --link-texmf
+else
+    cjk-gs-integrate --link-texmf
+fi
 kanji-config-updmap-sys --ja nofont
+mktexlsr
