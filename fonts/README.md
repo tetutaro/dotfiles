@@ -7,7 +7,7 @@
 * Proportional fonts (for system and browser)
 	* [Noto Sans Japanese](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
 
-## Nessesarities
+## Necessities
 
 * Python3
 * fontforge

@@ -1,0 +1,12 @@
+{
+    "overrides": {
+        "code-font-family": "Ricty Discord Nerd",
+        "code-font-size": "medium",
+        "content-font-family": "Noto Sans JP",
+        "content-font-size1": "medium",
+        "ui-font-family": "Noto Sans JP",
+        "ui-font-size1": "small"
+    },
+    "theme": "JupyterLab Dark",
+    "theme-scrollbars": true
+}

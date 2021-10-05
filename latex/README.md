@@ -1,6 +1,6 @@
 # install LaTeX
 
-## Nessesarities
+## Necessities
 
 * pandoc
     * Linux (Ubuntu)

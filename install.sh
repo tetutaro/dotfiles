@@ -26,13 +26,10 @@ fi
 if [ ! -d ${HOME}/.jupyter/lab ]; then
     mkdir ${HOME}/.jupyter/lab
 fi
-if [ ! -d ${HOME}/.jupyter/lab/user-settings ]; then
-    mkdir ${HOME}/.jupyter/lab/user-settings
+if [ -e ${HOME}/.jupyter/lab/user-settings ]; then
+    rm -rf ${HOME}/.jupyter/lab/user-settings
 fi
-if [ -e ${HOME}/.jupyter/lab/user-settings/@jupyterlab ]; then
-    rm -rf ${HOME}/.jupyter/lab/user-settings/@jupyterlab
-fi
-ln -sf ${PWD}/jupyterlab ${HOME}/.jupyter/lab/user-settings/@jupyterlab
+ln -sf ${PWD}/jupyterlab ${HOME}/.jupyter/lab/user-settings
 
 # latexmk
 ln -sf ${PWD}/latexmkrc ${HOME}/.latexmkrc

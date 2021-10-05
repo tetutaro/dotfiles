@@ -57,7 +57,7 @@ function cdp {
     if [ -z "$1" ]; then
         test "$PWD" != "$HOME/Projects" && pushd "$HOME/Projects" > /dev/null
         local dir
-        dir=$(command find -L . -mindepth 1 \( -path '*/\.*' -or -path '*/__pycache__' \) -prune -or -type d -print 2>/dev/null | cut -b3- | fzf --preview 'tree -C {} | head -100' --preview-window down:50%:wrap:hidden --bind '?:toggle-preview') && cd "$dir"
+        dir=$(command find -L . -type d -mindepth 2 -maxdepth 3 \( -path '*/.*' -or -path '*/__pycache__' \) -prune -or -type d -print 2>/dev/null | cut -b3- | fzf --preview 'tree -C {} | head -100' --preview-window down:50%:wrap:hidden --bind '?:toggle-preview') && cd "$dir"
     else
         pushd "${HOME}/Projects/$1" > /dev/null
     fi
@@ -156,26 +156,43 @@ zstyle ':completion:*:sudo:*' command-path /bin /usr/bin /usr/local/bin /sbin /u
 ##########################################################################
 ## color settings
 # frontemare
-if [[ $TERM == 'xterm-256color' ]]; then
-    [ -f ~/.frontemare.sh ] && source ~/.frontemare.sh
+if [[ ${TERM} == 'xterm-256color' ]] && [[ -f ~/.frontemare.sh ]]; then
+    source ~/.frontemare.sh
 fi
 ##########################################################################
 ## application settings
 # fzf
-export FZF_COMPLETION_TRIGGER="@"
-# fzf & frontemare
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v fzf > /dev/null; then
+    export FZF_COMPLETION_TRIGGER="@"
+    # fzf & frontemare
+    if [[ -f ~/.fzf.zsh ]]; then
+        source ~/.fzf.zsh
+    fi
+fi
+# nodenv
+if [[ -d ${HOME}/.nodenv ]]; then
+    export PATH=${HOME}/.nodenv/bin:${PATH}
+    eval "$(nodenv init -)"
+fi
 # pyenv
-export PYENV_ROOT=${HOME}/.pyenv
-export PATH=${PYENV_ROOT}/bin:${PATH}
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+if [[ -d ${HOME}/.pyenv ]]; then
+    export PYENV_ROOT=${HOME}/.pyenv
+    export PATH=${PYENV_ROOT}/bin:${PATH}
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+fi
 # pyenv-virtualenv
-eval "$(pyenv virtualenv-init -)"
+if [[ -d ${HOME}/.pyenv/plugins/pyenv-virtualenv ]]; then
+    eval "$(pyenv virtualenv-init -)"
+fi
 # poetry
-export PATH=${HOME}/.poetry/bin:${PATH}
+if [[ -d ${HOME}/.poetry ]]; then
+    export PATH=${HOME}/.poetry/bin:${PATH}
+fi
 # pipx
-export PATH=${PATH}:${HOME}/.local/bin
+if [[ -d ${HOME}/.local/bin ]]; then
+    export PATH=${PATH}:${HOME}/.local/bin
+fi
 ##########################################################################
 ## include local settings
 if [[ -f ~/.zshrc.include ]]; then

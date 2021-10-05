@@ -1,0 +1,18 @@
+{
+    "codeCellConfig": {
+        "fontFamily": "Ricty Discord Nerd",
+        "fontSize": 18,
+        "lineHeight": 1.0,
+        "lineNumbers": true,
+        "lineWrap": "on"
+    },
+    "markdownCellConfig": {
+        "fontFamily": "Ricty Discord Nerd",
+        "fontSize": 16,
+        "lineHeight": 1.0
+    },
+    "rawCellConfig": {
+        "fontFamily": "Noto Serif JP",
+        "fontSize": 14
+    }
+}

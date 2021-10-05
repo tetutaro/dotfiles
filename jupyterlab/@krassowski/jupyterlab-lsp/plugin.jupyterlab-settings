@@ -1,0 +1,14 @@
+{
+    "language_servers": {
+        "pipx-pylsp": {
+            "serverSettings": {
+                "pylsp.plugins.pycodestyle.enabled": false,
+                "pylsp.plugins.pydocstyle.enabled": false,
+                "pylsp.plugins.pyflakes.enabled": false,
+                "pylsp.plugins.flake8.enabled": true,
+                "pylsp.plugins.jedi_definition.follow_imports": true,
+                "pylsp.plugins.jedi_definision.follow_builtin_imports": true
+            }
+        }
+    }
+}
