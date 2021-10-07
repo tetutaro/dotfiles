@@ -1,13 +1,22 @@
 {
     "language_servers": {
-        "pipx-pylsp": {
+        "pylsp": {
             "serverSettings": {
+                // disabed services
                 "pylsp.plugins.pycodestyle.enabled": false,
-                "pylsp.plugins.pydocstyle.enabled": false,
                 "pylsp.plugins.pyflakes.enabled": false,
+                "pylsp.plugins.rope_completion.enabled": false,
+                "pylsp.plugins.yapf.enabled": false,
+                // flake8
                 "pylsp.plugins.flake8.enabled": true,
-                "pylsp.plugins.jedi_definition.follow_imports": true,
-                "pylsp.plugins.jedi_definision.follow_builtin_imports": true
+                "pylsp.plugins.flake8.executable":
+                    "${HOME}/.local/pipx/venvs/jupyterlab/bin/flake8",
+                // ignoring errors
+                // E402: allows imports which are not on the very top
+                // E703: allows terminating ";" (for matplotlib plots)
+                "pylsp.plugins.flake8.ignore": ["E402", "E703"],
+                // maxLineLength = 79
+                "pylsp.plugins.flake8.maxLineLength": null
             }
         }
     }

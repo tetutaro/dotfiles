@@ -13,7 +13,7 @@ font_list = res.stdout.strip().splitlines()
 fonts = list()
 for font in font_list:
     path, name, weight = font.split(':')
-    if not '.fonts' in path:
+    if '.fonts' not in path:
         continue
     path = path.split(os.sep)[-1].strip()
     name = name.strip()

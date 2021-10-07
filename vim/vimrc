@@ -283,21 +283,33 @@ augroup END
 
 "" settings for Programming
 let g:python_host_prog = $VIRTUAL_ENV . '/bin/python3'
-let g:python_pyls_prog = $VIRTUAL_ENV . '/bin/pyls'
+let g:python_pylsp_prog = $VIRTUAL_ENV . '/bin/pylsp'
+let g:python_flake8_prog = $VIRTUAL_ENV . '/bin/flake8'
 augroup PythonLanguageServer
-    if executable(g:python_pyls_prog)
+    if executable(g:python_pylsp_prog)
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'pyls',
-            \ 'cmd': {server_info -> [g:python_pyls_prog]},
+            \ 'name': 'pylsp',
+            \ 'cmd': {server_info -> [g:python_pylsp_prog]},
             \ 'whitelist': ['python'],
             \ 'workspace_config': {
-                \ 'pyls': {
+                \ 'pylsp': {
                     \ 'plugins': {
-                        \ 'pycodestyle': {'enabled': v:false},
-                        \ 'jedi_definition': {
-                            \ 'follow_imports': v:true,
-                            \ 'follow_builtin_imports': v:true,
+                        \ 'pycodestyle': {
+                            \ 'enabled': v:false,
+                        \ },
+                        \ 'pyflakes': {
+                            \ 'enabled': v:false,
+                        \ },
+                        \ 'rope_completion': {
+                            \ 'enabled': v:false,
+                        \ },
+                        \ 'yapf': {
+                            \ 'enabled': v:false,
+                        \ },
+                        \ 'flake8': {
+                            \ 'enabled': v:true,
+                            \ 'executable': g:python_flake8_prog
                         \ }
                     \ }
                 \ }

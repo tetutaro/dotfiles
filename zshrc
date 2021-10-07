@@ -24,17 +24,19 @@ alias mv="mv -i"
 alias du="du -h"
 alias df="df -H"
 alias man="man -a"
+alias pipj="pipx runpip jupyterlab"
 alias gd="dirs -v;echo -n 'select number: ';read newdir;cd +$newdir"
 ##########################################################################
 ## OS dependencies
-if [[ `uname` == "Linux" ]]; then
+os=$(uname -s)
+if [[ ${os} == "Linux" ]]; then
     export SHELL=/bin/zsh
     alias ls="ls --color -Fv"
     alias ll="ls --color -AFhlv"
     alias pbcopy="xsel --input --clipboard"
     alias pbpaste="xsel --output --clipboard"
     alias open="xdg-open"
-elif [[ `uname  ` == "Darwin" ]]; then
+elif [[ ${os} == "Darwin" ]]; then
     export SHELL=/usr/local/bin/zsh
     alias ls="ls -FGv"
     alias ll="ls -AFGhlov"
@@ -173,6 +175,9 @@ fi
 if [[ -d ${HOME}/.nodenv ]]; then
     export PATH=${HOME}/.nodenv/bin:${PATH}
     eval "$(nodenv init -)"
+    if [[ ! -d ${HOME}/.pyenv ]]; then
+        alias rehash="nodenv rehash; rehash"
+    fi
 fi
 # pyenv
 if [[ -d ${HOME}/.pyenv ]]; then
@@ -180,6 +185,11 @@ if [[ -d ${HOME}/.pyenv ]]; then
     export PATH=${PYENV_ROOT}/bin:${PATH}
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
+    if [[ -d ${HOME}/.nodenv ]]; then
+        alias rehash="nodenv rehash; pyenv rehash; rehash"
+    else
+        alias rehash="pyenv rehash; rehash"
+    fi
 fi
 # pyenv-virtualenv
 if [[ -d ${HOME}/.pyenv/plugins/pyenv-virtualenv ]]; then

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# get system name
+os=$(uname -s)
+
 # ZSH
 ln -sf ${PWD}/zshrc ${HOME}/.zshrc
 
@@ -30,6 +33,17 @@ if [ -e ${HOME}/.jupyter/lab/user-settings ]; then
     rm -rf ${HOME}/.jupyter/lab/user-settings
 fi
 ln -sf ${PWD}/jupyterlab ${HOME}/.jupyter/lab/user-settings
+
+# JupyterLab on pipx (> pipx install jupyterlab)
+# + yapyterlab_app (https://github.com/tetutaro/yapyterlab_app)
+pipx_jupyterlab_etc=${HOME}/.local/pipx/venvs/jupyterlab/etc/jupyter
+if [ -d ${pipx_jupyterlab_etc} ]; then
+    if [ ${os} == "Linux" ]; then
+        ln -sf ${PWD}/jupyter_lab_config.py.linux ${pipx_jupyterlab_etc}/jupyter_lab_config.py
+    elif [ ${os} == "Darwin" ]; then
+        ln -sf ${PWD}/jupyter_lab_config.py.macos ${pipx_jupyterlab_etc}/jupyter_lab_config.py
+    fi
+fi
 
 # latexmk
 ln -sf ${PWD}/latexmkrc ${HOME}/.latexmkrc
