@@ -24,8 +24,9 @@ alias mv="mv -i"
 alias du="du -h"
 alias df="df -H"
 alias man="man -a"
+alias tree="tree -NCF"
 alias pipj="pipx runpip jupyterlab"
-alias gd="dirs -v;echo -n 'select number: ';read newdir;cd +$newdir"
+alias gd="dirs -v;echo -n 'select number: ';read newdir;cd $newdir"
 ##########################################################################
 ## OS dependencies
 os=$(uname -s)
@@ -50,18 +51,25 @@ elif [[ ${os} == "Darwin" ]]; then
     fi
 fi
 ##########################################################################
-## functions
+## key bindings
 bindkey -d
 bindkey -e
+bindkey -r "^T"
 bindkey -r "^O"
+##########################################################################
+## functions
 ## cdp
-function cdp {
-    if [ -z "$1" ]; then
-        test "$PWD" != "$HOME/Projects" && pushd "$HOME/Projects" > /dev/null
-        local dir
-        dir=$(command find -L . -type d -mindepth 2 -maxdepth 3 \( -path '*/.*' -or -path '*/__pycache__' \) -prune -or -type d -print 2>/dev/null | cut -b3- | fzf --preview 'tree -C {} | head -100' --preview-window down:50%:wrap:hidden --bind '?:toggle-preview') && cd "$dir"
+PROJECT_DIR="${HOME}/Projects"
+function cdp() {
+    if [[ -z "$1" ]]; then
+        test "${PWD}" != "${PROJECT_DIR}" && pushd "${PROJECT_DIR}" > /dev/null
+        local dir=$(command find -L . -type d -mindepth 2 -maxdepth 3 \( -path '*/.*' -or -path '*/__pycache__' \) -prune -or -type d -print 2>/dev/null | cut -b3- | fzf --preview 'tree -C {} | head -100' --preview-window down:50%:wrap:hidden --bind '?:toggle-preview')
+        if [[ "${dir}" != "" ]]; then
+            pushd "${dir}" > /dev/null
+        fi
+        unset dir
     else
-        pushd "${HOME}/Projects/$1" > /dev/null
+        pushd "${PROJECT_DIR}/$1" > /dev/null
     fi
 }
 ##########################################################################
@@ -114,32 +122,39 @@ setopt multios
 HISTFILE=${HOME}/.zsh_histroy
 HISTSIZE=4096
 SAVEHIST=4096
-autoload history-search-end
+autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 ##########################################################################
 ## prompt
-autoload colors
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+autoload -Uz colors
 colors
+autoload -Uz add-zsh-hook
 local p_rhst=""
 #if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]]; then
-#    local rhost=`who am i | sed 's/.*(\(.*\)).*/\1/'`
-#    rhost=${rhost#localhost:}
-#    rhost=${rhost%%.*}
-#    p_rhst="%B%F{yellow}($rhost)%f%b"
+#   local rhost=`who am i | sed 's/.*(\(.*\)).*/\1/'`
+#   rhost=${rhost#localhost:}
+#   rhost=${rhost%%.*}
+#   p_rhst="%B%F{yellow}($rhost)%f%b"
 #fi
-local p_cdir="%B%F{blue}[%~]%f%b"$'\n'
-local p_info="%n@%m${WINDOW:+"[$WINDOW]"}"
+local p_cdir="%B%F{blue}[%(5~|.../%2~|%~)]%f%b"$'\n'
+local p_info="%n@%m${WINDOW:+[${WINDOW}]}"
 local p_mark="%B%(?,%F{green},%F{red})%(!,#,>)%f%b"
-PROMPT=" $p_cdir$p_rhst$p_info $p_mark "
+local p_base=" $p_cdir$p_rhost$p_info $p_mark "
+function __precmd_virtual_env() {
+    local p_penv="%B%F{cyan}${VIRTUAL_ENV:+(`echo ${VIRTUAL_ENV##*/}|rev|cut -d- -f3-|rev`)}%f%b"
+    PROMPT="$p_penv$p_base"
+}
 PROMPT2="(%_) %(!,#,>) "
 SPROMPT="correct: %R -> %r ? [n,y,a,e]: "
 #RPROMPT="%1(v|%1v|)%2(v| %B%F{yellow}%2v%f%b|)%3(v| %B%F{red}%3v%f%b|)"
+add-zsh-hook precmd __precmd_virtual_env
 ##########################################################################
 ## completion
-fpath=(${HOME}/.zcomp ${fpath} /usr/local/share/zsh-completions /usr/local/share/zsh/site-functions)
+fpath=(${HOME}/.zcomp ${fpath} /usr/local/share/zsh-completions /usr/local/share/zsh/site-functions /usr/local/share/zsh/functions)
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' format '%BCompleting %d%b'
@@ -153,12 +168,12 @@ zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 zstyle ':completion:*:sudo:*' command-path /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin .
 ##########################################################################
 ## prediction
-#autoload predict-on
+#autoload -Uz predict-on
 #predict-on
 ##########################################################################
 ## color settings
 # frontemare
-if [[ ${TERM} == 'xterm-256color' ]] && [[ -f ~/.frontemare.sh ]]; then
+if [[ ${TERM} == "xterm-256color" ]] && [[ -f ~/.frontemare.sh ]]; then
     source ~/.frontemare.sh
 fi
 ##########################################################################
@@ -170,6 +185,11 @@ if command -v fzf > /dev/null; then
     if [[ -f ~/.fzf.zsh ]]; then
         source ~/.fzf.zsh
     fi
+    export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -maxdepth 3 \( -path '*/.*' -o -path '*Library*' -o -path '*Applications*' -o -path '*Google Drive*' -o -path '*Dropbox*' -o -path '*VirtualBox VMs*' \) -prune -o -type d -print 2>/dev/null | cut -b3-"
+    bindkey -r "^T"
+    bindkey -r "\ec"
+    bindkey "^X^F" fzf-file-widget
+    bindkey "^X^D" fzf-cd-widget
 fi
 # nodenv
 if [[ -d ${HOME}/.nodenv ]]; then
