@@ -208,12 +208,6 @@ fi
 if [[ -d ${HOME}/.local/bin ]]; then
     export PATH=${PATH}:${HOME}/.local/bin
 fi
-# pmy
-#if [[ -d ${HOME}/.pmy/bin ]]; then
-#    export PMY_TRIGGER_KEY="^I"
-#    export PATH=${PATH}:${HOME}/.pmy/bin
-#    eval "$(pmy init)"
-#fi
 ##########################################################################
 ## functions
 ## cdp
