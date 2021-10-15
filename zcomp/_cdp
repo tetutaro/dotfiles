@@ -1,3 +1,6 @@
 #compdef cdp
-
-_arguments ':projects:_path_files -W ~/Projects/ -/'
+function _cdp() {
+#    _arguments '1:Project Directory:_path_files -W ~/Projects/ -/'
+    _values 'Project Directory' ${(@Q)${(z)$(__list_projects)}}
+}
+compdef _cdp cdp
