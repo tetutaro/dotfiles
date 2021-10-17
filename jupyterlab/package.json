@@ -1,0 +1,40 @@
+{
+    "name": "JupyterLab",
+    "version": "0.2.1",
+    "description": "Yet Another JupyterLab App: The simplest desktop application only for JupyterLab, based on Electron",
+    "author": "tetutaro",
+    "repository": "https://github.com/tetutaro/yapyterlab_app",
+    "license": "MIT",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "pack": "electron-builder --dir",
+        "build": "electron-builder"
+    },
+    "build": {
+        "directories": {
+            "output": "build"
+        },
+        "files": [
+            "package.json",
+            "main.js",
+            "icons/*"
+        ],
+        "mac": {
+            "icon": "icons/jupyter.icns",
+            "target": ["dmg"]
+        },
+        "win": {
+            "icon": "icons/jupyter.ico",
+            "target": ["nsis"]
+        },
+        "linux": {
+            "icon": "icons/jupyter.icns",
+            "target": ["snap"]
+        }
+    },
+    "devDependencies": {
+        "electron": "^15.1.1",
+        "electron-builder": "^22.11.7"
+    }
+}

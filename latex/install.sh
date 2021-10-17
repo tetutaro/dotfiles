@@ -17,7 +17,7 @@ rm -f ${TL_TGZ}
 rm -rf ${tl_dir}
 
 ## install texlive packages
-tlmgr=$(find /usr/local/texlive -name tlmgr | sort | tail -n 1)
+tlmgr=$(find -L /usr/local/texlive -name tlmgr | sort | tail -n 1)
 ${tlmgr} option repository ${CTAN_MIRROR}${TL_REPO}
 ${tlmgr} update --self --all
 ${tlmgr} paper a4

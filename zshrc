@@ -170,88 +170,17 @@ if command -v fzf > /dev/null; then
     if [[ -f ~/.fzf.zsh ]]; then
         source ~/.fzf.zsh
     fi
-    export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -maxdepth 3 \( -path '*/.*' -o -path '*Library*' -o -path '*Applications*' -o -path '*Google Drive*' -o -path '*Dropbox*' -o -path '*VirtualBox VMs*' \) -prune -o -type d -print 2>/dev/null | cut -b3-"
-    bindkey -r "^T"
-    bindkey -r "\ec"
-    bindkey "^X^F" fzf-file-widget
-    bindkey "^X^D" fzf-cd-widget
-fi
-# nodenv
-if [[ -d ${HOME}/.nodenv ]]; then
-    export PATH=${HOME}/.nodenv/bin:${PATH}
-    eval "$(nodenv init -)"
-    if [[ ! -d ${HOME}/.pyenv ]]; then
-        alias rehash="nodenv rehash; rehash"
-    fi
-fi
-# pyenv
-if [[ -d ${HOME}/.pyenv ]]; then
-    export PYENV_ROOT=${HOME}/.pyenv
-    export PATH=${PYENV_ROOT}/bin:${PATH}
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-    if [[ -d ${HOME}/.nodenv ]]; then
-        alias rehash="nodenv rehash; pyenv rehash; rehash"
-    else
-        alias rehash="pyenv rehash; rehash"
-    fi
-fi
-# pyenv-virtualenv
-if [[ -d ${HOME}/.pyenv/plugins/pyenv-virtualenv ]]; then
-    eval "$(pyenv virtualenv-init -)"
-fi
-# poetry
-if [[ -d ${HOME}/.poetry ]]; then
-    export PATH=${HOME}/.poetry/bin:${PATH}
-fi
-# pipx
-if [[ -d ${HOME}/.local/bin ]]; then
-    export PATH=${PATH}:${HOME}/.local/bin
 fi
 ##########################################################################
-## functions
-## cdp
-PROJECT_TOP_DIR="${HOME}/Projects"
-PROJECT_DEPTH_FROM_TOP=3
-function __list_projects() {
-    local -a projects
-    projects=($(find -L ${PROJECT_TOP_DIR} -type d -mindepth ${PROJECT_DEPTH_FROM_TOP} -maxdepth ${PROJECT_DEPTH_FROM_TOP} \( -name '.*' -or -name '_*' \) -prune -or -type d -print 2>/dev/null | rev | cut -d/ -f-${PROJECT_DEPTH_FROM_TOP} | rev | sort))
-    print -r -- ${(qq)projects}
-}
-function cdp() {
-    local -a dir
-    if [[ -z "$1" ]]; then
-        pushd "${PROJECT_TOP_DIR}" >/dev/null
-    else
-        dir=$(echo ${(F)${(@Q)${(z)$(__list_projects)}}} | fzf --no-multi --no-exit-0 --no-select-1 --preview "tree -N ${PROJECT_TOP_DIR}/{} | head -20" --preview-window down:50%:nowrap:hidden --bind "?:toggle-preview" --query "$1")
-        if [[ "${dir}" != "" ]]; then
-            pushd "${PROJECT_TOP_DIR}/${dir}" >/dev/null
-        fi
-    fi
-}
-function __cdp_widget() {
-    local -a buffer cmd arg dir
-    buffer="${LBUFFER}${RBUFFER}"
-    cmd=${${(ws, ,)buffer}[1]}
-    arg=${${(ws, ,)buffer}[2]}
-    if [[ ${cmd} == "cdp" ]]; then
-        dir=$(echo ${(F)${(@Q)${(z)$(__list_projects)}}} | fzf --no-multi --no-exit-0 --no-select-1 --preview "tree -N ${PROJECT_TOP_DIR}/{} | head -20" --preview-window down:50%:nowrap:hidden --bind "?:toggle-preview" --query "${arg}")
-        if [[ "${dir}" != "" ]]; then
-            pushd "${PROJECT_TOP_DIR}/${dir}" >/dev/null
-            zle accept-line
-            LBUFFER=""
-            RBUFFER=""
-        else
-            zle reset-prompt
-            LBUFFER=""
-            RBUFFER=""
-        fi
-    else
-        zle expand-or-complete
-    fi
-}
-zle -N __cdp_widget
-bindkey "^I" __cdp_widget
+## include cdp settings
+if [[ -f ~/.zshrc.cdp ]]; then
+    source ~/.zshrc.cdp
+fi
+##########################################################################
+## include anyenv settings
+if [[ -f ~/.zshrc.anyenv ]]; then
+    source ~/.zshrc.anyenv
+fi
 ##########################################################################
 ## include local settings
 if [[ -f ~/.zshrc.include ]]; then

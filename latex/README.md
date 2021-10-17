@@ -38,3 +38,7 @@
 * Mac OSX
     * `> ./install.sh`
 * You will be prompted only once in the installation process, but press "I" to continue
+
+install latexmkrc
+
+* `> ./install_latexmkrc.sh`
