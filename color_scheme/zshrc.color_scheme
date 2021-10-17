@@ -1,0 +1,8 @@
+if [[ ${TERM##*-} == "256color" ]]; then
+    if [[ -f ${HOME}/.color_scheme.sh ]]; then
+        source ${HOME}/.color_scheme.sh
+    fi
+    if [[ ! -z fzf ]] && [[ -f ${HOME}/.fzf.zsh ]]; then
+        source ${HOME}/.fzf.zsh
+    fi
+fi

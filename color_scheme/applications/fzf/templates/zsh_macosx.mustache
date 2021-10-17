@@ -1,0 +1,59 @@
+# {{scheme_slug}}
+# Author: {{scheme_author}}
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+    export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+# fzf + ag configuration
+# ------------
+export FZF_DEFAULT_COMMAND='ag --ignore "Library" --ignore "Applications" --ignore "Pictures" --ignore "Music" --ignore "Movies" --ignore "__pycache__" --nocolor -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'head -100 {}' --preview-window down:50%:hidden:wrap --bind '?:toggle-preview'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \\( -path '*/\\.*' -or -fstype 'sysfs' -or -fstype 'devfs' -or -fstype 'devtmpfs' -or -fstype 'proc' -or -path '*/Library' -or -path '*/Applications' -or -path '*/Pictures' -or -path '*/Music' -or -path '*/Movies' -or -path '*/__pycache__' \\) -prune -or -type d -print 2>/dev/null | cut -b3-"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100' --preview-window down:50%:hidden:wrap --bind '?:toggle-preview'"
+
+_gen_fzf_default_opts() {
+
+local colorBG='#{{baseBG_hex}}'
+local colorBg='#{{baseBg_hex}}'
+local colorBf='#{{baseBf_hex}}'
+local colorBF='#{{baseBF_hex}}'
+local colorFG='#{{baseFG_hex}}'
+local colorFg='#{{baseFg_hex}}'
+local colorB1='#{{baseB1_hex}}'
+local colorB2='#{{baseB2_hex}}'
+local colorB3='#{{baseB3_hex}}'
+local colorB4='#{{baseB4_hex}}'
+local colorB5='#{{baseB5_hex}}'
+local colorF1='#{{baseF1_hex}}'
+local colorF2='#{{baseF2_hex}}'
+local colorF3='#{{baseF3_hex}}'
+local colorF4='#{{baseF4_hex}}'
+local colorF5='#{{baseF5_hex}}'
+local colorF6='#{{baseF6_hex}}'
+local colorF7='#{{baseF7_hex}}'
+
+export FZF_DEFAULT_OPTS="\
+    --color=fg:$colorFG,bg:-1,hl:$colorF7\
+    --color=fg+:$colorFG,bg+:$colorB4,gutter:$colorBg,hl+:$colorF7\
+    --color=prompt:$colorF6,pointer:$colorF4,marker:$colorF2\
+    --color=spinner:$colorF1,info:$colorF5\
+    --tac --cycle --layout=reverse --select-1 --exit-0\
+"
+
+}
+
+_gen_fzf_default_opts
+

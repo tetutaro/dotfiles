@@ -156,33 +156,22 @@ zstyle ':completion:*:sudo:*' command-path /bin /usr/bin /usr/local/bin /sbin /u
 #autoload -Uz predict-on
 #predict-on
 ##########################################################################
-## color settings
-# frontemare
-if [[ ${TERM} == "xterm-256color" ]] && [[ -f ~/.frontemare.sh ]]; then
-    source ~/.frontemare.sh
-fi
-##########################################################################
-## application settings
-# fzf
-if command -v fzf > /dev/null; then
-    export FZF_COMPLETION_TRIGGER="@"
-    # fzf & frontemare
-    if [[ -f ~/.fzf.zsh ]]; then
-        source ~/.fzf.zsh
-    fi
+## include color scheme settings
+if [[ -f ${HOME}/.zshrc.color_scheme ]]; then
+    source ${HOME}/.zshrc.color_scheme
 fi
 ##########################################################################
 ## include cdp settings
-if [[ -f ~/.zshrc.cdp ]]; then
-    source ~/.zshrc.cdp
+if [[ -f ${HOME}/.zshrc.cdp ]]; then
+    source ${HOME}/.zshrc.cdp
 fi
 ##########################################################################
 ## include anyenv settings
-if [[ -f ~/.zshrc.anyenv ]]; then
+if [[ -f ${HOME}/.zshrc.anyenv ]]; then
     source ~/.zshrc.anyenv
 fi
 ##########################################################################
 ## include local settings
-if [[ -f ~/.zshrc.include ]]; then
-    source ~/.zshrc.include
+if [[ -f ${HOME}/.zshrc.include ]]; then
+    source ${HOME}/.zshrc.include
 fi

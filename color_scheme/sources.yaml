@@ -1,0 +1,14 @@
+schemes: [
+  tomorrow,
+  iceberg,
+  nord,
+  frontemare,
+]
+applications: [
+  analysis,
+  fzf,
+  iterm2,
+  sample,
+  shell,
+  vim,
+]
