@@ -1,7 +1,12 @@
 #!/bin/bash
 ## check dependencies
 os=$(uname -s)
-if [ ! -f ${HOME}/.local/bin/pipx ]; then
+if [ "${os}" == "Linux" ]; then
+    PIPX_PATH="${HOME}/.local/bin/pipx"
+else
+    PIPX_PATH="/usr/local/bin/pipx"
+fi
+if [ ! -f ${PIPX_PATH} ]; then
     echo "install pipx first"
     exit 1
 else

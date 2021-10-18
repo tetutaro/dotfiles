@@ -8,7 +8,13 @@ if [ ! -d ${HOME}/.vim ]; then
     mkdir ${HOME}/.vim
 fi
 for f in ${PWD}/rcfiles/*; do
-    ln -sf $f ${HOME}/.vim/${f##*/}
+    if [ "${f##*/}" == "colors.vim" ]; then
+        if [ ! -f ${HOME}/.vim/colors.vim ]; then
+            cp $f ${HOME}/.vim/colors.vim
+        fi
+    else
+        ln -sf $f ${HOME}/.vim/${f##*/}
+    fi
 done
 
 ## VIM
