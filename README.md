@@ -16,3 +16,5 @@ preferences of zsh, vim, ...
     * go to [latex](/latex/)
 1. installation of JupyterLab
     * go to [jupyterlab](/jupyterlab/)
+1. installation of gnome-terminal config tool
+    * go to [gnome_terminal](/gnome_terminal/)
