@@ -1,0 +1,25 @@
+# {{scheme_slug}}
+# Author: {{scheme_author}}
+
+_gen_fzf_default_opts() {
+local colorBG='#{{baseBG_hex}}'
+local colorBg='#{{baseBg_hex}}'
+local colorBf='#{{baseBf_hex}}'
+local colorBF='#{{baseBF_hex}}'
+local colorFG='#{{baseFG_hex}}'
+local colorFg='#{{baseFg_hex}}'
+local colorB1='#{{baseB1_hex}}'
+local colorB2='#{{baseB2_hex}}'
+local colorB3='#{{baseB3_hex}}'
+local colorB4='#{{baseB4_hex}}'
+local colorB5='#{{baseB5_hex}}'
+local colorF1='#{{baseF1_hex}}'
+local colorF2='#{{baseF2_hex}}'
+local colorF3='#{{baseF3_hex}}'
+local colorF4='#{{baseF4_hex}}'
+local colorF5='#{{baseF5_hex}}'
+local colorF6='#{{baseF6_hex}}'
+local colorF7='#{{baseF7_hex}}'
+export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=fg:$colorFG,bg:-1,hl:$colorF7,fg+:$colorFG,bg+:$colorB4,gutter:$colorBg,hl+:$colorF7,prompt:$colorF6,pointer:$colorF4,marker:$colorF2,spinner:$colorF1,info:$colorF5"
+}
+_gen_fzf_default_opts

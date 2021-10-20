@@ -1,0 +1,20 @@
+{
+	"segments": {
+		"left": [
+			{
+				"function": "powerline_widgets.shell.poetry_virtualenv",
+                "priority": 50
+			},
+            {
+                "function": "powerline.segments.common.vcs.branch",
+                "priority": 10
+            },
+			{
+				"function": "powerline_widgets.shell.project_cwd",
+                "priority": 30
+			}
+		],
+		"right": [
+        ]
+	}
+}

@@ -1,0 +1,52 @@
+{
+	"segments": {
+		"left": [
+			{
+				"type": "segment_list",
+				"function": "powerline.listers.vim.bufferlister",
+				"segments": [
+					{
+						"function": "bufnr",
+						"after": ":",
+						"priority": 5
+					},
+					{
+						"function": "file_name",
+						"args": {
+							"display_no_file": true
+						},
+				        "draw_hard_divider": true,
+				        "draw_soft_divider": true,
+                        "draw_inner_divider": true,
+						"priority": 10
+					},
+					{
+						"function": "modified_indicator",
+				        "draw_hard_divider": true,
+				        "draw_soft_divider": true,
+                        "draw_inner_divider": true,
+                        "priority": 5
+					}
+				]
+			},
+			{
+				"type": "string",
+				"highlight_groups": ["tab:background"],
+				"draw_soft_divider": false,
+				"draw_hard_divider": false,
+				"width": "auto"
+			}
+		],
+		"right": [
+            {
+                "type": "string",
+                "highlight_groups": ["single_tab"],
+                "name": "single_tab",
+                "contents": "Buffers",
+                "draw_soft_divier": true,
+                "draw_hard_divier": true,
+                "draw_inner_divider": true
+            }
+		]
+	}
+}

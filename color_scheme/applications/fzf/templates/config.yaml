@@ -1,15 +1,3 @@
-zsh_macosx:
-    extension: .zsh
-    output: zsh_macosx
-
-zsh_ubuntu:
-    extension: .zsh
-    output: zsh_ubuntu
-
-bash_macosx:
-    extension: .bash
-    output: bash_macosx
-
-bash_ubuntu:
-    extension: .bash
-    output: bash_ubuntu
+default:
+    extension: .sh
+    output: scripts

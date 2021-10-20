@@ -18,19 +18,19 @@ if [ ! -d ${HOME}/.nodenv ]; then
 else
     echo "nodenv is already installed"
 fi
-if [ -z npm ]; then
+if [ -z $(command -v npm) ]; then
     echo "install Node.js first"
     exit 1
 else
     echo "Node.js is already installed"
 fi
-if [ -z yarn ]; then
+if [ -z $(command -v yarn) ]; then
     echo "install yarn"
     npm install -g yarn
 else
     echo "yarn is already installed"
 fi
-if [ -z jq ]; then
+if [ -z $(command -v jq) ]; then
     if [ "${os}" == "Linux" ]; then
         sudo apt install jq
     else

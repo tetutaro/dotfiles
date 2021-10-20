@@ -12,10 +12,7 @@
 ## インストール方法
 
 * 必ず [pipx](https://pypa.github.io/pipx/) をインストールしてください
-* Ubuntu
-    * `> ./install_ubuntu.sh`
-* Mac OSX
-    * `> ./install_macosx.sh`
+* `> ./install.sh`
 
 ## 自動設定ツール
 

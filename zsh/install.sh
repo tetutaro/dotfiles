@@ -3,17 +3,14 @@
 ## get system name
 os=$(uname -s)
 
-## installation of fzf, silversearcher
-if [[ -z fzf ]]; then
-    if [[ "${os}" == "Linux" ]]; then
-        sudo apt install fzf
-    else
-        brew install fzf
-    fi
+## installation of fzf, silversearcher, tree
+if [[ ! -d ${HOME}/.fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --xdg --key-bindings --completion --no-update-rc --no-bash --no-fish
 else
     echo "fzf is already installed"
 fi
-if [[ -z ag ]]; then
+if [[ -z $(command -v ag) ]]; then
     if [[ "${os}" == "Linux" ]]; then
         sudo apt install silversearcher-ag
     else
@@ -21,6 +18,15 @@ if [[ -z ag ]]; then
     fi
 else
     echo "silversearcher is already installed"
+fi
+if [[ -z $(command -v tree) ]]; then
+    if [[ "${os}" == "Linux" ]]; then
+        sudo apt install tree
+    else
+        brew install tree
+    fi
+else
+    echo "tree is already installed"
 fi
 
 ## path of python
@@ -53,7 +59,7 @@ else
 fi
 
 ## pipx
-if [[ -z pipx ]]; then
+if [[ ! -d ${HOME}/.local/pipx ]]; then
     if [[ ${os} == "Darwin" ]]; then
         brew install pipx
     else
@@ -85,15 +91,19 @@ fi
 
 ## ZSHRCs
 ln -sf ${PWD}/zshrc ${HOME}/.zshrc
-ln -sf ${PWD}/zshrc.anyenv ${HOME}/.zshrc.anyenv
-ln -sf ${PWD}/zshrc.cdp ${HOME}/.zshrc.cdp
+if [[ ! -d ${HOME}/.config/zsh ]]; then
+    mkdir ${HOME}/.config/zsh
+fi
+ln -sf ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
+ln -sf ${PWD}/fzf.zsh ${HOME}/.config/zsh/fzf.zsh
+ln -sf ${PWD}/anyenv.zsh ${HOME}/.config/zsh/anyenv.zsh
 
 ## completion of ZSH
-if [ ! -d ${HOME}/.zcomp ]; then
-    mkdir ${HOME}/.zcomp
+if [ ! -d ${HOME}/.config/zsh-completions ]; then
+    mkdir ${HOME}/.config/zsh-completions
 fi
-for f in ${PWD}/zcomp/*; do
-    ln -sf $f ${HOME}/.zcomp/${f##*/}
+for f in ${PWD}/zsh-completions/*; do
+    ln -sf $f ${HOME}/.config/zsh-completions/${f##*/}
 done
 
 ## installation of ZSH
@@ -102,7 +112,7 @@ if [ "${os}" == "Linux" ]; then
 else
     ZSH_PATH="/usr/local/bin/zsh"
 fi
-if [ -z ${ZSH_PATH} ]; then
+if [[ ! -x ${ZSH_PATH} ]]; then
     if [ "${os}" == "Linux" ]; then
         sudo apt install zsh
     else

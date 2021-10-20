@@ -7,15 +7,10 @@ Preview color schemes and setup the selected color scheme.
 Attributes:
     COLOR_SCHEME_SHELL_PATH (str):
         The pathname of shell script which setups colors for shell.
-        Your shell config script will read this file.
     COLOR_SCHEME_SHELL_DIR (str):
         The directory name that color schemes for shell are installed.
-    COLOR_SCHEME_FZF_BASH (str):
-        The pathname of bash script which setups colors for fzf.
-        If your shell is bash, bash config script will read this file.
-    COLOR_SCHEME_FZF_ZSH (str):
-        The pathname of zsh script which setups colors for fzf.
-        If your shell is zsh, zsh config script will read this file.
+    COLOR_SCHEME_FZF_PATH (str):
+        The pathname of shell script which setups colors for fzf.
     COLOR_SCHEME_FZF_DIR (str):
         The directory name that color schemes for fzf installed.
     COLOR_SCHEME_VIM_PATH (str):
@@ -30,11 +25,10 @@ import os
 import subprocess
 import pkg_resources
 
-COLOR_SCHEME_SHELL_PATH = '~/.color_scheme.sh'
-COLOR_SCHEME_SHELL_DIR = '~/.config/color_scheme_shell'
-COLOR_SCHEME_FZF_BASH = '~/.fzf.bash'
-COLOR_SCHEME_FZF_ZSH = '~/.fzf.zsh'
-COLOR_SCHEME_FZF_DIR = '~/.config/color_scheme_fzf'
+COLOR_SCHEME_SHELL_PATH = '~/.config/color_scheme/shell.sh'
+COLOR_SCHEME_SHELL_DIR = '~/.config/color_scheme/shell'
+COLOR_SCHEME_FZF_PATH = '~/.config/color_scheme/fzf.sh'
+COLOR_SCHEME_FZF_DIR = '~/.config/color_scheme/fzf'
 COLOR_SCHEME_VIM_PATH = '~/.vim/colors.vim'
 COLOR_SCHEME_VIM_RC = '''"" This file is automatically created by manage_color
 if !exists('g:colors_name') || g:colors_name != '{theme}'
@@ -98,22 +92,20 @@ class Theme(object):
     def setup(self) -> None:
         """setup the color scheme script"""
         # shell
-        create_symlink(self.path, os.path.expanduser(COLOR_SCHEME_SHELL_PATH))
-        # bash fzf
-        fzf_bash_path = os.path.expanduser(COLOR_SCHEME_FZF_BASH)
-        fzf_bash_script = os.path.expanduser(
-            os.path.join(COLOR_SCHEME_FZF_DIR, 'bash', self.name + '.bash')
+        create_symlink(
+            self.path,
+            os.path.expanduser(COLOR_SCHEME_SHELL_PATH)
         )
-        create_symlink(fzf_bash_script, fzf_bash_path)
-        # zsh fzf
-        fzf_zsh_path = os.path.expanduser(COLOR_SCHEME_FZF_ZSH)
-        fzf_zsh_script = os.path.expanduser(
-            os.path.join(COLOR_SCHEME_FZF_DIR, 'zsh', self.name + '.zsh')
+        # fzf
+        create_symlink(
+            os.path.join(
+                os.path.expanduser(COLOR_SCHEME_FZF_DIR),
+                os.path.basename(self.path)
+            ),
+            os.path.expanduser(COLOR_SCHEME_FZF_PATH)
         )
-        create_symlink(fzf_zsh_script, fzf_zsh_path)
         # vim
-        vim_path = os.path.expanduser(COLOR_SCHEME_VIM_PATH)
-        with open(vim_path, 'w') as wf:
+        with open(os.path.expanduser(COLOR_SCHEME_VIM_PATH), 'w') as wf:
             wf.write(COLOR_SCHEME_VIM_RC.format(theme=self.name))
         return
 
