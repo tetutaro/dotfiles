@@ -23,38 +23,7 @@ if has('vim_starting')
 endif
 
 "" Plugins
-"" https://vimawesome.com/
-call plug#begin(expand('~/.vim/plugged'))
-" Interface
-Plug 'airblade/vim-rooter'
-"Plug 'hecal3/vim-leader-guide'
-Plug 'liuchengxu/vim-which-key'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-" Visualize
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'luochen1990/rainbow'
-Plug 'airblade/vim-gitgutter'
-" Markdown
-Plug 'joker1007/vim-markdown-quote-syntax'
-Plug 'rcmdnk/vim-markdown'
-" Python
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'plytophogy/vim-virtualenv'
-" Language Server
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'w0rp/ale'
-" Original Plugins
-Plug 'tetutaro/vague-move.vim'
-Plug 'tetutaro/vague-input-python.vim'
-Plug 'tetutaro/vague-input-markdown.vim'
-" Status Line
-Plug '~/.vim/plugged/powerline.vim'
-call plug#end()
+source $HOME/.vim/plugins.vim
 filetype plugin indent on
 
 "" settings for Interface
@@ -68,9 +37,8 @@ command! -bang -nargs=* Lines call fzf#vim#lines(<q-args>, {'options': ['+m', '+
 command! -bang -nargs=* BLines call fzf#vim#buffer_lines(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=Word > '], 'down': '40%'}, <bang>0)
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=Word > '], 'down': '40%'}, <bang>0)
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=File > '], 'down': '40%'}, <bang>0)
-command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=File > '], 'down': '40%'},), <bang>0)',
-command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=File > '], 'down': '40%'}, <bang>0)
-command! -bar -bang -nargs=? -complete=buffer Buffers call fzf#vim#buffers(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=Buffer > '], 'down': '40%'}), <bang>0)
+command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=File > '], 'down': '40%'}, <bang>0)
+command! -bar -bang -nargs=? -complete=buffer Buffers call fzf#vim#buffers(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=Buffer > '], 'down': '40%'}, <bang>0)
 command! -bar -bang Colors call fzf#vim#colors({'options': ['+m', '+0', '+1', '--prompt=Color > '], 'down': '40%'}, <bang>0)
 
 "" settings for Visualization

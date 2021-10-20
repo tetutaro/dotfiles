@@ -42,7 +42,7 @@ ln -sf ${POWERLINE_ROOT}/powerline/bindings/vim ${HOME}/.vim/plugged/powerline.v
 
 ## rcfiles
 ln -sf ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
-ln -sf ${PWD}/vimrc ${HOME}/.vim/vimrc
+ln -sf ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
 if [ ! -d ${HOME}/.config/powerline ]; then
     mkdir ${HOME}/.config/powerline
 fi
