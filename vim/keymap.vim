@@ -60,7 +60,7 @@ nnoremap <silent> <Leader>th :<C-u>bprevious<CR>
 nnoremap <silent> <Leader>tj :<C-u>bfirst<CR>
 nnoremap <silent> <Leader>tk :<C-u>blast<CR>
 nnoremap <silent> <Leader>tl :<C-u>bnext<CR>
-let g:which_key_map.b = { 'name': 'Tab',
+let g:which_key_map.t = { 'name': 'Tab',
     \ 't': ['Buffers', 'Tabs'],
     \ 'q': ['bdelete', 'Close Tab'],
     \ 'h': ['bprevious', '← Tab'],
@@ -147,6 +147,16 @@ let g:which_key_map.l = { 'name': '→ Move',
 nnoremap <silent> <Leader>nn :<C-u>set relativenumber!<CR>
 let g:which_key_map.n = { 'name': 'Number',
     \ 'n': ['relativenumber!', 'Toggle Relative Line Number'],
+\ }
+
+"" Keymaps begin with M
+nnoremap <Leader>mm :<C-u>Toch<CR>
+nnoremap <Leader>mt :<C-u>TableFormat<CR>
+nnoremap <Leader>mp <Plug>MarkdownPreviewToggle
+let g:which_key_map.m = { 'name': 'Markdown',
+    \ 'm': ['Toch', 'Jump with ToC'],
+    \ 't': ['TableFormat', 'Format Table'],
+    \ 'p': ['MarkdownPreviewToggle', 'Toggle Markdown Preview'],
 \ }
 
 "" setup WhichKey
