@@ -1,48 +1,48 @@
 {
-	"alt-dividers": {
-		"left": {
-			"hard": "",
+    "alt-dividers": {
+        "left": {
+            "hard": "",
             "soft": ""
-		},
-		"right": {
-			"hard": "",
-			"soft": ""
-		}
-	},
-	"dividers": {
-		"left": {
-			"hard": "  ",
-			"soft": "  "
-		},
-		"right": {
-			"hard": " ",
-			"soft": " "
-		}
-	},
+        },
+        "right": {
+            "hard": "",
+            "soft": ""
+        }
+    },
+    "dividers": {
+        "left": {
+            "hard": "  ",
+            "soft": "  "
+        },
+        "right": {
+            "hard": " ",
+            "soft": " "
+        }
+    },
     "spaces": 1,
-	"segments": {
-		"left": [
-			{
-				"type": "string",
-				"name": "buffer_name",
-				"highlight_groups": ["single_tab"],
+    "segments": {
+        "left": [
+            {
+                "type": "string",
+                "name": "buffer_name",
+                "highlight_groups": ["single_tab"],
                 "contents": "[Location]"
-			},
-			{
-				"type": "string",
-				"highlight_groups": ["background"],
-				"draw_soft_divider": false,
-				"draw_hard_divider": false,
-				"width": "auto"
-			}
-		],
-		"right": [
-			{
-				"function": "line_current",
-				"width": 3,
+            },
+            {
+                "type": "string",
+                "highlight_groups": ["background"],
+                "draw_soft_divider": false,
+                "draw_hard_divider": false,
+                "width": "auto"
+            }
+        ],
+        "right": [
+            {
+                "function": "line_current",
+                "width": 3,
                 "before": "↕",
-				"align": "r"
-			}
-		]
-	}
+                "align": "r"
+            }
+        ]
+    }
 }

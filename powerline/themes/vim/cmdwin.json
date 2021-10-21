@@ -1,39 +1,39 @@
 {
-	"alt-dividers": {
-		"left": {
-			"hard": "",
+    "alt-dividers": {
+        "left": {
+            "hard": "",
             "soft": ""
-		},
-		"right": {
-			"hard": "",
-			"soft": ""
-		}
-	},
-	"dividers": {
-		"left": {
-			"hard": "  ",
-			"soft": "  "
-		},
-		"right": {
-			"hard": " ",
-			"soft": " "
-		}
-	},
+        },
+        "right": {
+            "hard": "",
+            "soft": ""
+        }
+    },
+    "dividers": {
+        "left": {
+            "hard": "  ",
+            "soft": "  "
+        },
+        "right": {
+            "hard": " ",
+            "soft": " "
+        }
+    },
     "spaces": 1,
-	"segments": {
-		"left": [
-			{
-				"type": "string",
-				"contents": "[Command Line]",
-				"highlight_groups": ["file_name"]
-			},
-			{
-				"type": "string",
-				"highlight_groups": ["background"],
-				"draw_soft_divider": false,
-				"draw_hard_divider": false,
-				"width": "auto"
-			}
-		]
-	}
+    "segments": {
+        "left": [
+            {
+                "type": "string",
+                "contents": "[Command Line]",
+                "highlight_groups": ["file_name"]
+            },
+            {
+                "type": "string",
+                "highlight_groups": ["background"],
+                "draw_soft_divider": false,
+                "draw_hard_divider": false,
+                "width": "auto"
+            }
+        ]
+    }
 }

@@ -7,6 +7,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " Visualize
+Plug 'elzr/vim-json'
 Plug 'Yggdroot/indentLine'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'luochen1990/rainbow'

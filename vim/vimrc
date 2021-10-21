@@ -44,6 +44,7 @@ command! -bar -bang Helptags call fzf#vim#helptags({'options': ['+m', '+0', '+1'
 
 "" settings for Visualization
 " indent line
+let g:vim_json_syntax_conceal = 0
 let g:indentLine_enabled = 1
 let g:indentLine_setColors = 1
 "let g:indentLine_defaultGroup = 'Comment'
