@@ -1,19 +1,32 @@
 {
-	"segment_data": {
-		"buffer_name": {
-			"contents": "Location List"
+	"alt-dividers": {
+		"left": {
+			"hard": "",
+            "soft": ""
+		},
+		"right": {
+			"hard": "",
+			"soft": ""
 		}
 	},
+	"dividers": {
+		"left": {
+			"hard": "  ",
+			"soft": "  "
+		},
+		"right": {
+			"hard": " ",
+			"soft": " "
+		}
+	},
+    "spaces": 1,
 	"segments": {
 		"left": [
 			{
 				"type": "string",
 				"name": "buffer_name",
-				"highlight_groups": ["file_name"]
-			},
-			{
-				"function": "window_title",
-				"draw_soft_divider": false
+				"highlight_groups": ["single_tab"],
+                "contents": "[Location]"
 			},
 			{
 				"type": "string",
@@ -25,14 +38,9 @@
 		],
 		"right": [
 			{
-				"type": "string",
-				"name": "line_current_symbol",
-				"highlight_groups": ["line_current_symbol", "line_current"]
-			},
-			{
 				"function": "line_current",
-				"draw_soft_divider": false,
 				"width": 3,
+                "before": "↕",
 				"align": "r"
 			}
 		]

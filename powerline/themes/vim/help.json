@@ -1,10 +1,36 @@
 {
+	"alt-dividers": {
+		"left": {
+			"hard": "",
+            "soft": ""
+		},
+		"right": {
+			"hard": "",
+			"soft": ""
+		}
+	},
+	"dividers": {
+		"left": {
+			"hard": "  ",
+			"soft": "  "
+		},
+		"right": {
+			"hard": " ",
+			"soft": " "
+		}
+	},
+    "spaces": 1,
 	"segments": {
 		"left": [
 			{
-				"function": "file_name",
-				"draw_soft_divider": false
+				"type": "string",
+				"name": "buffer_name",
+                "contents": "[Help]",
+				"highlight_groups": ["single_tab"]
 			},
+			{
+				"function": "file_name"
+            },
 			{
 				"type": "string",
 				"highlight_groups": ["background"],
@@ -16,19 +42,19 @@
 		"right": [
 			{
 				"function": "line_percent",
-				"priority": 30,
+                "args": {
+                    "gradient": true
+                },
 				"width": 4,
+                "before": "↓",
+                "after": "%",
 				"align": "r"
-			},
-			{
-				"type": "string",
-				"name": "line_current_symbol",
-				"highlight_groups": ["line_current_symbol", "line_current"]
 			},
 			{
 				"function": "line_current",
 				"draw_soft_divider": false,
 				"width": 3,
+                "before": "↕",
 				"align": "r"
 			}
 		]

@@ -1,7 +1,12 @@
 #!/bin/bash
-
 ## OS
 os=$(uname -s)
+
+## dependencies
+if [[ -z $(command -v yarn) ]]; then
+    echo "install Node.js and yarn first"
+    exit 1
+fi
 
 ## RCFILES
 if [ ! -d ${HOME}/.vim ]; then

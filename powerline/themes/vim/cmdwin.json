@@ -1,9 +1,30 @@
 {
+	"alt-dividers": {
+		"left": {
+			"hard": "",
+            "soft": ""
+		},
+		"right": {
+			"hard": "",
+			"soft": ""
+		}
+	},
+	"dividers": {
+		"left": {
+			"hard": "  ",
+			"soft": "  "
+		},
+		"right": {
+			"hard": " ",
+			"soft": " "
+		}
+	},
+    "spaces": 1,
 	"segments": {
 		"left": [
 			{
 				"type": "string",
-				"contents": "Command Line",
+				"contents": "[Command Line]",
 				"highlight_groups": ["file_name"]
 			},
 			{

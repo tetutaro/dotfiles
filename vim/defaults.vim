@@ -66,9 +66,9 @@ set nofoldenable  " 折り畳まない
 set diffopt=internal,filler,iwhiteall,iwhiteeol,vertical
 
 "" DISPLAY
+set linespace=0  " 行間を縮める
 set showtabline=0  " タブバーを表示しない
-"set ambiwidth=double  " □や○など曖昧な幅の文字をどのように扱うか
-" 上記を指定すると vim-airline の表示が崩れてしまう
+set ambiwidth=double  " □や○など曖昧な幅の文字をどのように扱うか
 set t_vb=
 set visualbell  " エラー音の代わりに画面をフラッシュする
 set noerrorbells  " エラーが出てもベルを鳴らさない
@@ -151,7 +151,7 @@ vnoremap <C-f> <Right>
 vnoremap <C-b> <Left>
 vnoremap <C-a> <Home>
 vnoremap <C-e> <End>
-"" yank area like Mac OS in visual-mode
+"" yank area like Mac OSX in visual-mode
 xnoremap c y
 "" move like Emacs in command-mode
 cnoremap <C-f> <Right>
@@ -167,7 +167,7 @@ let g:mapleader = "\<Space>"
 nnoremap <Leader>qq :<C-u>q<CR>
 nnoremap <Leader>qQ :<C-u>q!<CR>
 nnoremap <silent> <Leader>cc :<C-u>noh<CR>
-nnoremap <Leader>zz :<C-u>undo<CR>
+nnoremap <Leader>uu :<C-u>undo<CR>
 "" File operations
 nnoremap <Leader>ww :<C-u>w<CR>
 nnoremap <Leader>wq :<C-u>wq<CR>

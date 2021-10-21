@@ -40,11 +40,17 @@ command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'optio
 command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=File > '], 'down': '40%'}, <bang>0)
 command! -bar -bang -nargs=? -complete=buffer Buffers call fzf#vim#buffers(<q-args>, {'options': ['+m', '+0', '+1', '--prompt=Buffer > '], 'down': '40%'}, <bang>0)
 command! -bar -bang Colors call fzf#vim#colors({'options': ['+m', '+0', '+1', '--prompt=Color > '], 'down': '40%'}, <bang>0)
+command! -bar -bang Helptags call fzf#vim#helptags({'options': ['+m', '+0', '+1', '--prompt=Help > '], 'down': '40%'}, <bang>0)
 
 "" settings for Visualization
-" indent guide
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
+" indent line
+let g:indentLine_enabled = 1
+let g:indentLine_setColors = 1
+"let g:indentLine_defaultGroup = 'Comment'
+"let g:indentLine_char = '┆'
+"let g:indentLine_char = '│'
+"let g:indentLine_char = '▏'
+let g:indentLine_char = '|'
 " better whitespace
 let g:better_whitespace_enabled = 1
 let g:better_whitespace_ctermcolor = 'red'
@@ -67,16 +73,47 @@ let g:gitgutter_override_sign_column_highlihgt = 0
 "let g:gitgutter_sign_removed_first_line = ''
 "let g:gitgutter_sign_modified_removed = ''
 
+"" settings for Zen Mode
+" limelight
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_conceal_guifg = '#303030'
+let g:limelight_default_coefficient = 0.8
+let g:limelight_paragraph_span = 0
+" goyo
+let g:goyo_width = 80
+let g:goyo_height = '80%'
+let g:goyo_linenr = 0
+function! s:goyo_enter()
+    if executable('tmux') && strlen($TMUX)
+        silent !tmux set status off
+        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+    endif
+    set noshowmode
+    set noshowcmd
+    set scrolloff=999
+    Limelight
+endfunction
+function! s:goyo_leave()
+    if executable('tmux') && strlen($TMUX)
+        silent !tmux set status on
+        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    endif
+    set showmode
+    set showcmd
+    set scrolloff=5
+    Limelight!
+endfunction
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 "" settings for Markdown
-let g:markdown_quote_syntax_codeblocks = [
-    \ [
-        \ "^\\s*\\(>\\s*\\)\\?```{",
-        \ "\\(\\s*,.*\\)\\?}$",
-        \ "^\\s*\\(>\\s*\\)\\?```\\ze\\s*$"
-    \ ],
-\ ]
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_emphasis_multiline = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_fenced_languages = ['vim=vim', 'bash=sh', 'zsh=sh', 'sh=sh', 'python=python']
+let g:tex_conceal = ''
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_auto_insert_bullets = 1

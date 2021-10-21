@@ -53,9 +53,12 @@ def project_cwd(
     project_depth=3,
     dir_shorten_len=3,
     dir_limit_depth=3,
-    ellipsis='…'
+    home_str='~',
+    project_str='',
+    ellipsis='...'
 ):
     is_project = False
+    shift_root = False
     try:
         path = out_u(segment_info['getcwd']())
     except OSError as e:
@@ -88,11 +91,17 @@ def project_cwd(
             dirs = dirs[:dir_limit_depth] + [
                 ellipsis
             ] + dirs[-dir_limit_depth:]
+    if dirs[0] == '~':
+        dirs[0] = home_str
+        shift_root = True
+    if is_project:
+        dirs[0] = project_str + dirs[0]
+        shift_root = True
     return [{
         'contents': x,
         'highlight_groups': [
             'cwd:current_folder'
-        ] if (x == '~' or (i == 0 and is_project)) else [
+        ] if (i == 0 and shift_root) else [
             'cwd'
         ],
         'draw_inner_divider': True,

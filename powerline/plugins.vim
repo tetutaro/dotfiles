@@ -7,13 +7,17 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " Visualize
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'luochen1990/rainbow'
 Plug 'airblade/vim-gitgutter'
+" Zen Mode
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 " Markdown
-Plug 'joker1007/vim-markdown-quote-syntax'
-Plug 'rcmdnk/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'plytophogy/vim-virtualenv'
