@@ -32,7 +32,7 @@ alias gd="dirs -v;echo -n 'select number: ';read newdir;cd $newdir"
 ## OS dependencies
 os=$(uname -s)
 if [[ ${os} == "Linux" ]]; then
-    export SHELL=/bin/zsh
+    export SHELL=/usr/bin/zsh
     alias ls="ls --color -Fv"
     alias ll="ls --color -AFhlv"
     alias pbcopy="xsel --input --clipboard"
@@ -154,4 +154,9 @@ fi
 ## include local settings
 if [[ -f ${HOME}/.config/zsh/local.zsh ]]; then
     source ${HOME}/.config/zsh/local.zsh
+fi
+##########################################################################
+## include tmux settings
+if [[ -f ${HOME}/.config/tmux/tmux.zsh ]]; then
+    source ${HOME}/.config/tmux/tmux.zsh
 fi

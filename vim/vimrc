@@ -7,6 +7,14 @@ source $HOME/.vim/defaults.vim
 "" overwrite settings for vi to vim
 set showtabline=2  " タブバーを常に表示する
 
+""" toggle tmux status line
+if !has('gui_running') && $TMUX !=# ''
+    augroup Tmux
+    autocmd!
+    autocmd VimEnter,VimLeave * silent !tmux set status
+    augroup END
+endif
+
 "" Package Manager
 if has('vim_starting')
     if !filereadable(expand('~/.vim/autoload/plug.vim'))
