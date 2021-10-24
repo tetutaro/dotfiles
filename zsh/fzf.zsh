@@ -7,20 +7,24 @@ export FZF_CTRL_T_OPTS="--preview 'head -n 40 {}' --preview-window right:50%:hid
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="find -L . -mindepth 1 -maxdepth 3 \( -path '*/.*' -or -path '*/_*' -or -fstype 'sysfs' -or -fstype 'devfs' -or -fstype 'devtmpfs' -or -fstype 'proc' -or -path '*/Library*' -or -path '*/Applications*' -or -path '*/Pictures*' -or -path '*/Music*' -or -path '*/Movies*' -or -path '*/Google Drive*' -or -path '*/Dropbox*' -or -path '*/VirtualBox VMs*' \) -prune -or -type d -print 2>/dev/null | cut -b3-"
 export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C {} | head -n 40' --preview-window right:50%:hidden:nowrap --bind '?:toggle-preview'"
+
 source ${HOME}/.config/fzf/fzf.zsh
+
 bindkey -r "^T"
 bindkey -r "\ec"
 bindkey "^X^F" fzf-file-widget
 bindkey "^X^D" fzf-cd-widget
 
 ## cdp
-PROJECT_TOP_DIR="${HOME}/Projects"
-PROJECT_DEPTH_FROM_TOP=3
+export PROJECT_TOP_DIR=${PROJECT_TOP_DIR:-${HOME}/Projects}
+export PROJECT_DEPTH_FROM_TOP=${PROJECT_DEPTH_FROM_TOP:-3}
+
 function __list_projects() {
     local -a projects
     projects=($(find -L ${PROJECT_TOP_DIR} -type d -mindepth ${PROJECT_DEPTH_FROM_TOP} -maxdepth ${PROJECT_DEPTH_FROM_TOP} \( -name '.*' -or -name '_*' \) -prune -or -type d -print 2>/dev/null | rev | cut -d/ -f-${PROJECT_DEPTH_FROM_TOP} | rev | sort))
     print -r -- ${(qq)projects}
 }
+
 function cdp() {
     local -a dir
     if [[ -z "$1" ]]; then

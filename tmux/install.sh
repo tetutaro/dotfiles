@@ -22,8 +22,9 @@ else
     echo "tmux is already installed"
 fi
 
-ln -sf ${PWD}/tmux.conf ${HOME}/.tmux.conf
-if [ ! -d ${HOME}/.config/tmux ]; then
-    mkdir -p ${HOME}/.config/tmux
+ln -sf ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
+if [ "${os}" == "Linux" ]; then
+    ln -sf ${PWD}/tmux.conf.ubuntu ${HOME}/.tmux.conf
+else
+    ln -sf ${PWD}/tmux.conf.macosx ${HOME}/.tmux.conf
 fi
-ln -sf ${PWD}/tmux.zsh ${HOME}/.config/tmux/tmux.zsh

@@ -1,5 +1,5 @@
-export PROJECT_TOP_DIR=${PROJECT_TOP_DIR:-${HOME}/Projects}
-export PROJECT_DEPTH_FROM_TOP=${PROJECT_DEPTH_FROM_TOP:-3}
+export FZF_TMUX=1
+export FZF_COMMAND="fzf-tmux"
 
 function __extract_project_from_pwd() {
     local -a new_prj ctp
@@ -30,6 +30,10 @@ function exit() {
     else
         builtin exit
     fi
+}
+
+function force_exit() {
+    builtin exit
 }
 
 function __chpwd_switch_session_group() {
@@ -97,7 +101,3 @@ function __tmux_attach_session_group(){
         fi
     fi
 }
-
-if [[ -t 0 ]] && [[ -z ${TMUX} ]] && [[ $- = *i* ]]; then
-    __tmux_attach_session_group
-fi

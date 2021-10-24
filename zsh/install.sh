@@ -28,6 +28,14 @@ if [[ -z $(command -v tree) ]]; then
 else
     echo "tree is already installed"
 fi
+## installation of xsel
+if [[ "${os}" == "Linux" ]]; then
+    if [[ -z $(command -v xsel) ]]; then
+        sudo apt install xsel
+    else
+        echo "xsel is already installed"
+    fi
+fi
 
 ## path of python
 if [[ "${os}" == "Linux" ]]; then
@@ -95,7 +103,9 @@ if [[ ! -d ${HOME}/.config/zsh ]]; then
     mkdir ${HOME}/.config/zsh
 fi
 ln -sf ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
+ln -sf ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
 ln -sf ${PWD}/fzf.zsh ${HOME}/.config/zsh/fzf.zsh
+ln -sf ${PWD}/cdp.zsh ${HOME}/.config/zsh/cdp.zsh
 ln -sf ${PWD}/anyenv.zsh ${HOME}/.config/zsh/anyenv.zsh
 
 ## completion of ZSH

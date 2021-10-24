@@ -136,9 +136,23 @@ if [[ -f ${HOME}/.config/zsh/prompt.zsh ]]; then
     source ${HOME}/.config/zsh/prompt.zsh
 fi
 ##########################################################################
-## include cdp settings
+## original settings
+export PROJECT_TOP_DIR="${HOME}/Projects"
+export PROJECT_DEPTH_FROM_TOP=3
+##########################################################################
+## include tmux settings
+if [[ -f ${HOME}/.config/zsh/tmux.zsh ]]; then
+    source ${HOME}/.config/zsh/tmux.zsh
+fi
+##########################################################################
+## include fzf settings
 if [[ -f ${HOME}/.config/zsh/fzf.zsh ]]; then
     source ${HOME}/.config/zsh/fzf.zsh
+fi
+##########################################################################
+## original function "cdp"
+if [[ -f ${HOME}/.config/zsh/cdp.zsh ]]; then
+    source ${HOME}/.config/zsh/cdp.zsh
 fi
 ##########################################################################
 ## include color scheme settings
@@ -156,7 +170,7 @@ if [[ -f ${HOME}/.config/zsh/local.zsh ]]; then
     source ${HOME}/.config/zsh/local.zsh
 fi
 ##########################################################################
-## include tmux settings
-if [[ -f ${HOME}/.config/tmux/tmux.zsh ]]; then
-    source ${HOME}/.config/tmux/tmux.zsh
+## include local settings
+if [[ -t 0 ]] && [[ -z ${TMUX} ]] && [[ $- = *i* ]]; then
+    __tmux_attach_session_group
 fi
