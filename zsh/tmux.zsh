@@ -2,7 +2,7 @@ export FZF_TMUX=0
 export FZF_COMMAND="fzf"
 
 ## for comapible
-function force_exit() {
+function force-exit() {
     builtin exit
 }
 

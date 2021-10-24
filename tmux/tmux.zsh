@@ -32,7 +32,7 @@ function exit() {
     fi
 }
 
-function force_exit() {
+function force-exit() {
     builtin exit
 }
 
@@ -76,7 +76,7 @@ function __chpwd_switch_session_group() {
 autoload -Uz add-zsh-hook
 add-zsh-hook chpwd __chpwd_switch_session_group
 
-function __tmux_attach_session_group(){
+function __tmux_attach_session_group() {
     local -a cnt_s cnt_d cid s_name
     cnt_s=$(tmux list-sessions -F '#{session_name}' | grep -e "^${TMUX_SESSION_GROUP}-" | wc -l)
     if [[ ${cnt_s} -eq 0 ]]; then
