@@ -43,10 +43,17 @@ ln -sf ${POWERLINE_ROOT}/powerline/bindings/vim ${HOME}/.vim/plugged/powerline.v
 ## rcfiles
 ln -sf ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
 ln -sf ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
+ln -sf ${PWD}/status.conf ${HOME}/.config/tmux/status.conf
 if [ ! -d ${HOME}/.config/powerline ]; then
     mkdir ${HOME}/.config/powerline
 fi
+ln -sf ${PWD}/config.json ${HOME}/.config/powerline/config.json
+ln -sf ${PWD}/colors.json ${HOME}/.config/powerline/colors.json
 if [ -L ${HOME}/.config/powerline/themes ]; then
     rm -f ${HOME}/.config/powerline/themes
 fi
 ln -sf ${PWD}/themes ${HOME}/.config/powerline/themes
+if [ -L ${HOME}/.config/powerline/colorschemes ]; then
+    rm -f ${HOME}/.config/powerline/colorschemes
+fi
+ln -sf ${PWD}/colorschemes ${HOME}/.config/powerline/colorschemes

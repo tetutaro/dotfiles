@@ -10,6 +10,10 @@ preferences of zsh, vim, ...
     * go to [zsh](/zsh/)
 1. installation of vim
     * go to [vim](/vim/)
+1. installation of tmux
+    * go to [tmux](/tmux/)
+1. installation of powerline
+    * go to [powerline](/powerline/)
 1. installation of color scheme
     * go to [color_scheme](/color_scheme/)
 1. installation of LaTeX

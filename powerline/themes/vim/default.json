@@ -70,18 +70,7 @@
                 "args": {
                     "text": ""
                 },
-                "priority": 50
-            },
-            {
-                "function": "file_directory",
-                "args": {
-                    "remove_scheme": true,
-                    "shorten_user": true,
-                    "shorten_cwd": true,
-                    "shorten_home": false
-                },
-                "draw_soft_divider": false,
-                "priority": 5
+                "priority": 45
             },
             {
                 "function": "file_name",
@@ -109,6 +98,9 @@
         "right": [
             {
                 "function": "line_percent",
+                "args": {
+                    "gradient": false
+                },
                 "priority": 50,
                 "before": "↓",
                 "width": 4,
@@ -125,6 +117,9 @@
             },
             {
                 "function": "virtcol_current",
+                "args": {
+                    "gradient": false
+                },
                 "draw_soft_divider": false,
                 "priority": 20,
                 "before": "↔",

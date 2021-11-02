@@ -1,0 +1,22 @@
+{
+    "colors": {
+        "black": [0, "000000"],
+        "bright_black": [238, "11141a"],
+        "grey": [8, "212733"],
+        "silver": [7, "323b4d"],
+        "dark_white": [253, "959aa6"],
+        "white": [15, "c3cad9"],
+        "marron": [1, "5a4266"],
+        "olive": [3, "665a42"],
+        "green": [2, "42664e"],
+        "navy": [4, "424e66"],
+        "purple": [5, "424266"],
+        "red": [9, "bf8dd8"],
+        "orange": [214, "cc9c84"],
+        "yellow": [11, "bfbf7c"],
+        "lime": [10, "74b374"],
+        "aqua": [14, "7cbfbf"],
+        "blue": [12, "95b0e6"],
+        "fuchsia": [13, "9d9df2"]
+    }
+}

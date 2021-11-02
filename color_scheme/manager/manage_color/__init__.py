@@ -13,6 +13,10 @@ Attributes:
         The pathname of shell script which setups colors for fzf.
     COLOR_SCHEME_FZF_DIR (str):
         The directory name that color schemes for fzf installed.
+    COLOR_SCHEME_TMUX_DIR (str):
+        The pathname of script which setups colors for tmux.
+    COLOR_SCHEME_POWERLINE_DIR (str):
+        The pathname of script which setups colors for powerline.
     COLOR_SCHEME_VIM_PATH (str):
         The pathname of vim script which setups colors for vim.
         Your vim config script will read this file.
@@ -29,6 +33,10 @@ COLOR_SCHEME_SHELL_PATH = '~/.config/color_scheme/shell.sh'
 COLOR_SCHEME_SHELL_DIR = '~/.config/color_scheme/shell'
 COLOR_SCHEME_FZF_PATH = '~/.config/color_scheme/fzf.sh'
 COLOR_SCHEME_FZF_DIR = '~/.config/color_scheme/fzf'
+COLOR_SCHEME_TMUX_DIR = '~/.config/color_scheme/tmux'
+COLOR_SCHEME_TMUX_PATH = '~/.config/tmux/style.conf'
+COLOR_SCHEME_POWERLINE_DIR = '~/.config/color_scheme/powerline'
+COLOR_SCHEME_POWERLINE_PATH = '~/.config/powerline/colors.json'
 COLOR_SCHEME_VIM_PATH = '~/.vim/colors.vim'
 COLOR_SCHEME_VIM_RC = '''"" This file is automatically created by manage_color
 if !exists('g:colors_name') || g:colors_name != '{theme}'
@@ -62,6 +70,7 @@ def create_symlink(src: str, dst: str) -> None:
         if not os.path.islink(dst):
             raise ValueError("{} is not symbolic link".format(dst))
         os.remove(dst)
+    print(f'{src} -> {dst}')
     os.symlink(src, dst)
     return
 
@@ -104,6 +113,34 @@ class Theme(object):
             ),
             os.path.expanduser(COLOR_SCHEME_FZF_PATH)
         )
+        # tmux
+        tdir = os.path.dirname(os.path.expanduser(
+            COLOR_SCHEME_TMUX_PATH
+        ))
+        if os.path.isdir(tdir):
+            create_symlink(
+                os.path.join(
+                    os.path.expanduser(COLOR_SCHEME_TMUX_DIR),
+                    os.path.splitext(os.path.basename(
+                        self.path
+                    ))[0] + '.conf'
+                ),
+                os.path.expanduser(COLOR_SCHEME_TMUX_PATH)
+            )
+        # powerline
+        tdir = os.path.dirname(os.path.expanduser(
+            COLOR_SCHEME_POWERLINE_PATH
+        ))
+        if os.path.isdir(tdir):
+            create_symlink(
+                os.path.join(
+                    os.path.expanduser(COLOR_SCHEME_POWERLINE_DIR),
+                    os.path.splitext(os.path.basename(
+                        self.path
+                    ))[0] + '.json'
+                ),
+                os.path.expanduser(COLOR_SCHEME_POWERLINE_PATH)
+            )
         # vim
         with open(os.path.expanduser(COLOR_SCHEME_VIM_PATH), 'w') as wf:
             wf.write(COLOR_SCHEME_VIM_RC.format(theme=self.name))

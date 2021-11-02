@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='manage-color',
-    version='0.4.0',
+    version='0.6.0',
     description='preview color schemes in your terminal and setup',
     author='tetutaro',
     author_email='tetsutaro.maruyama@gmail.com',

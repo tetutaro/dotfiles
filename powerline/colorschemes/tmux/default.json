@@ -1,0 +1,75 @@
+{
+    "name": "Default color scheme for tmux",
+    "groups": {
+        "background": {
+            "fg": "bright_black",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "session": {
+            "fg": "blue",
+            "bg": "grey",
+            "attrs": []
+        },
+        "session:prefix": {
+            "fg": "black",
+            "bg": "blue",
+            "attrs": []
+        },
+        "active_window_status": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "window": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "window:divider": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "window:current": {
+            "fg": "lime",
+            "bg": "grey",
+            "attrs": []
+        },
+        "window_name": {
+            "fg": "lime",
+            "bg": "grey",
+            "attrs": []
+        },
+        "date": {
+            "fg": "dark_white",
+            "bg": "grey",
+            "attrs": []
+        },
+        "time:divider": {
+            "fg": "dark_white",
+            "bg": "grey",
+            "attrs": []
+        },
+        "time": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "branch": {
+            "fg": "lime",
+            "bg": "grey",
+            "attrs": []
+        },
+        "branch_clean": {
+            "fg": "lime",
+            "bg": "grey",
+            "attrs": []
+        },
+        "branch_dirty": {
+            "fg": "red",
+            "bg": "grey",
+            "attrs": []
+        }
+    }
+}

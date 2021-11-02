@@ -8,12 +8,12 @@ source $HOME/.vim/defaults.vim
 set showtabline=2  " タブバーを常に表示する
 
 """ toggle tmux status line
-if !has('gui_running') && $TMUX !=# ''
-    augroup Tmux
-    autocmd!
-    autocmd VimEnter,VimLeave * silent !tmux set status
-    augroup END
-endif
+"if !has('gui_running') && $TMUX !=# ''
+"    augroup Tmux
+"    autocmd!
+"    autocmd VimEnter,VimLeave * silent !tmux set status
+"    augroup END
+"endif
 
 "" Package Manager
 if has('vim_starting')

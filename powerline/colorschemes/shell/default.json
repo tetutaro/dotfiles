@@ -1,0 +1,25 @@
+{
+    "name": "Default color scheme for shell",
+    "groups": {
+        "virtualenv": {
+            "fg": "blue",
+            "bg": "black",
+            "attrs": []
+        },
+        "cwd": {
+            "fg": "dark_white",
+            "bg": "black",
+            "attrs": []
+        },
+        "cwd:current_folder": {
+            "fg": "lime",
+            "bg": "black",
+            "attrs": []
+        },
+        "cwd:divider": {
+            "fg": "dark_white",
+            "bg": "black",
+            "attrs": []
+        }
+    }
+}

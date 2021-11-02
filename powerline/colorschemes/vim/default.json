@@ -1,0 +1,507 @@
+{
+    "name": "Default color scheme for vim",
+    "groups": {
+        "background": {
+            "fg": "bright_black",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "background:divider": {
+            "fg": "bright_black",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "mode": {
+            "fg": "dark_white",
+            "bg": "grey",
+            "attrs": []
+        },
+        "branch": {
+            "fg": "lime",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "branch_clean": {
+            "fg": "lime",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "branch_dirty": {
+            "fg": "red",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "branch:divider": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "readonly_indicator": {
+            "fg": "orange",
+            "bg": "grey",
+            "attrs": []
+        },
+        "file_name": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": ["bold"]
+        },
+        "file_name_no_file": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": ["bold"]
+        },
+        "modified_indicator": {
+            "fg": "brightyellow",
+            "bg": "gray4",
+            "attrs": []
+        },
+        "file_vcs_status": {
+            "fg": "brightestred",
+            "bg": "grey",
+            "attrs": []
+        },
+        "file_vcs_status_M": {
+            "fg": "brightyellow",
+            "bg": "grey",
+            "attrs": []
+        },
+        "file_vcs_status_A": {
+            "fg": "brightgreen",
+            "bg": "grey",
+            "attrs": []
+        },
+        "line_percent": {
+            "fg": "dark_white",
+            "bg": "grey",
+            "attrs": []
+        },
+        "line_current": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "line_current_symbol": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "virtcol_current": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "modified_buffers": {
+            "fg": "brightyellow",
+            "bg": "gray2",
+            "attrs": []
+        },
+        "error": {
+            "fg": "brightestred",
+            "bg": "darkred",
+            "attrs": ["bold"]
+        },
+        "warning": {
+            "fg": "brightyellow",
+            "bg": "darkorange",
+            "attrs": ["bold"]
+        },
+        "tab_nc:modified_indicator": {
+            "fg": "brightyellow",
+            "bg": "gray2",
+            "attrs": ["bold"]
+        }
+    },
+    "mode_translations": {
+        "nc": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "darkestcyan",
+                    "bg": "white",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "i": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "black",
+                    "bg": "blue",
+                    "attrs": ["bold"]
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "ic": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "darkestcyan",
+                    "bg": "white",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "ix": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "darkestcyan",
+                    "bg": "white",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "v": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "darkorange",
+                    "bg": "brightestorange",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "V": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "darkorange",
+                    "bg": "brightestorange",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "^V": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "darkorange",
+                    "bg": "brightestorange",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "R": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "white",
+                    "bg": "brightred",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "Rc": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "white",
+                    "bg": "brightred",
+                    "attrs": []
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        },
+        "Rx": {
+            "colors": {
+                "black": "black",
+                "bright_black": "bright_black",
+                "grey": "grey",
+                "silver": "silver",
+                "dark_white": "dark_white",
+                "white": "white",
+                "marron": "marron",
+                "olive": "olive",
+                "green": "green",
+                "navy": "navy",
+                "purple": "purple",
+                "red": "red",
+                "orange": "orange",
+                "yellow": "yellow",
+                "lime": "lime",
+                "aqua": "aqua",
+                "blue": "blue",
+                "fuchsia": "fuchsia"
+            },
+            "groups": {
+                "mode": {
+                    "fg": "white",
+                    "bg": "brightred",
+                    "attrs": ["bold"]
+                },
+                "background:divider": {
+                    "fg": "bright_black",
+                    "bg": "bright_black",
+                    "attrs": []
+                },
+                "branch:divider": {
+                    "fg": "dark_white",
+                    "bg": "bright_black",
+                    "attrs": []
+                }
+            }
+        }
+    }
+}

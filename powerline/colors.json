@@ -1,0 +1,22 @@
+{
+    "colors": {
+        "black": 0,
+        "bright_black": 238,
+        "grey": 8,
+        "silver": 7,
+        "dark_white": 253,
+        "white": 15,
+        "marron": 1,
+        "olive": 3,
+        "green": 2,
+        "navy": 4,
+        "purple": 5,
+        "red": 9,
+        "orange": 214,
+        "yellow": 11,
+        "lime": 10,
+        "aqua": 14,
+        "blue": 12,
+        "fuchsia": 13
+    }
+}

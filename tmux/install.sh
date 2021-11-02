@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-
+# environment
 os=$(uname -s)
+
+# tmux
 if [ -z $(command -v tmux) ]; then
     if [ "${os}" == "Linux" ]; then
         sudo apt install tmux
@@ -22,9 +24,37 @@ else
     echo "tmux is already installed"
 fi
 
-ln -sf ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
-if [ "${os}" == "Linux" ]; then
-    ln -sf ${PWD}/tmux.conf.ubuntu ${HOME}/.tmux.conf
-else
-    ln -sf ${PWD}/tmux.conf.macosx ${HOME}/.tmux.conf
+if [ ! -d ${HOME}/.config/tmux ]; then
+    mkdir ${HOME}/.config/tmux
 fi
+
+# tmux plugins
+if [ ! -d ${HOME}/.config/tmux/plugins ]; then
+    mkdir ${HOME}/.config/tmux/plugins
+fi
+if [ ! -d ${HOME}/.config/tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+else
+    echo "tpm is already installed"
+fi
+if [ ! -d ${HOME}/.config/tmux/plugins/tmux-copycat ]; then
+    git clone https://github.com/tmux-plugins/tmux-copycat ~/.config/tmux/plugins/tmux-copycat
+else
+    echo "tmux-copycat is already installed"
+fi
+if [ ! -d ${HOME}/.config/tmux/plugins/tmux-sidebar ]; then
+    git clone https://github.com/tmux-plugins/tmux-sidebar ~/.config/tmux/plugins/tmux-sidebar
+else
+    echo "tmux-sidebar is already installed"
+fi
+
+# config files
+ln -sf ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
+ln -sf ${PWD}/tmux.conf ${HOME}/.config/tmux/tmux.conf
+if [ "${os}" == "Linux" ]; then
+    ln -sf ${PWD}/copy.ubuntu.conf ${HOME}/.config/tmux/copy.conf
+else
+    ln -sf ${PWD}/copy.macosx.conf ${HOME}/.config/tmux/copy.conf
+fi
+ln -sf ${PWD}/status.conf ${HOME}/.config/tmux/status.conf
+ln -sf ${PWD}/style.conf ${HOME}/.config/tmux/style.conf

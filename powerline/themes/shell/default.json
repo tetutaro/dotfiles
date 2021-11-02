@@ -34,15 +34,6 @@
                 "priority": 50
             },
             {
-                "function": "powerline.segments.common.vcs.branch",
-                "args": {
-                    "status_colors": false
-                },
-                "before": " ",
-                "after": "",
-                "priority": 10
-            },
-            {
                 "function": "powerline_widgets.shell.project_cwd",
                 "args": {
                     "project_dir": "~/Projects",

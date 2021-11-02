@@ -117,8 +117,8 @@ endfunction
 "" default highlighting groups
 call <SID>fHi("ColorColumn",  "",     s:cgBf, "",     s:ctBf, "")
 call <SID>fHi("Conceal",      s:cgF6, s:cgBG, s:ctF6, s:ctBG, "")
-call <SID>fHi("CusorColumn",  "",     s:cgBF, "",     s:ctBF, "NONE")
-call <SID>fHi("CursorLine",   "",     s:cgBF, "",     s:ctBF, "NONE")
+call <SID>fHi("CursorColumn", "",     s:cgBg, "",     s:ctBg, "NONE")
+call <SID>fHi("CursorLine",   "",     s:cgBg, "",     s:ctBg, "NONE")
 call <SID>fHi("Directory",    s:cgF6, "",     s:ctF6, "",     "bold")
 call <SID>fHi("DiffAdd",      s:cgFG, s:cgB2, s:ctFG, s:ctB2, "NONE")
 call <SID>fHi("DiffChange",   s:cgFG, s:cgB3, s:ctFG, s:ctB3, "NONE")
@@ -213,14 +213,15 @@ call <SID>fHi("Error",        s:cgF1, s:cgBG, s:ctF1, s:ctBG, "")
 call <SID>fHi("Todo",         s:cgF2, s:cgBG, s:ctF2, s:ctBG, "")
 
 "" Highlight groups for plugins
-call <SID>fHi("IndentGuidesOdd", "",  s:cgBf, "",     s:ctBf, "")
-call <SID>fHi("IndentGuidesEven", "", s:cgBg, "",     s:ctBg, "")
-call <SID>fHi("GitGutterAdd", s:cgF4, s:cgBg, s:ctF4, s:ctBg, "")
-call <SID>fHi("GitGutterChange", s:cgF2, s:cgBg, s:ctF2, s:ctBg, "")
-call <SID>fHi("GitGutterDelete", s:cgF1, s:cgBg, s:ctF1, s:ctBg, "")
+call <SID>fHi("IndentGuidesOdd",  "",     s:cgBf, "",     s:ctBf, "")
+call <SID>fHi("IndentGuidesEven", "",     s:cgBg, "",     s:ctBg, "")
+call <SID>fHi("SignColumn",       "",     s:cgBg, "",     s:ctBg, "")
+call <SID>fHi("GitGutterAdd",     s:cgF4, s:cgBg, s:ctF4, s:ctBg, "")
+call <SID>fHi("GitGutterChange",  s:cgF2, s:cgBg, s:ctF2, s:ctBg, "")
+call <SID>fHi("GitGutterDelete",  s:cgF1, s:cgBg, s:ctF1, s:ctBg, "")
 call <SID>fHi("GitGutterChangeDelete", s:cgF2, s:cgBg, s:ctF2, s:ctBg, "")
-call <SID>fHi("ExtraWhitespace", "",  s:cgB1, "",     s:ctB1, "")
-call <SID>fHi("lspReference", s:cgFG, s:cgB4, s:ctFG, s:ctB4, "")
+call <SID>fHi("ExtraWhitespace",  "",     s:cgB1, "",     s:ctB1, "")
+call <SID>fHi("lspReference",     s:cgFG, s:cgB4, s:ctFG, s:ctB4, "")
 
 let g:rainbow_conf = {
     \ 'guifgs': [s:cgF1, s:cgF2, s:cgF3, s:cgF4, s:cgF5, s:cgF6, s:cgF7],
