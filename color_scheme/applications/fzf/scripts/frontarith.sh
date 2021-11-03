@@ -20,6 +20,6 @@ local colorF4='#88cc85'
 local colorF5='#85ccbf'
 local colorF6='#849ccb'
 local colorF7='#a984cb'
-export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=fg:$colorFG,bg:-1,hl:$colorF7,fg+:$colorFG,bg+:$colorB4,gutter:$colorBg,hl+:$colorF7,prompt:$colorF6,pointer:$colorF4,marker:$colorF2,spinner:$colorF1,info:$colorF5"
+export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=fg:$colorFG,bg:-1,hl:$colorF7,fg+:$colorFG,bg+:$colorBf,gutter:-1,hl+:$colorF7,prompt:$colorF6,pointer:$colorF4,marker:$colorF2,spinner:$colorF1,info:$colorF5"
 }
 _gen_fzf_default_opts
