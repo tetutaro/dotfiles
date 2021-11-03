@@ -54,16 +54,10 @@
                         "rm": "rm",
                         "r?": "r?",
                         "!":  "!",
-                        "t":  "t"
+                        "t":  "FZF"
                     }
                 },
                 "priority": 50
-            },
-            {
-                "function": "branch",
-                "before": "",
-                "after": "",
-                "priority": 30
             },
             {
                 "function": "readonly_indicator",
@@ -74,6 +68,7 @@
             },
             {
                 "function": "file_name",
+                "draw_soft_divider": false,
                 "priority": 40
             },
             {

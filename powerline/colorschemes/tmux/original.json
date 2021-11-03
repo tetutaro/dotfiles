@@ -21,6 +21,21 @@
             "bg": "bright_black",
             "attrs": []
         },
+        "window_status": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "bell_status": {
+            "fg": "yellow",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "activity_status": {
+            "fg": "dark_white",
+            "bg": "bright_black",
+            "attrs": []
+        },
         "window": {
             "fg": "dark_white",
             "bg": "bright_black",
