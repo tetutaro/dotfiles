@@ -54,7 +54,8 @@ endif
 if has('mac')
     set clipboard=unnamed,autoselect
 endif
-set mouse=a  " すべてのモードでマウスが使えるように
+"set mouse=a  " すべてのモードでマウスを使う（ドラッグするとVisualモード）
+set mouse=ni  " NORMALモードとINSERTモードでマウスでカーソル移動（ドラッグは無効）
 set ttymouse=xterm2  " マウスで色々なことが出来るように
 set mousefocus  " マウスの場所がフォーカスされる
 set modeline  " モードライン（ファイルの先頭か一番下に書かれているvimの設定）を利用する
