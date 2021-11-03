@@ -5,9 +5,19 @@ function __list_projects() {
 }
 
 function cdp() {
-    local -a dir
+    local -a dir prj
     if [[ -z "$1" ]]; then
-        pushd "${PROJECT_TOP_DIR}" >/dev/null
+        dir=${PWD##${PROJECT_TOP_DIR}/}
+        if [[ "${dir}" == "${PWD}" ]]; then
+            pushd "${PROJECT_TOP_DIR}" >/dev/null
+        else
+            if [[ ${(w)#${(ps:/:)dir}} -lt ${PROJECT_DEPTH_FROM_TOP} ]]; then
+                pushd "${PROJECT_TOP_DIR}" >/dev/null
+            else
+                prj=${(j:/:)${${(ps:/:)dir}[(w)1,(w)${PROJECT_DEPTH_FROM_TOP}]}}
+                pushd "${PROJECT_TOP_DIR}/${prj}" >/dev/null
+            fi
+        fi
     else
         dir=$(echo ${(F)${(@Q)${(z)$(__list_projects)}}} | ${FZF_COMMAND} --prompt "Project > " --preview "tree -L 1 -N ${PROJECT_TOP_DIR}/{} | head -n 40" --preview-window right:50%:nowrap:hidden --bind "?:toggle-preview" --query "$1")
         if [[ "${dir}" != "" ]]; then

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dotfiles"
-version = "0.9.5"
+version = "0.9.6"
 description = "preferences"
 authors = ["Tetsutaro Maruyama <tetsutaro.maruyama@gmail.com>"]
 license = "MIT License"
