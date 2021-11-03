@@ -58,7 +58,7 @@
     * The tmux session group basically shares the same window
     * I want to use a different window for each tmux session
 
-## Specs
+### Specs
 
 * name of the tmux session: `[project_name]-X`
     * `X` is an integer starts with 0
