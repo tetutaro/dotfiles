@@ -54,9 +54,8 @@
         "right": [
             {
                 "type": "string",
-                "highlight_groups": ["tab:message"],
-                "name": "tab_message",
-                "contents": "Buffers"
+                "contents": "Buffers",
+                "highlight_groups": ["tab:message"]
             }
         ]
     }

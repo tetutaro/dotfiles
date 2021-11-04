@@ -67,6 +67,11 @@
                 "priority": 45
             },
             {
+                "function": "file_directory",
+                "draw_soft_divider": false,
+                "priority": 5
+            },
+            {
                 "function": "file_name",
                 "draw_soft_divider": false,
                 "priority": 40

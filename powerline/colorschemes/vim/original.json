@@ -21,6 +21,11 @@
             "bg": "bright_black",
             "attrs": []
         },
+        "file_directory": {
+            "fg": "silver",
+            "bg": "bright_black",
+            "attrs": []
+        },
         "file_name": {
             "fg": "dark_white",
             "bg": "bright_black",
@@ -77,13 +82,13 @@
             "attrs": []
         },
         "warning": {
-            "fg": "yellow",
-            "bg": "grey",
+            "fg": "grey",
+            "bg": "yellow",
             "attrs": ["bold"]
         },
         "error": {
-            "fg": "red",
-            "bg": "grey",
+            "fg": "grey",
+            "bg": "red",
             "attrs": ["bold"]
         },
         "tab:background": {
@@ -155,6 +160,36 @@
             "fg": "dark_white",
             "bg": "grey",
             "attrs": []
+        },
+        "cmdwin:background": {
+            "fg": "bright_black",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "cmdwin:mode": {
+            "fg": "dark_white",
+            "bg": "grey",
+            "attrs": ["bold"]
+        },
+        "help:background": {
+            "fg": "bright_black",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "help:mode": {
+            "fg": "dark_white",
+            "bg": "grey",
+            "attrs": ["bold"]
+        },
+        "quickfix:background": {
+            "fg": "bright_black",
+            "bg": "bright_black",
+            "attrs": []
+        },
+        "quickfix:mode": {
+            "fg": "dark_white",
+            "bg": "grey",
+            "attrs": ["bold"]
         }
     },
     "mode_translations": {

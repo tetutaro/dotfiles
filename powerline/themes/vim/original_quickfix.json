@@ -24,19 +24,28 @@
         "left": [
             {
                 "type": "string",
-                "name": "buffer_name",
-                "highlight_groups": ["single_tab"],
-                "contents": "[Location]"
+                "contents": "[Location]",
+                "highlight_groups": ["quickfix:mode"]
             },
             {
                 "type": "string",
-                "highlight_groups": ["background"],
+                "highlight_groups": ["quickfix:background"],
                 "draw_soft_divider": false,
                 "draw_hard_divider": false,
                 "width": "auto"
             }
         ],
         "right": [
+            {
+                "function": "line_percent",
+                "args": {
+                    "gradient": false
+                },
+                "width": 4,
+                "before": "↓",
+                "after": "%",
+                "align": "r"
+            },
             {
                 "function": "line_current",
                 "width": 3,
