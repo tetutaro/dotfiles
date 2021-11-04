@@ -36,13 +36,13 @@
     * load vim-plug
     * list vim plugins
     * configuration of [vim-airline](https://github.com/vim-airline/vim-airline)
-    * this will be replaced by powerline (if you use [powerline](/powerline/))
+    * this will be replaced by [powerline](/powerline/) (if you use)
 * `keymaps.vim`
     * I use [vim-which-key](https://github.com/liuchengxu/vim-which-key) to achieve the similar behavior as [SpaceVim](https://spacevim.org/) and [SpaceEmacs](https://www.spacemacs.org/)
     * definitions of key-bindings of vim-which-key
 * `colors.vim`
     * dummy file
-    * this will be replaced by color_scheme (if you use [color_scheme](/color_scheme/))
+    * this will be replaced by [color_scheme](/color_scheme/) (if you use)
 * `vimrc`
     * load additional configurations (`~/.vim/*.vim`)
     * configurations of each plugin

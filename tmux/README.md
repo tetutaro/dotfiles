@@ -33,10 +33,10 @@
     * copy to the system clipboard
 * `status.conf`
     * dummy file
-    * this will be replaced by powerline (if you use [powerline](/powerline/))
+    * this will be replaced by [powerline](/powerline/) (if you use)
 * `style.conf`
     * color configuration for tmux-specific parts
-    * this will be replaced by color_scheme (if you use [color_scheme](/color_scheme/))
+    * this will be replaced by [color_scheme](/color_scheme/) (if you use)
 * `tmux.zsh`
     * original zsh functions
     * automatically {create, detach} tmux sessions like pyenv

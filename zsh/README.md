@@ -32,11 +32,11 @@
 * `prompt.zsh`
     * configuration of prompt
     * display shortened Python venv names
-        * poetry creates automatically venv which has very long name
-    * this will be replaced by powerline (if you use [powerline](/powerline/))
+        * poetry automatically creates venv which has very long name
+    * this will be replaced by [powerline](/powerline/) (if you use)
 * `tmux.zsh`
     * dummy functions
-    * this will be replaced by tmux (if you use [tmux](/tmux/))
+    * this will be replaced by [tmux](/tmux/) (if you use)
 * `fzf.zsh`
     * configuration of fzf
 * `cdp.zsh`
