@@ -1,10 +1,10 @@
-# YapyterLab App
+# JupyterLab on pipx & Yet Another JupyterLab App
 
 Yet Another JupyterLab App: The simplest desktop application only for [JupyterLab](https://github.com/jupyterlab/jupyterlab), based on [Electron](https://www.electronjs.org/)
 
 ![](screenshot.png)
 
-## Motivation
+## Motivation for create original app for JupyterLab
 
 As you know, [JupyterLab App](https://github.com/jupyterlab/jupyterlab_app) is the awesome desktop application for JupyterLab, developed by [Project Jupyer](https://jupyter.org/).
 
@@ -18,68 +18,43 @@ That is very close to what I'm looking for. The app I need is doing `electron.Br
 
 So, I made it.
 
-## Necessities for building the app
+## Necessities
 
-* git
 * [Node.js](https://nodejs.org/)
-    * My recommended way to install Node.js
-        * Install [nodenv](https://github.com/nodenv/nodenv)
-            * `> git clone git://github.com/nodenv/nodenv.git ~/.nodenv`
-        * Install [node-build](https://github.com/nodenv/node-build)
-            * `> git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build`
-        * Install [node-build-update-defs](https://github.com/nodenv/node-build-update-defs)
-            * `> git clone https://github.com/nodenv/node-build-update-defs.git ~/.nodenv/plugins/node-build-update-defs`
-        * Setup nodenv
-        * Install Node.js with nodenv and set it as global use
-            * `> nodenv install --list`
-            * `> nodenv install x.x.x`
-            * `> nodenv global x.x.x`
+    * nodenv and its plugins are installed in [zsh](/zsh/)
+    * Install Node.js with nodenv and set it as global use
+        * `> nodenv install --list`
+        * `> nodenv install x.x.x`
+        * `> nodenv global x.x.x`
 * [yarn](https://yarnpkg.com/)
-    * My recommended way to install yarn
-        * `> npm install -g yarn`
-            * `npm` is automatically installed when you install Node.js
-            * Don't forget to add `-g` option
+    * `> npm install -g yarn`
+        * `npm` is automatically installed when you install Node.js
+        * Don't forget to add `-g` option
+* pipx
+    * pipx is installed in [zsh](/zsh/)
 
-## Build the app
+## What this does
 
-* `> git clone https://github.com/tetutaro/yapyterlab_app.git`
-* `> cd yapyterlab_app`
-* `> yarn`
-* `> yarn build`
-* The built package is generated under the `build` directory
-    * Mac OSX: JupyterLab-x.x.x.dmg
-    * Linux: JupyterLab_x.x.x_amd64.snap
-* The environment confirmed that the app can be built
-    * Node.js: 16.10.0
-    * npm: 7.24.0
-    * yarn: 1.22.15
-    * electron: 15.1.1
-    * electron-builder: 22.11.7
+* install jq (if it has not been installed)
+* install jupyterlab and packages with pipx (if they have not been installed)
+    * packages: python-lsp-server[all], jupyterlab-lsp
+* create symbolic links of client config file
+    * `user-settings` -> `~/.jupyter/lab/user-settings`
+* create symbolic link of server config file
+    * `jupyter_lab_config.py.linux` / `jupyter_lab_config.py.macos` -> `${pipx_jupyterlab_etc}/jupyter_lab_config.py`
+* build and install app (if it has not been installed)
 
-## Install the app
+## What to do
 
-* How to install
-    * Mac OSX: `> open build/JupyterLab-x.x.x.dmg` and drug the icon to the `Applications` folder
-    * Linux: `> sudo snap install --dangerous build/JupyterLab_x.x.x_amd64.snap`
-* OSs confirmed that the app works
-    * Mac OSX: Mac OSX 11.6 (Big Sur)
-    * Linux: Ubuntu 21.04 (Hirsute Hippo) kernel 5.11.0-37-generic
+* `> ./install.sh`
 
-## JupyterLab configs
+## OSs confirmed that the app works
 
-* To know the config directories where the JupyterLab reads config files
-    * `> jupyter --paths`
-* Place a config file with following contents under the filename `jupyter_lab_config.py` in one of the above config directories
-
-```
-c.ServerApp.use_redirect_file = False
-# For Mac OSX
-c.ServerApp.browser = '/Applications/JupyterLab.app/Contents/MacOS/JupyterLab %s'
-# For Linux
-c.ServerApp.browser = '/snap/bin/jupyterlab %s'
-```
+* Mac OSX: Mac OSX 11.6 (Big Sur)
+* Linux: Ubuntu 21.04 (Hirsute Hippo) kernel 5.11.0-37-generic
 
 ## Use the JupyterLab with the app
 
+* go to project directory
 * Run the JupyterLab
     * `> jupyter-lab`

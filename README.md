@@ -24,3 +24,5 @@ When installing for the first time, it is recommended to install and configure i
     * go to [jupyterlab](/jupyterlab/)
 1. installation of gnome-terminal config tool
     * go to [gnome_terminal](/gnome_terminal/)
+
+![](configfiles.png)
