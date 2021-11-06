@@ -1,3 +1,4 @@
+export TERM="tmux-256color"
 export FZF_TMUX=1
 export FZF_COMMAND="fzf-tmux"
 

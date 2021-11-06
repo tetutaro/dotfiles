@@ -3,22 +3,22 @@
     "groups": {
         "virtualenv": {
             "fg": "blue",
-            "bg": "black",
+            "bg": "grey",
             "attrs": []
         },
         "cwd": {
             "fg": "dark_white",
-            "bg": "black",
+            "bg": "bright_black",
             "attrs": []
         },
         "cwd:current_folder": {
             "fg": "lime",
-            "bg": "black",
+            "bg": "bright_black",
             "attrs": []
         },
         "cwd:divider": {
             "fg": "dark_white",
-            "bg": "black",
+            "bg": "bright_black",
             "attrs": []
         }
     }

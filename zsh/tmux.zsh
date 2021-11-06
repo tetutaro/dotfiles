@@ -1,3 +1,4 @@
+export TERM="xterm-256color"
 export FZF_TMUX=0
 export FZF_COMMAND="fzf"
 
