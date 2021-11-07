@@ -217,4 +217,4 @@ augroup VagueInputMarkdown
 augroup END
 
 "" load leader keymappings
-source $HOME/.vim/keymap.vim
+source $HOME/.vim/keymaps.vim
