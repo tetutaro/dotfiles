@@ -82,6 +82,7 @@
 
     --window-border: 2px solid var(--color-bg-blue);
     --border-color: var(--color-bg-blue);
+    --panel-border-color: var(--color-bg-blue);
 
     --active-file-bg-color: var(--color-bg-0);
     --active-file-text-color: var(--color-fg-0);
@@ -94,6 +95,7 @@
     --rawblock-edit-panel-bd: var(--color-bg-1);
     --blur-text-color: var(--color-bg-3);
     --monospace: "Ricty Discord Nerd", monospace;
+    --mermaid-theme: dark;
 
     --base-font-size: 16px;
 }
@@ -552,7 +554,7 @@ div.ty-tooltip {
 }
 .cm-s-inner .cm-variable-3,
 .cm-s-typora-default .cm-variable-3 {
-    color: #ff0000 !important;
+    color: var(--color-fg-purple) !important;
 }
 .cm-s-inner .cm-builtin,
 .cm-s-typora-default .cm-builtin {
