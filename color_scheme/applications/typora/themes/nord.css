@@ -1,0 +1,700 @@
+@charset "UTF-8";
+
+/* load fonts */
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./fonts/RictyDiscordNerd-Regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: normal;
+    font-weight: bold;
+    src: url("./fonts/RictyDiscordNerd-Bold.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: italic;
+    font-weight: normal;
+    src: url("./fonts/RictyDiscordNerd-Italic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: italic;
+    font-weight: bold;
+    src: url("./fonts/RictyDiscordNerd-BoldItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./fonts/noto-sans-jp-v40-latin_japanese-regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: normal;
+    font-weight: bold;
+    src: url("./fonts/noto-sans-jp-v40-latin_japanese-700.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: italic;
+    font-weight: normal;
+    src: url("./fonts/noto-serif-jp-v19-latin_japanese-regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: italic;
+    font-weight: bold;
+    src: url("./fonts/noto-serif-jp-v19-latin_japanese-700.woff2") format("woff2");
+}
+
+/* define variables */
+:root {
+    --color-bg-0: #2e3440;
+    --color-bg-1: #3b4252;
+    --color-bg-2: #434c5e;
+    --color-bg-3: #4c566a;
+    --color-fg-1: #d8dee9;
+    --color-fg-0: #eceff4;
+    --color-bg-red: #7a3e44;
+    --color-bg-yellow: #766646;
+    --color-bg-green: #525f46;
+    --color-bg-blue: #2f4056;
+    --color-bg-purple: #5a4756;
+    --color-fg-red: #bf616a;
+    --color-fg-orange: #d08770;
+    --color-fg-yellow: #ebcb8b;
+    --color-fg-green: #a3be8c;
+    --color-fg-aqua: #88c0d0;
+    --color-fg-blue: #5e81ac;
+    --color-fg-purple: #b48ead;
+
+    --bg-color: var(--color-bg-0);
+    --text-color: var(--color-fg-0);
+    --md-char-color: var(--color-fg-orange);
+    --meta-content-color: var(--color-fg-green);
+
+    --primary-color: var(--color-fg-blue);
+    --primary-btn-border-color: var(--color-fg-blue);
+    --primary-btn-text-color: var(--color-fg-blue);
+
+    --window-border: 2px solid var(--color-bg-blue);
+    --border-color: var(--color-bg-blue);
+
+    --active-file-bg-color: var(--color-bg-0);
+    --active-file-text-color: var(--color-fg-0);
+    --active-file-border-color: var(--color-fg-blue);
+
+    --side-bar-bg-color: var(--color-bg-1);
+    --item-hover-bg-color: var(--color-bg-0);
+    --item-hover-text-color: var(--color-fg-blue);
+
+    --rawblock-edit-panel-bd: var(--color-bg-1);
+    --blur-text-color: var(--color-bg-3);
+    --monospace: "Ricty Discord Nerd", monospace;
+
+    --base-font-size: 16px;
+}
+
+/* width of the writing area */
+#write {
+    max-width: 800px;
+}
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+/* basic setting */
+html,
+html {
+    font-size: var(--base-font-size);
+    -webkit-font-smoothing: antialiased;
+}
+html,
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    fill: currentColor;
+    line-height: 1.2rem;
+}
+body,
+button,
+input,
+select,
+textarea {
+    border-color: transparent;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+/* header */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: bold;
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0 0 1.0rem 0;
+    padding: 0;
+}
+h1 {
+    font-size: 2.0rem;
+    line-height: 2.4rem;
+    border-bottom: 3px solid var(--color-bg-blue);
+}
+h2 {
+    font-size: 1.8rem;
+    line-height: 2.16rem;
+    border-bottom: 2px solid var(--color-bg-blue);
+}
+h3 {
+    font-size: 1.6rem;
+    line-height: 1.92rem;
+    border-bottom: 1px solid var(--color-bg-blue);
+}
+h4 {
+    font-size: 1.4rem;
+    line-height: 1.68rem;
+}
+h5 {
+    font-size: 1.2rem;
+    line-height: 1.44rem;
+}
+h6 {
+    font-size: 1.0rem;
+    line-height: 1.2rem;
+}
+h1::before, h1.md-focus::before,
+h2::before, h2.md-focus::before,
+h3::before, h3.md-focus::before,
+h4::before, h4.md-focus::before,
+h5::before, h5.md-focus::before,
+h6::before, h6.md-focus::before {
+    border: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    font-weight: normal;
+    text-align: right;
+    width: 3.0rem;
+    padding-right: 0.2rem;
+    margin-left: -3.2rem;
+    color: var(--color-fg-blue);
+    display: inline-block;
+    position: absolute;
+    float: left;
+    left: 0;
+    top: 0;
+    vertical-align: bottom;
+}
+h1::before, h1.md-focus::before {
+    line-height: 2.4rem;
+    content: '#1';
+}
+h2::before, h2.md-focus::before {
+    line-height: 2.16rem;
+    content: '#2';
+}
+h3::before, h3.md-focus::before {
+    line-height: 1.92rem;
+    content: '#3';
+}
+h4::before, h4.md-focus::before {
+    line-height: 1.68rem;
+    content: '#4';
+}
+h5::before, h5.md-focus::before {
+    line-height: 1.44rem;
+    content: '#5';
+}
+h6::before, h6.md-focus::before {
+    line-height: 1.2rem;
+    content: '#6';
+}
+
+hr {
+    border-top: 3px solid var(--color-bg-blue);
+}
+
+/* hyper link */
+a {
+    text-decoration: none;
+    outline: 0;
+    color: var(--color-fg-blue);
+}
+a::hover {
+    outline: 0;
+}
+a::focus {
+    outline: thin dotted;
+}
+span.md-url {
+    text-decoration: none;
+}
+
+/* footnote */
+sup.md-footnote {
+    background: var(--color-bg-1);
+    color: var(--color-fg-blue);
+}
+.md-hover-tip .md-arrow:after {
+    background: var(--color-bg-blue);
+}
+div.md-def-footnote {
+    font-size: 0.875rem;
+    margin: 0.875rem 0;
+}
+span.md-def-name {
+    color: var(--color-fg-blue);
+    padding-left: 0.75rem;
+    padding-right: 0.5rem;
+}
+span.md-def-name::before {
+    content: "[^";
+    color: var(--color-fg-0);
+}
+span.md-def-name::after {
+    content: "]:";
+    color: var(--color-fg-0);
+}
+span.md-def-content {
+    color: var(--color-fg-0);
+}
+span.md-reverse-footnote-area {
+    color: var(--color-fg-blue);
+}
+
+/* selected region by mouse */
+::-moz-selection {
+    background: var(--color-bg-blue);
+    color: var(--color-fg-0);
+    text-shadow: none;
+}
+*.in-text-selection,
+::selection {
+    background: var(--color-bg-blue);
+    color: var(--color-fg-0);
+    text-shadow: none;
+}
+
+/* search results */
+.md-search-hit {
+    background: var(--color-bg-blue);
+    color: var(--color-fg-0);
+}
+.md-search-hit.md-search-select {
+    background: var(--color-bg-purple);
+    color: var(--color-fg-0);
+}
+
+/* spaces between paragraphs */
+p {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+p,
+ul,
+ol,
+dd,
+hr,
+address,
+pre,
+table,
+iframe {
+    margin: 0 0 1.0rem 0;
+}
+
+/* item list */
+ul, ol {
+    padding: 0 0 0 2.0rem;
+}
+ul .md-p, ol .md-p {
+    margin-bottom: 0.3rem;
+}
+ul li::marker, ol li::marker {
+    color: var(--color-fg-blue);
+}
+
+/* task list */
+#write .task-list-item {
+    list-style-type: none;
+    padding-left: -0.3rem;
+}
+#write .task-list-item.task-list-done > p {
+    color: var(--color-fg-1);
+    text-decoration: line-through;
+}
+#write .task-list-item.task-list-done > p > .md-emoji {
+    opacity: 0.5;
+}
+#write .task-list-item.task-list-done > p > .md-link > a {
+    opacity: 0.6;
+}
+#write .task-list-item > input {
+    -webkit-appearance: initial;
+    display: block;
+    position: absolute;
+    border: 1px solid var(--color-bg-blue);
+    border-radius: 0.3rem;
+    margin-left: -2.0rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    top: -0.25rem;
+    background-color: var(--color-bg-1);
+}
+#write .task-list-item > input:focus {
+    outline: none;
+    box-shadow: none;
+}
+#write .task-list-item > input:hover {
+    border-color: var(--color-fg-blue);
+}
+#write .task-list-item > input[checked]::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    height: 60%;
+    width: 2px;
+    transform: rotate(40deg);
+    background: var(--color-fg-blue);
+}
+#write .task-list-item > input[checked]::after {
+    content: "";
+    position: absolute;
+    top: 46%;
+    left: 25%;
+    height: 30%;
+    width: 2px;
+    transform: rotate(-40deg);
+    background: var(--color-fg-blue);
+}
+
+/* font weights */
+b,
+th,
+dt,
+strong {
+    font-weight: bold;
+}
+i,
+em,
+dfn,
+cite {
+    font-style: italic;
+}
+
+/* table */
+.md-table table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.md-table th, .md-table td {
+    padding: 5px 10px;
+    vertical-align: top;
+    border: solid 1px var(--color-bg-blue);
+}
+.md-table thead tr {
+    background: var(--color-bg-0);
+    font-weight: bold;
+}
+.md-table tbody tr:nth-child(2n) {
+    background: var(--color-bg-1);
+}
+.md-table tbody tr:nth-child(2n+1) {
+    background: var(--color-bg-2);
+}
+
+/* front matter */
+pre.md-meta-block {
+    font-size: 1.0rem;
+    padding: 0.3rem;
+    background: var(--color-bg-1);
+    color: var(--color-fg-0);
+    border: 1px dashed var(--color-bg-blue);
+    border-radius: 3px;
+}
+
+/* blockquote */
+blockquote {
+    padding: 0.3rem 0 0.5rem 1.0rem;
+    margin: 0 0 1.0rem 0;
+    color: var(--color-fg-0);
+    background: var(--color-bg-1);
+    border-left: solid 3px var(--color-bg-blue);
+}
+
+/* inline code */
+code {
+    font-size: 1.2rem;
+    background: var(--color-bg-1);
+    color: var(--color-fg-purple);
+}
+
+/* inline math */
+span.md-inline-math-container script {
+    font-size: 1.2rem;
+    color: var(--color-fg-green);
+}
+
+/* display math */
+div.md-rawblock-tooltip {
+    font-size: 0.875rem;
+    color: var(--color-fg-0);
+}
+div.md-rawblock-before {
+    font-size: 1.2rem;
+    color: var(--color-fg-orange);
+}
+div.md-rawblock-input {
+    font-size: 1.2rem;
+}
+div.md-rawblock-after {
+    font-size: 1.2rem;
+    color: var(--color-fg-orange);
+}
+
+/* tooltip */
+div.ty-tooltip {
+    color: var(--color-fg-0);
+    background: var(--color-bg-2);
+    padding: 0.3rem;
+}
+
+/* image path */
+.md-image > .md-meta {
+    color: var(--color-fg-purple);
+    background: var(--color-bg-1);
+}
+
+/* TOC ([TOC]) */
+#write .md-toc:focus .md-toc-content {
+    border: dashed 1px var(--color-bg-blue);
+    border-radius: 3px;
+    background: var(--color-bg-1);
+}
+#write .md-toc-content a.md-toc-inner {
+    color: var(--color-fg-0);
+    text-decoration: none;
+}
+#write .md-toc-content a.md-toc-inner:hover {
+    color: var(--color-fg-blue);
+    text-decoration: none;
+}
+
+/* code block and source code mode */
+.md-fences {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    padding: 0.3rem 0;
+    background: var(--color-bg-1);
+}
+.md-fences .code-tooltip {
+    font-size: 1.0rem;
+    color: var(--color-fg-0);
+    background: var(--color-bg-1);
+    border: 1px solid var(--color-bg-blue);
+}
+#typora-source {
+    font-family: var(--monospace);
+    font-size: 1.2rem;
+}
+.cm-s-inner .CodeMirror-gutters {
+    color: var(--color-fg-1);
+    border-right: 1px solid var(--color-bg-blue);
+}
+.cm-s-typora-default .CodeMirror-linenumber {
+    color: var(--color-fg-1);
+}
+.cm-s-inner .CodeMirror-lines {
+    padding-left: 4px;
+}
+.cm-s-inner div.CodeMirror-cursor,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+    border-left: 2px solid var(--color-bg-blue);
+    z-index: 3;
+}
+.cm-s-inner .CodeMirror-selected,
+.cm-s-inner .CodeMirror-selectedtext,
+.cm-s-typora-default .CodeMirror-selected,
+.cm-s-typora-default .CodeMirror-selectedtext {
+    background: var(--color-bg-blue) !important;
+}
+/* .cm-s-inner .CodeMirror-activeline-background, */
+.cm-s-typora-default .CodeMirror-activeline-background {
+    background: var(--color-bg-1);
+}
+.cm-s-inner .cm-keyword,
+.cm-s-typora-default .cm-keyword {
+    color: var(--color-fg-aqua) !important;
+}
+.cm-s-inner .cm-operator,
+.cm-s-typora-default .cm-operator {
+    color: var(--color-fg-0) !important;
+}
+.cm-s-inner .cm-variable-2,
+.cm-s-typora-default .cm-variable-2 {
+    color: var(--color-fg-purple) !important;
+}
+.cm-s-inner .cm-variable-3,
+.cm-s-typora-default .cm-variable-3 {
+    color: #ff0000 !important;
+}
+.cm-s-inner .cm-builtin,
+.cm-s-typora-default .cm-builtin {
+    color: var(--color-fg-blue) !important;
+}
+.cm-s-inner .cm-atom,
+.cm-s-typora-default .cm-atom {
+    color: var(--color-fg-orange) !important;
+}
+.cm-s-inner .cm-number,
+.cm-s-typora-default .cm-number {
+    color: var(--color-fg-green) !important;
+}
+.cm-s-inner .cm-def,
+.cm-s-typora-default .cm-def {
+    color: var(--color-fg-blue) !important;
+}
+.cm-s-inner .cm-string,
+.cm-s-typora-default .cm-string {
+    color: var(--color-fg-green) !important;
+}
+.cm-s-inner .cm-string-2,
+.cm-s-typora-default .cm-string-2 {
+    color: #ff0000 !important;
+}
+.cm-s-inner .cm-comment {
+    color: var(--color-fg-1) !important;
+    font-style: italic;
+}
+.cm-s-typora-default .cm-comment:not(.cm-s-inner) {
+    color: var(--color-fg-orange) !important;
+    font-style: normal;
+}
+.cm-s-inner .cm-variable,
+.cm-s-typora-default .cm-variable {
+    color: var(--color-fg-0) !important;
+}
+.cm-s-inner .cm-tag,
+.cm-s-typora-default .cm-tag {
+    color: var(--color-fg-blue) !important;
+}
+.cm-s-inner .cm-meta,
+.cm-s-typora-default .cm-meta {
+    color: var(--color-fg-orange) !important;
+}
+.cm-s-inner .cm-attribute,
+.cm-s-typora-default .cm-attribute {
+    color: var(--color-fg-green) !important;
+}
+.cm-s-inner .cm-property,
+.cm-s-typora-default .cm-property {
+    color: var(--color-fg-blue) !important;
+}
+.cm-s-inner .cm-qualifier,
+.cm-s-typora-default .cm-qualifier {
+    color: #ff0000 !important;
+}
+.cm-s-inner .cm-error,
+.cm-s-typora-default .cm-error {
+    color: var(--color-fg-red) !important;
+    background: var(--color-bg-red);
+}
+.cm-s-inner .cm-bracket,
+.cm-s-typora-default .cm-bracket {
+    color: var(--color-fg-blue) !important;
+}
+.cm-s-inner .cm-header,
+.cm-s-typora-default .cm-header {
+    color: var(--color-fg-blue) !important;
+}
+.cm-s-inner .cm-link,
+.cm-s-typora-default .cm-link {
+    color: var(--color-fg-blue) !important;
+    text-decoration: none;
+}
+.cm-s-inner .cm-hr,
+.cm-s-typora-default .cm-hr {
+    color: var(--color-fg-orange) !important;
+}
+.cm-s-inner .cm-table-row,
+.cm-s-typora-default .cm-table-row {
+    color: var(--color-fg-orange) !important;
+    font-style: normal !important;
+}
+.cm-s-typora-default .cm-header1 {
+    font-size: 1.2rem !important;
+    line-height: 1.5rem;
+}
+.cm-s-typora-default .cm-header2 {
+    font-size: 1.2rem !important;
+    line-height: 1.5rem;
+}
+.cm-s-typora-default .cm-header3 {
+    font-size: 1.2rem !important;
+    line-height: 1.5rem;
+}
+.cm-s-typora-default .cm-header4 {
+    font-size: 1.2rem !important;
+    line-height: 1.5rem;
+}
+.cm-s-typora-default .cm-header5 {
+    font-size: 1.2rem !important;
+    line-height: 1.5rem;
+}
+.cm-s-typora-default .cm-header6 {
+    font-size: 1.2rem !important;
+    line-height: 1.5rem;
+}
+
+/* sidebar */
+#typora-sidebar {
+    font-size: 0.875rem;
+}
+
+/* sidebar file list view */
+.file-list-item-parent-loc,
+.file-list-item-time {
+    font-family: var(--monospace);
+    font-size: 0.75rem;
+    color: var(--color-fg-1);
+}
+.file-list-item-summary {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.8125rem;
+    color: var(--color-fg-1);
+}
+
+/* sidebar file tree view */
+.file-node-content {
+    padding-top: 0.1rem;
+}
+.file-node-open-state {
+    color: var(--color-fg-blue);
+}
+
+/* sidebar outline */
+.outline-expander::before {
+    color: var(--color-fg-blue);
+}
+.outline-label:hover {
+    text-decoration: none;
+}
+.pin-outline .outline-active {
+    color: var(--color-fg-blue);
+}
