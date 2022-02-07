@@ -6,6 +6,7 @@ Plug 'airblade/vim-rooter'
 Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
 " Visualize
 Plug 'elzr/vim-json'
 Plug 'Yggdroot/indentLine'
