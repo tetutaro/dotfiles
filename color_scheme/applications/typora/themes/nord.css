@@ -307,8 +307,6 @@ p {
     word-wrap: break-word;
 }
 p,
-ul,
-ol,
 dd,
 hr,
 address,
@@ -320,7 +318,11 @@ iframe {
 
 /* item list */
 ul, ol {
+    margin: 0 0 1.0rem 0;
     padding: 0 0 0 2.0rem;
+}
+li > ul, li > ol {
+    margin-bottom: 0;
 }
 ul .md-p, ol .md-p {
     margin-bottom: 0.3rem;

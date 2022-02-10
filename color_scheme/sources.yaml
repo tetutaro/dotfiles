@@ -14,4 +14,5 @@ applications: [
   tmux,
   powerline,
   typora,
+  zettlr,
 ]

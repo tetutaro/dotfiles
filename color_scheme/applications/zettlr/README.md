@@ -1,11 +1,11 @@
-# theme of Typora
+# theme of Zettlr
 
-## Install Typora Theme
+## Install Zettlr Theme
 
-* https://theme.typora.io/doc/Install-Theme/
-* [themes](themes) の下に作成される css ファイルのシンボリックリンクを上記 themes ディレクトリの下に作る
+* https://docs.zettlr.com/ja/core/custom-css/
+* Zettlr データディレクトリに custom.css があるので、それを一旦削除し、[themes](themes) の下に作成される css ファイルのシンボリックリンクを custom.css という名前で作る
 
-## Install fonts for Typora Theme
+## Install fonts for Zettlr Theme
 
 * Noto Sans JP (woff2)
     * https://google-webfonts-helper.herokuapp.com/fonts/noto-sans-jp?subsets=japanese,latin
@@ -15,4 +15,4 @@
 * Ricty Discord Nerd (woff2)
     * font セクションでフォントを作る
     * https://github.com/google/woff2 で ttf を woff2 に変換する
-* themes ディレクトリの下に fonts ディレクトリを作り、上記４種類のフォントを全てその中に入れる
+* Zettr データディレクトリの下に fonts ディレクトリを作り、上記４種類のフォントをその中に入れる

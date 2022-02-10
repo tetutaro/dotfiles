@@ -1,0 +1,399 @@
+@charset "UTF-8";
+
+/* load fonts */
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./fonts/RictyDiscordNerd-Regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: normal;
+    font-weight: bold;
+    src: url("./fonts/RictyDiscordNerd-Bold.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: italic;
+    font-weight: normal;
+    src: url("./fonts/RictyDiscordNerd-Italic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Ricty Discord Nerd";
+    font-style: italic;
+    font-weight: bold;
+    src: url("./fonts/RictyDiscordNerd-BoldItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./fonts/noto-sans-jp-v40-latin_japanese-regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: normal;
+    font-weight: bold;
+    src: url("./fonts/noto-sans-jp-v40-latin_japanese-700.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: italic;
+    font-weight: normal;
+    src: url("./fonts/noto-serif-jp-v19-latin_japanese-regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style: italic;
+    font-weight: bold;
+    src: url("./fonts/noto-serif-jp-v19-latin_japanese-700.woff2") format("woff2");
+}
+
+/* define variables */
+:root {
+    --color-bg-0: #000000;
+    --color-bg-1: #11141a;
+    --color-bg-2: #212733;
+    --color-bg-3: #323b4d;
+    --color-fg-1: #8a8f99;
+    --color-fg-0: #b7becc;
+    --color-bg-red: #664542;
+    --color-bg-yellow: #5c6642;
+    --color-bg-green: #426653;
+    --color-bg-blue: #424e66;
+    --color-bg-purple: #614266;
+    --color-fg-red: #cb84b0;
+    --color-fg-orange: #cc9585;
+    --color-fg-yellow: #c5cc85;
+    --color-fg-green: #88cc85;
+    --color-fg-aqua: #85ccbf;
+    --color-fg-blue: #849ccb;
+    --color-fg-purple: #a984cb;
+    --base-font-size: 16px;
+}
+
+/* font and size */
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: var(--base-font-size);
+    line-height: 1.2rem;
+    fill: currentColor;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+body div.split-view div.horizontal-resizer {
+    width: 5px;
+}
+body #tab-container .filename {
+    font-size: 0.875rem;
+}
+body #editor .CodeMirror .CodeMirror-code {
+    margin: 0;
+}
+body #editor .CodeMirror .code-block-line {
+    font-family: "Ricty Discord Nerd", monospace;
+    font-size: 1.0rem;
+    line-height: 1.0rem;
+}
+body.dark #editor .CodeMirror .code-block-line {
+    font-family: "Ricty Discord Nerd", monospace;
+    font-size: 1.0rem;
+    line-height: 1.0rem;
+}
+
+body #editor .CodeMirror .size-header-1 {
+    font-size: 2.0rem;
+    line-height: 2.4rem;
+    border-bottom: 3px solid var(--color-bg-blue);
+}
+body #editor .CodeMirror .size-header-2 {
+    font-size: 1.8rem;
+    line-height: 2.16rem;
+    border-bottom: 2px solid var(--color-bg-blue);
+}
+body #editor .CodeMirror .size-header-3 {
+    font-size: 1.6rem;
+    line-height: 1.92rem;
+    border-bottom: 1px solid var(--color-bg-blue);
+}
+body #editor .CodeMirror .size-header-4 {
+    font-size: 1.4rem;
+    line-height: 1.68rem;
+}
+body #editor .CodeMirror .size-header-5 {
+    font-size: 1.2rem;
+    line-height: 1.44rem;
+}
+body #editor .CodeMirror .size-header-6 {
+    font-size: 1.0rem;
+    line-height: 1.2rem;
+}
+
+/* front matter tooltip */
+body.dark #editor .CodeMirror .cm-yaml-frontmatter-start::after {
+    font-size: 0.875rem;
+}
+
+/* table */
+body.dark #editor table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+body.dark #editor table th,
+body.dark #editor table td {
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+/* color */
+body.dark {
+    color: var(--color-fg-0);
+    background: var(--color-bg-0);
+}
+body.dark #file-manager,
+body.dark #file-manager #file-tree,
+body.dark #file-manager #file-list,
+body.dark #global-search-pane,
+body.dark #sidebar,
+body.darwin.dark div#sidebar {
+    background: var(--color-bg-1);
+}
+
+body.dark #file-tree .file-manager-filter-input {
+    background: var(--color-bg-3);
+    color: var(--color-fg-0);
+}
+body.dark #file-tree .toggle-icon {
+    color: var(--color-fg-blue);
+}
+body.dark #file-tree .tree-item.directory.selected {
+    background: var(--color-bg-green);
+}
+body.dark #file-tree .tree-item.file.selected {
+    background: var(--color-bg-blue);
+}
+body.dark #file-tree .tree-item.selected .display-text {
+    color: var(--color-fg-0);
+    font-weight: bold;
+    background: transparent;
+    background-image: none;
+}
+body.dark #file-list .list-item-wrapper {
+    background: var(--color-bg-1);
+}
+body.dark #file-list .list-item,
+body.dark #file-list .list-item.directory {
+    background: var(--color-bg-1);
+    border-bottom-color: var(--color-bg-blue);
+}
+body.dark #file-list .list-item.directory {
+    color: var(--color-fg-green);
+}
+body.dark #file-list .list-item.selected {
+    font-weight: bold;
+    background: var(--color-bg-blue);
+}
+
+body.dark .horizontal-resizer {
+    background: var(--color-bg-1);
+}
+body.dark div#tab-container {
+    border-bottom: 1px solid var(--color-bg-0);
+}
+body.darwin.dark div#tab-container {
+    border-bottom-color: var(--color-bg-0);
+}
+
+body.dark #editor {
+    color: var(--color-fg-0);
+    background: var(--color-bg-0);
+}
+body.dark #editor .CodeMirror-cursor {
+    background: var(--color-fg-1);
+}
+body.dark #editor .CodeMirror .CodeMirror-foldmarker {
+    color: var(--color-fg-0);
+    background: var(--color-bg-1);
+}
+body.dark #editor .CodeMirror .CodeMirror-foldmarker:hover {
+    background: var(--color-bg-3);
+}
+body.dark #editor .CodeMirror .code-block-line {
+    background: var(--color-bg-1);
+}
+
+body.dark #editor .CodeMirror .cm-atom,
+body.dark #editor .CodeMirror .cm-fenced-code.cm-atom {
+    color: var(--color-fg-blue);
+}
+body.dark #editor .CodeMirror .cm-meta {
+    color: var(--color-fg-orange);
+}
+body.dark #editor .CodeMirror .cm-comment {
+    color: var(--color-fg-purple);
+    background: var(--color-bg-1);
+}
+body.dark #editor .CodeMirror .cm-formatting-header {
+    color: var(--color-fg-blue);
+}
+body.dark #editor .CodeMirror .cm-hr {
+    color: var(--color-fg-orange);
+}
+body.dark #editor .CodeMirror .cma,
+body.dark #editor .CodeMirror .cm-footnote-formatting,
+body.dark #editor .CodeMirror .cm-link {
+    color: var(--color-fg-blue);
+}
+body.dark #editor .CodeMirror .cm-url,
+body.dark #editor .CodeMirror .cm-zkn-link {
+    color: var(--color-fg-green);
+}
+body.dark #editor .CodeMirror .cm-formatting-strong,
+body.dark #editor .CodeMirror .cm-formatting-link,
+body.dark #editor .CodeMirror .cm-formatting-link-string,
+body.dark #editor .CodeMirror .cm-formatting-em {
+    color: var(--color-fg-orange);
+}
+body.dark #editor .CodeMirror .cm-formatting-list {
+    color: var(--color-fg-blue);
+}
+body.dark #editor .CodeMirror .cm-formatting-code,
+body.dark #editor .CodeMirror .cm-formatting-code-block {
+    color: var(--color-fg-orange);
+    background: var(--color-bg-0);
+}
+body.dark #editor .CodeMirror .cm-fenced-code {
+    color: var(--color-fg-green) !important;
+}
+body.dark #editor .CodeMirror .cm-multiline-equation {
+    color: var(--color-fg-0) !important;
+}
+
+body.dark #editor .CodeMirror .code-block-line .cm-keyword {
+    color: var(--color-fg-aqua) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-operator {
+    color: var(--color-fg-0) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-variable-2 {
+    color: var(--color-fg-purple) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-variable-3 {
+    color: var(--color-fg-purple) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-builtin {
+    color: var(--color-fg-blue) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-atom {
+    color: var(--color-fg-orange) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-number {
+    color: var(--color-fg-green) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-def {
+    color: var(--color-fg-blue) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-string {
+    color: var(--color-fg-green) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-string-2 {
+    color: #ff0000 !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-comment {
+    color: var(--color-fg-1) !important;
+    font-style: italic;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-variable {
+    color: var(--color-fg-0) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-tag {
+    color: var(--color-fg-blue) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-meta {
+    color: var(--color-fg-orange) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-attribute {
+    color: var(--color-fg-green) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-property {
+    color: var(--color-fg-blue) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-qualifier {
+    color: #ff0000 !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-error {
+    color: var(--color-fg-red) !important;
+    background: var(--color-bg-red);
+}
+body.dark #editor .CodeMirror .code-block-line .cm-bracket {
+    color: var(--color-fg-blue) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-header {
+    color: var(--color-fg-blue) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-link {
+    color: var(--color-fg-blue) !important;
+    text-decoration: none;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-hr {
+    color: var(--color-fg-orange) !important;
+}
+body.dark #editor .CodeMirror .code-block-line .cm-table-row {
+    color: var(--color-fg-orange) !important;
+    font-style: normal !important;
+}
+
+body.dark #sidebar .toc-entry-container .toc-level {
+    color: var(--color-fg-blue);
+}
+body.dark #sidebar .toc-entry-container .toc-entry:hover {
+    color: var(--color-fg-blue);
+    text-decoration: none;
+}
+body.dark #sidebar .toc-entry-container .toc-entry.toc-entry-active {
+    color: var(--colof-fg-0);
+    font-weight: bold;
+    background: var(--color-bg-blue);
+}
+body.dark #sidebar .toc-entry-container .toc-entry.toc-entry-active:hover {
+    color: var(--color-fg-blue);
+}
+
+/* front matter tooltip */
+body.dark #editor .CodeMirror .cm-yaml-frontmatter-start::after {
+    color: var(--color-fg-1);
+    background: var(--color-bg-1);
+}
+
+/* checkbox color */
+body.dark #editor .CodeMirror-widget input {
+    border: 2px solid var(--color-fg-1);
+    border-radius: 0.3rem;
+    color: var(--color-bg-3);
+    background: var(--color-fg-red);
+}
+body.dark #editor .CodeMirror-widget input:hover {
+    border-color: var(--color-bg-blue);
+}
+
+/* table color */
+body.dark #editor table th,
+body.dark #editor table td {
+    border: solid 1px var(--color-bg-blue);
+}
+body.dark #editor table thead tr {
+    background: var(--color-bg-0);
+}
+body.dark #editor table tbody tr:nth-child(2n) {
+    background: var(--color-bg-1);
+}
+body.dark #editor table tbody tr:nth-child(2n+1) {
+    background: var(--color-bg-2);
+}
+body.dark #editor table thead tr {
+    font-weight: bold;
+}
