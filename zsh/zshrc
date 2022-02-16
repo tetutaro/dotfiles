@@ -139,7 +139,7 @@ fi
 ##########################################################################
 ## original settings
 export PROJECT_TOP_DIR="${HOME}/Projects"
-export PROJECT_DEPTH_FROM_TOP=3
+export PROJECT_DEPTH_FROM_TOP=2
 ##########################################################################
 ## include tmux settings
 if [[ -f ${HOME}/.config/zsh/tmux.zsh ]]; then

@@ -50,7 +50,7 @@ def project_cwd(
     pl,
     segment_info,
     project_dir='~/Projects',
-    project_depth=3,
+    project_depth=2,
     dir_shorten_len=3,
     dir_limit_depth=3,
     home_str='~',
