@@ -71,7 +71,8 @@ if [[ ! -d ${HOME}/.local/pipx ]]; then
     if [[ ${os} == "Darwin" ]]; then
         brew install pipx
     else
-        ${PYTHON} -m pip install --local pipx
+        sudo apt install python3-pip python3-venv psutils
+        ${PYTHON} -m pip install --user pipx
     fi
     export PATH=${PATH}:${HOME}/.local/bin
     rehash
@@ -82,7 +83,7 @@ fi
 
 ## nodenv
 if [[ ! -d ${HOME}/.nodenv ]]; then
-    git clone git://github.com/nodenv/nodenv.git ~/.nodenv
+    git clone https://github.com/nodenv/nodenv.git ~/.nodenv
 else
     echo "nodenv is already installed"
 fi
