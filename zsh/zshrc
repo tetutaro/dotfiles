@@ -46,6 +46,7 @@ elif [[ ${os} == "Darwin" ]]; then
     alias l@="ls -@1AFGhloTv"
     alias zcat=gzcat
     alias cat4tab="cat $@ | sed -e \"s|"$'\t'"|    |g\""
+    alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
     if [[ ${TERM} == "xterm-16color" ]]; then
         alias vi='/usr/local/bin/vim -u $HOME/.vim/defaults.vim "$@"'
     else
