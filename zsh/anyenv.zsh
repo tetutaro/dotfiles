@@ -14,11 +14,7 @@ fi
 if [[ -d ${HOME}/.pyenv/plugins/pyenv-virtualenv ]]; then
     eval "$(pyenv virtualenv-init -)"
 fi
-# poetry
-if [[ -d ${HOME}/.poetry ]]; then
-    export PATH=${HOME}/.poetry/bin:${PATH}
-fi
-# pipx
+# poetry & pipx
 if [[ -d ${HOME}/.local/bin ]]; then
     export PATH=${PATH}:${HOME}/.local/bin
 fi
