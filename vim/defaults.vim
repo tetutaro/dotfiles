@@ -28,7 +28,7 @@ set shiftwidth=4  " smartindentで増減する幅
 " JSON, JavaScript, TypeScript, CSS, HTML, YAML はインデントを2にする
 augroup fileTypeIndent
     autocmd!
-    autocmd BufNewFile,BufRead *.json,*.js,*.tsx,*.css,*.html,*.yml,*.yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.json,*.js,*.ts,*.tsx,*.css,*.html,*.yml,*.yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 "" SEARCH
 set incsearch  " インクリメンタルサーチ（１文字毎に検索を行う）
