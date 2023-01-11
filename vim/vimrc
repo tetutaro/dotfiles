@@ -141,7 +141,7 @@ let g:python_pep8_indent_hang_closing = 0
 "" settings for Language Server
 let g:python_host_prog = $VIRTUAL_ENV . '/bin/python3'
 let g:python_pylsp_prog = $VIRTUAL_ENV . '/bin/pylsp'
-let g:python_flake8_prog = $VIRTUAL_ENV . '/bin/pflake8'
+let g:python_flake8_prog = $VIRTUAL_ENV . '/bin/flake8'
 augroup PythonLanguageServer
     if executable(g:python_pylsp_prog)
         autocmd!
@@ -200,7 +200,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:warn_about_trailing_whitespace = 1
 let g:ale_linters = {
-    \ 'python': ['pflake8'],
+    \ 'python': ['flake8'],
     \ 'javascript': ['eslint'],
     \ }
 let g:ale_fixers = {
@@ -209,7 +209,7 @@ let g:ale_fixers = {
     \ 'css': ['prettier'],
     \ }
 let g:ale_python_flake8_executable = g:python_host_prog
-let g:ale_python_flake8_options = '-m pflake8'
+let g:ale_python_flake8_options = '-m flake8'
 let g:ale_fix_on_save = 1
 augroup FiletypeNextJS
     autocmd!
