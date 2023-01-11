@@ -25,7 +25,11 @@ set softtabstop=4  " 連続した空白に対して<Tab>,<Backspace>でカーソ
 set autoindent  " 改行時に前の行のインデントを継続する
 set smartindent  " 改行時に前の行の構文をチェックし次の行のインデントを増減する
 set shiftwidth=4  " smartindentで増減する幅
-
+" JSON, JavaScript, TypeScript, CSS, HTML, YAML はインデントを2にする
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.json,*.js,*.tsx,*.css,*.html,*.yml,*.yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 "" SEARCH
 set incsearch  " インクリメンタルサーチ（１文字毎に検索を行う）
 set ignorecase  " 検索パターンに大文字小文字を区別しない
