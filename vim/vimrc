@@ -213,7 +213,7 @@ let g:ale_python_flake8_options = '-m flake8'
 let g:ale_fix_on_save = 1
 augroup FiletypeNextJS
     autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=javascript
+    autocmd BufNewFile,BufRead *.js,*.jsx,*.ts,*.tsx set filetype=javascript
 augroup END
 
 "" settings for original plugins
