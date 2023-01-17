@@ -202,24 +202,45 @@ let g:warn_about_trailing_whitespace = 1
 let g:ale_linters = {
     \ 'python': ['flake8'],
     \ 'javascript': ['eslint'],
+    \ 'javascriptreact': ['eslint'],
+    \ 'typescript': ['eslint'],
+    \ 'typescriptreact': ['eslint'],
     \ }
 let g:ale_fixers = {
     \ 'python': ['black'],
     \ 'javascript': ['prettier'],
+    \ 'javascriptreact': ['prettier'],
+    \ 'typescript': ['prettier'],
+    \ 'typescriptreact': ['prettier'],
     \ 'css': ['prettier'],
     \ }
 let g:ale_python_flake8_executable = g:python_host_prog
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_fix_on_save = 1
-augroup FiletypeNextJS
-    autocmd!
-    autocmd BufNewFile,BufRead *.js,*.jsx,*.ts,*.tsx set filetype=javascript
-augroup END
+
+if executable('typescript-language-server')
+    augroup TypescriptLanguageServer
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'typescript-language-server',
+            \ 'cmd': {server_info -> [&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+            \ 'root_uri': {server_info -> lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+            \ 'whitelist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+        \ })
+        autocmd FileType typescript setlocal omnifunc=lsp#complete
+    augroup END :echomsg "vim-lsp with typescript-language-server enabled"
+else
+    :echomsg "vim-lsp for typescript unavailable"
+endif
 
 "" settings for original plugins
 augroup VagueInputPython
     autocmd!
     autocmd Filetype python call vagueinputpython#Configure()
+augroup END
+augroup VagueInputJS
+    autocmd!
+    autocmd Filetype javascript,javascriptreact,typescript,typescriptreact call vagueinputpython#Configure()
 augroup END
 augroup VagueInputMarkdown
     autocmd!
