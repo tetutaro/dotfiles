@@ -56,22 +56,12 @@ else
     echo "pyenv-virtualenv is already installed"
 fi
 
-## poetry
-if [[ ! -d ${HOME}/.poetry ]]; then
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | ${PYTHON} -
-    export PATH=${HOME}/.poetry/bin:${PATH}
-    rehash
-    poetry config virtualenvs.path "${HOME}/.pyenv/versions"
-else
-    echo "poetry is already installed"
-fi
-
 ## pipx
 if [[ ! -d ${HOME}/.local/pipx ]]; then
     if [[ ${os} == "Darwin" ]]; then
         brew install pipx
     else
-        sudo apt install python3-pip python3-venv psutils
+        sudo apt install python3-pip python3-venv psutil
         ${PYTHON} -m pip install --user pipx
     fi
     export PATH=${PATH}:${HOME}/.local/bin
@@ -79,6 +69,15 @@ if [[ ! -d ${HOME}/.local/pipx ]]; then
     pipx ensurepath
 else
     echo "pipx is already installed"
+fi
+
+## poetry
+if [[ ! -f ${HOME}/.local/bin/poetry ]]; then
+    pipx install poetry
+    rehash
+    poetry config virtualenvs.path "${HOME}/.pyenv/versions"
+else
+    echo "poetry is already installed"
 fi
 
 ## nodenv

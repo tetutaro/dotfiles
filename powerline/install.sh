@@ -29,7 +29,7 @@ fi
 if [ ! -d ${HOME}/.local/pipx/venvs/powerline-status ]; then
     pipx install powerline-status
     pipx inject powerline-status pip
-    pipx runpip powerline-status install pygit2 psutils
+    pipx runpip powerline-status install pygit2 psutil
     cd widgets && ./install.sh && cd -
 else
     echo "powerline server is already installed"
