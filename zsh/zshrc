@@ -45,6 +45,7 @@ elif [[ ${os} == "Darwin" ]]; then
     alias ll="ls -AFGhlov"
     alias l@="ls -@1AFGhloTv"
     alias zcat=gzcat
+    alias sed=gsed
     alias cat4tab="cat $@ | sed -e \"s|"$'\t'"|    |g\""
     alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
     if [[ ${TERM} == "xterm-16color" ]]; then
