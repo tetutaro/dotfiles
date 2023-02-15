@@ -1,5 +1,8 @@
 {
     "fontFamily": "Noto Sans JP",
     "fontSize": 16,
-    "lineHeight": 1.0
+    "lineHeight": 1,
+    "lineWidth": null,
+    "hideFrontMatter": false,
+    "renderTimeout": 1000
 }

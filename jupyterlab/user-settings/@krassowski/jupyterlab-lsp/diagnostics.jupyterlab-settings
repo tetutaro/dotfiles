@@ -1,5 +1,9 @@
 {
-    // E402: ignoring E402 allows imports which are not on the very top of the file
-    // E703: ignoring E702 allows terminating semicolon (useful for matplotlib plots)
-    "ignoreCodes": ["E402", "E703"]
+    "defaultSeverity": "Warning",
+    "ignoreCodes": [
+        "E203",
+        "E402",
+        "E703"
+    ],
+    "ignoreMessagesPatterns": []
 }
