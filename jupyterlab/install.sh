@@ -48,8 +48,8 @@ VERSION=$(cat package.json | jq -r .version)
 if [[ ! -d "${HOME}/.local/pipx/venvs/jupyterlab" ]]; then
     pipx install jupyterlab
     pipx inject jupyterlab pip
-    pipx runpip jupyterlab install black flake8 python-lsp-server jupyterlab-code-formatter jupyterlab-flake8 jupyterlab-lsp jupyterlab-templates jupyterlab-widgets ipympl ipywidgets
-    pipx run --spec jupyterlab jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib @jupyterlab/toc jupyterlab_templates
+    pipx runpip jupyterlab install black flake8 python-lsp-server jupyterlab-code-formatter jupyterlab-lsp jupyterlab-templates jupyterlab-widgets ipywidgets
+    pipx run --spec jupyterlab jupyter labextension install @jupyter-widgets/jupyterlab-manager @jupyterlab/toc jupyterlab_templates
     pipx run --spec jupyterlab jupyter lab build
     pipx run --spec jupyterlab jupyter lab clean
 else
