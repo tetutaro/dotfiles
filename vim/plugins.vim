@@ -35,7 +35,6 @@ Plug 'tetutaro/vague-input-python.vim'
 Plug 'tetutaro/vague-input-markdown.vim'
 " Status Line
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 "Plug 'Wildog/airline-weather.vim'
 call plug#end()
 
@@ -73,7 +72,6 @@ let g:airline_mode_map = {
     \ 'V'  : 'V',
     \ '' : '^V',
 \ }
-let g:airline_theme = 'tomorrow'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#ale#show_line_numbers = 0
@@ -81,10 +79,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_count = 1
 let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = ' '
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = ' '
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 "let g:airline#extensions#whitespace#checks = ['trailing']
@@ -96,10 +94,10 @@ let g:airline_section_z = airline#section#create([
     \ 'windowswap', '%3p%%', 'linenr', ':%2v'
 \ ])
 let g:airline_symbols = get(g:, 'airline_symbols', {})
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ' '
-let g:airline_right_alt_sep = ' '
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = ' '
 let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
@@ -112,6 +110,13 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#buffer_nr_format = ' %s: '
+let g:airline#extensions#tabline#fnamemod = ' :p:.'
+let g:airline#extensions#tabline#fnamecollapse = 1
+let g:airline#extensions#tabline#fnametruncate = 0
+" airline theme
+let g:airline_theme = 'dark'
 " airline weather
 "let g:weather#area = 'Sapporo,JP'
 "let g:weather#unit = 'metric'
