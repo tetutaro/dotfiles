@@ -1,4 +1,7 @@
 {
     "navigateToCurrentDirectory": true,
-    "showLastModifiedColumn": false
+    "useFuzzyFilter": true,
+    "filterDirectories": true,
+    "showLastModifiedColumn": true,
+    "showHiddenFiles": false
 }
