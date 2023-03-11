@@ -121,7 +121,7 @@ let g:airline#extensions#tabline#fnamemod = ' :p:.'
 let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline#extensions#tabline#fnametruncate = 0
 " airline theme
-let g:airline#themes#base16#constant = 1
+let g:airline#themes#base16#constant = 0
 let g:airline_theme = 'base16'
 " airline weather
 "let g:weather#area = 'Sapporo,JP'
