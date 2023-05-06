@@ -28,7 +28,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " Original Plugins
 Plug 'tetutaro/vague-move.vim'
 Plug 'tetutaro/vague-input-python.vim'
