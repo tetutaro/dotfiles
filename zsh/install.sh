@@ -61,7 +61,7 @@ if [[ ! -d ${HOME}/.local/pipx ]]; then
     if [[ ${os} == "Darwin" ]]; then
         brew install pipx
     else
-        sudo apt install python3-pip python3-venv psutil
+        sudo apt install python3-pip python3-venv
         ${PYTHON} -m pip install --user pipx
     fi
     export PATH=${PATH}:${HOME}/.local/bin
