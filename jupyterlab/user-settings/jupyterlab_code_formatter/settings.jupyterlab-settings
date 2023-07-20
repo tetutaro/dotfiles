@@ -4,12 +4,13 @@
             "python": [
                 "black"
             ],
+            "R": "formatR",
             "rust": "rustfmt",
             "c++11": "astyle"
         }
     },
     "black": {
-        "line_length": 79,
+        "line_length": 80,
         "string_normalization": true
     },
     "yapf": {
@@ -21,7 +22,8 @@
         "include_trailing_comma": true,
         "force_grid_wrap": 0,
         "use_parentheses": true,
-        "line_length": 79
+        "ensure_newline_before_comments": true,
+        "line_length": 88
     },
     "formatR": {
         "indent": 2,
@@ -31,8 +33,14 @@
     },
     "styler": {},
     "formatOnSave": false,
+    "cacheFormatters": false,
     "astyle": {
         "args": []
+    },
+    "ruff": {
+        "args": [
+            "--select=I"
+        ]
     },
     "suppressFormatterErrors": false
 }

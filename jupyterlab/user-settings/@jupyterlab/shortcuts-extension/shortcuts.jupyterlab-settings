@@ -2,62 +2,6 @@
     "shortcuts": [
         {
             "args": {},
-            "command": "notebook:extend-marked-cells-below",
-            "keys": [
-                "Shift J"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "args": {},
-            "command": "notebook:extend-marked-cells-above",
-            "keys": [
-                "Shift K"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "args": {},
-            "command": "notebook:move-cell-down",
-            "keys": [
-                "Ctrl J"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "args": {},
-            "command": "notebook:move-cell-up",
-            "keys": [
-                "Ctrl K"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "args": {},
-            "command": "notebook:merge-cells",
-            "keys": [
-                "Shift M"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "args": {},
-            "command": "notebook:split-cell-at-cursor",
-            "keys": [
-                "Ctrl Shift -"
-            ],
-            "selector": ".jp-Notebook.jp-mod-editMode"
-        },
-        {
-            "args": {},
-            "command": "lsp:show-diagnostics-panel-notebook",
-            "keys": [
-                "Ctrl E"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "args": {},
             "command": "application:activate-next-tab",
             "keys": [
                 "Ctrl Shift ]"
@@ -661,9 +605,25 @@
         },
         {
             "args": {},
+            "command": "notebook:extend-marked-cells-above",
+            "keys": [
+                "Shift K"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "args": {},
             "command": "notebook:extend-marked-cells-below",
             "keys": [
                 "Shift ArrowDown"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "args": {},
+            "command": "notebook:extend-marked-cells-below",
+            "keys": [
+                "Shift J"
             ],
             "selector": ".jp-Notebook:focus"
         },
@@ -712,6 +672,30 @@
             "command": "notebook:merge-cell-below",
             "keys": [
                 "Ctrl Shift M"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "args": {},
+            "command": "notebook:merge-cells",
+            "keys": [
+                "Shift M"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "args": {},
+            "command": "notebook:move-cell-down",
+            "keys": [
+                "Ctrl J"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "args": {},
+            "command": "notebook:move-cell-up",
+            "keys": [
+                "Ctrl K"
             ],
             "selector": ".jp-Notebook:focus"
         },
@@ -811,9 +795,6 @@
             "keys": [
                 "Alt Enter"
             ],
-            "macKeys": [
-                "Ctrl Enter"
-            ],
             "selector": ".jp-Notebook.jp-mod-editMode"
         },
         {
@@ -821,9 +802,6 @@
             "command": "notebook:run-cell-and-select-next",
             "keys": [
                 "Shift Enter"
-            ],
-            "macKeys": [
-                "Ctrl Enter"
             ],
             "selector": ".jp-Notebook.jp-mod-editMode"
         },
@@ -833,23 +811,21 @@
             "keys": [
                 "Accel A"
             ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "args": {},
-            "command": "notebook:toggle-all-cell-line-numbers",
-            "keys": [
-                "Shift L"
+            "macKeys": [
+                "Ctrl Enter"
             ],
             "selector": ".jp-Notebook:focus"
         },
         {
             "args": {},
-            "command": "notebook:toggle-cell-line-numbers",
+            "command": "notebook:split-cell-at-cursor",
             "keys": [
-                "L"
+                "Ctrl Shift -"
             ],
-            "selector": ".jp-Notebook:focus"
+            "macKeys": [
+                "Ctrl Enter"
+            ],
+            "selector": ".jp-Notebook.jp-mod-editMode"
         },
         {
             "args": {},
@@ -946,6 +922,22 @@
                 "Shift Tab"
             ],
             "selector": ".jp-Notebook.jp-mod-editMode .jp-InputArea-editor:not(.jp-mod-has-primary-selection):not(.jp-mod-in-leading-whitespace):not(.jp-mod-completer-active)"
+        },
+        {
+            "args": {},
+            "command": "notebook:toggle-all-cell-line-numbers",
+            "keys": [
+                "Shift L"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "args": {},
+            "command": "notebook:toggle-cell-line-numbers",
+            "keys": [
+                "L"
+            ],
+            "selector": ".jp-Notebook:focus"
         }
     ]
 }

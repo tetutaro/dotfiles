@@ -1,4 +1,0 @@
-{
-    "continousHinting": true,
-    "disableCompletionFrom": ["Kernel"]
-}

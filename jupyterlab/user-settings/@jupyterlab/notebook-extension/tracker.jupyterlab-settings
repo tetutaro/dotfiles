@@ -23,7 +23,7 @@
         "autoClosingBrackets": false,
         "cursorBlinkRate": 530,
         "fontFamily": "Ricty Discord Nerd",
-        "fontSize": 16,
+        "fontSize": 18,
         "lineHeight": 1,
         "lineNumbers": false,
         "lineWrap": "on",
@@ -40,8 +40,6 @@
     "rawCellConfig": {
         "autoClosingBrackets": false,
         "cursorBlinkRate": 530,
-        "fontFamily": "Ricty Discord Nerd",
-        "fontSize": 14,
         "lineHeight": 1,
         "lineNumbers": false,
         "lineWrap": "on",
@@ -68,7 +66,7 @@
         "showOnStatusBar": false,
         "showProgress": true
     },
-    "experimentalDisableDocumentWideUndoRedo": false,
+    "experimentalDisableDocumentWideUndoRedo": true,
     "renderingLayout": "default",
     "sideBySideLeftMarginOverride": "10px",
     "sideBySideRightMarginOverride": "10px",
