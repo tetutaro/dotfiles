@@ -3,6 +3,11 @@ if [[ -d ${HOME}/.nodenv ]]; then
     export PATH=${HOME}/.nodenv/bin:${PATH}
     eval "$(nodenv init -)"
 fi
+# phpenv
+if [[ -d ${HOME}/.phpenv ]]; then
+    export PATH=${HOME}/.phpenv/bin:${PATH}
+    eval "$(phpenv init -)"
+fi
 # pyenv
 if [[ -d ${HOME}/.pyenv ]]; then
     export PYENV_ROOT=${HOME}/.pyenv
@@ -26,6 +31,9 @@ function rehash() {
     fi
     if [[ -d ${HOME}/.pyenv ]]; then
         pyenv rehash
+    fi
+    if [[ -d ${HOME}/.phpenv ]]; then
+        phpenv rehash
     fi
     builtin rehash
 }
