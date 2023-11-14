@@ -43,7 +43,6 @@ ln -sf ${POWERLINE_ROOT}/powerline/bindings/vim ${HOME}/.vim/plugged/powerline.v
 ## rcfiles
 ln -sf ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
 ln -sf ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
-ln -sf ${PWD}/status.conf ${HOME}/.config/tmux/status.conf
 if [ ! -d ${HOME}/.config/powerline ]; then
     mkdir ${HOME}/.config/powerline
 fi

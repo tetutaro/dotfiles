@@ -33,19 +33,24 @@ if [ ! -d ${HOME}/.config/tmux/plugins ]; then
     mkdir ${HOME}/.config/tmux/plugins
 fi
 if [ ! -d ${HOME}/.config/tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm.git ~/.config/tmux/plugins/tpm
 else
     echo "tpm is already installed"
 fi
 if [ ! -d ${HOME}/.config/tmux/plugins/tmux-copycat ]; then
-    git clone https://github.com/tmux-plugins/tmux-copycat ~/.config/tmux/plugins/tmux-copycat
+    git clone https://github.com/tmux-plugins/tmux-copycat.git ~/.config/tmux/plugins/tmux-copycat
 else
     echo "tmux-copycat is already installed"
 fi
 if [ ! -d ${HOME}/.config/tmux/plugins/tmux-sidebar ]; then
-    git clone https://github.com/tmux-plugins/tmux-sidebar ~/.config/tmux/plugins/tmux-sidebar
+    git clone https://github.com/tmux-plugins/tmux-sidebar.git ~/.config/tmux/plugins/tmux-sidebar
 else
     echo "tmux-sidebar is already installed"
+fi
+if [ ! -d ${HOME}/.config/tmux/plugins/tmux-powerline ]; then
+    git clone https://github.com/erikw/tmux-powerline.git ~/.config/tmux/plugins/tmux-powerline
+else
+    echo "tmux-powerline is already installed"
 fi
 
 # config files
@@ -58,3 +63,4 @@ else
 fi
 ln -sf ${PWD}/status.conf ${HOME}/.config/tmux/status.conf
 ln -sf ${PWD}/style.conf ${HOME}/.config/tmux/style.conf
+ln -sf ${PWD}/tmux-powerline ${HOME}/.config/tmux-powerline
