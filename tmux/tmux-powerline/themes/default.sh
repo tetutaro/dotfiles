@@ -81,7 +81,7 @@ fi
 
 if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-        "username 17 19" \
+        # "username 17 19" \
 		"hostname 16 19" \
         "tmux_session_info 17 12"
 	)
