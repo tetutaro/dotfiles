@@ -1,12 +1,12 @@
 {
     "theme": "JupyterLab Dark",
-    "theme-scrollbars": false,
+    "theme-scrollbars": true,
     "overrides": {
-        "code-font-family": "Ricty Discord Nerd",
-        "code-font-size": "18",
-        "content-font-family": "Noto Sans JP",
-        "content-font-size1": "18",
-        "ui-font-family": "Noto Sans JP",
-        "ui-font-size1": "18"
+        "code-font-family": null,
+        "code-font-size": null,
+        "content-font-family": null,
+        "content-font-size1": null,
+        "ui-font-family": null,
+        "ui-font-size1": null
     }
 }

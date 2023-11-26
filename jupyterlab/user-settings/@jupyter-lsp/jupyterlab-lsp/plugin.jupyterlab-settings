@@ -20,11 +20,106 @@
                 "julia.lint.pirates": false,
                 "julia.lint.useoffuncargs": false,
                 "julia.completionmode": "qualify"
-            }
+            },
+            "configuration": {
+                "julia.lint.run": false,
+                "julia.lint.missingrefs": "none",
+                "julia.lint.disabledDirs": [
+                    "docs",
+                    "test"
+                ],
+                "julia.lint.call": false,
+                "julia.lint.iter": false,
+                "julia.lint.nothingcomp": false,
+                "julia.lint.constif": false,
+                "julia.lint.lazy": false,
+                "julia.lint.datadecl": false,
+                "julia.lint.typeparam": false,
+                "julia.lint.modname": false,
+                "julia.lint.pirates": false,
+                "julia.lint.useoffuncargs": false,
+                "julia.completionmode": "qualify"
+            },
+            "rank": 50
         },
         "pylsp": {
             "priority": 50,
             "serverSettings": {
+                "pylsp.configurationSources": [
+                    "pyflakes"
+                ],
+                "pylsp.plugins.flake8.config": "~/.jupyter/flake8",
+                "pylsp.plugins.flake8.enabled": true,
+                "pylsp.plugins.flake8.exclude": [],
+                "pylsp.plugins.flake8.executable": "flake8",
+                "pylsp.plugins.flake8.filename": null,
+                "pylsp.plugins.flake8.hangClosing": null,
+                "pylsp.plugins.flake8.ignore": [
+                    "E203",
+                    "E303",
+                    "E402",
+                    "W503"
+                ],
+                "pylsp.plugins.flake8.maxLineLength": 80,
+                "pylsp.plugins.flake8.indentSize": 4,
+                "pylsp.plugins.flake8.perFileIgnores": [],
+                "pylsp.plugins.flake8.select": null,
+                "pylsp.plugins.jedi.extra_paths": [],
+                "pylsp.plugins.jedi.environment": null,
+                "pylsp.plugins.jedi_completion.enabled": true,
+                "pylsp.plugins.jedi_completion.include_params": true,
+                "pylsp.plugins.jedi_completion.include_class_objects": true,
+                "pylsp.plugins.jedi_completion.fuzzy": false,
+                "pylsp.plugins.jedi_completion.eager": false,
+                "pylsp.plugins.jedi_completion.resolve_at_most": 25,
+                "pylsp.plugins.jedi_completion.cache_for": [
+                    "pandas",
+                    "numpy",
+                    "torch",
+                    "matplotlib",
+                    "tensorflow"
+                ],
+                "pylsp.plugins.jedi_definition.enabled": true,
+                "pylsp.plugins.jedi_definition.follow_imports": true,
+                "pylsp.plugins.jedi_definition.follow_builtin_imports": true,
+                "pylsp.plugins.jedi_hover.enabled": true,
+                "pylsp.plugins.jedi_references.enabled": true,
+                "pylsp.plugins.jedi_signature_help.enabled": true,
+                "pylsp.plugins.jedi_symbols.enabled": true,
+                "pylsp.plugins.jedi_symbols.all_scopes": true,
+                "pylsp.plugins.jedi_symbols.include_import_symbols": true,
+                "pylsp.plugins.mccabe.enabled": true,
+                "pylsp.plugins.mccabe.threshold": 15,
+                "pylsp.plugins.preload.enabled": true,
+                "pylsp.plugins.preload.modules": [],
+                "pylsp.plugins.pycodestyle.enabled": false,
+                "pylsp.plugins.pycodestyle.exclude": [],
+                "pylsp.plugins.pycodestyle.filename": [],
+                "pylsp.plugins.pycodestyle.select": [],
+                "pylsp.plugins.pycodestyle.ignore": [],
+                "pylsp.plugins.pycodestyle.hangClosing": null,
+                "pylsp.plugins.pycodestyle.maxLineLength": null,
+                "pylsp.plugins.pycodestyle.indentSize": null,
+                "pylsp.plugins.pydocstyle.enabled": false,
+                "pylsp.plugins.pydocstyle.convention": null,
+                "pylsp.plugins.pydocstyle.addIgnore": [],
+                "pylsp.plugins.pydocstyle.addSelect": [],
+                "pylsp.plugins.pydocstyle.ignore": [],
+                "pylsp.plugins.pydocstyle.select": [],
+                "pylsp.plugins.pydocstyle.match": "(?!test_).*\\.py",
+                "pylsp.plugins.pydocstyle.matchDir": "[^\\.].*",
+                "pylsp.plugins.pyflakes.enabled": true,
+                "pylsp.plugins.pylint.enabled": false,
+                "pylsp.plugins.pylint.args": [],
+                "pylsp.plugins.pylint.executable": null,
+                "pylsp.plugins.rope_completion.enabled": false,
+                "pylsp.plugins.rope_completion.eager": false,
+                "pylsp.plugins.yapf.enabled": true,
+                "pylsp.rope.extensionModules": null,
+                "pylsp.rope.ropeFolder": null,
+                "pylsp.plugins.jedi.env_vars": null
+            },
+            "configuration": {
                 "pylsp.configurationSources": [
                     "pyflakes"
                 ],
@@ -36,8 +131,9 @@
                 "pylsp.plugins.flake8.hangClosing": null,
                 "pylsp.plugins.flake8.ignore": [
                     "E203",
-                    "W503",
-                    "E402"
+                    "E303",
+                    "E402",
+                    "W503"
                 ],
                 "pylsp.plugins.flake8.maxLineLength": 80,
                 "pylsp.plugins.flake8.indentSize": 4,
@@ -97,7 +193,8 @@
                 "pylsp.plugins.yapf.enabled": true,
                 "pylsp.rope.extensionModules": null,
                 "pylsp.rope.ropeFolder": null
-            }
+            },
+            "rank": 50
         },
         "r-languageserver": {
             "priority": 50,
@@ -110,7 +207,18 @@
                 "r.lsp.max_completions": 200,
                 "r.lsp.lint_cache": false,
                 "r.lsp.link_file_size_limit": 16384
-            }
+            },
+            "configuration": {
+                "r.lsp.debug": true,
+                "r.lsp.log_file": null,
+                "r.lsp.diagnostics": true,
+                "r.lsp.rich_documentation": true,
+                "r.lsp.snippet_support": true,
+                "r.lsp.max_completions": 200,
+                "r.lsp.lint_cache": false,
+                "r.lsp.link_file_size_limit": 16384
+            },
+            "rank": 50
         },
         "texlab": {
             "priority": 50,
@@ -135,7 +243,30 @@
                 "latexFormatter": "latexindent",
                 "latexindent.local": null,
                 "latexindent.modifyLineBreaks": false
-            }
+            },
+            "configuration": {
+                "rootDirectory": null,
+                "build.executable": "latexmk",
+                "build.args": [
+                    "-pdf",
+                    "-interaction=nonstopmode",
+                    "-synctex=1",
+                    "%f"
+                ],
+                "build.onSave": false,
+                "build.outputDirectory": ".",
+                "build.forwardSearchAfter": false,
+                "forwardSearch.executable": null,
+                "forwardSearch.args": [],
+                "chktex.onOpenAndSave": false,
+                "chktex.onEdit": false,
+                "diagnosticsDelay": 300,
+                "formatterLineLength": 80,
+                "latexFormatter": "latexindent",
+                "latexindent.local": null,
+                "latexindent.modifyLineBreaks": false
+            },
+            "rank": 50
         }
     },
     "loggingConsole": "browser",

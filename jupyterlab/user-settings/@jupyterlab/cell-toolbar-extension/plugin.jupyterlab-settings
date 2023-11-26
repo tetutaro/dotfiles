@@ -1,0 +1,62 @@
+{
+    "toolbar": [
+        {
+            "name": "duplicate-cell",
+            "command": "notebook:duplicate-below",
+            "disabled": false,
+            "rank": 50
+        },
+        {
+            "name": "move-cell-up",
+            "command": "notebook:move-cell-up",
+            "disabled": false,
+            "rank": 50
+        },
+        {
+            "name": "move-cell-down",
+            "command": "notebook:move-cell-down",
+            "disabled": false,
+            "rank": 50
+        },
+        {
+            "name": "insert-cell-above",
+            "command": "notebook:insert-cell-above",
+            "disabled": false,
+            "rank": 50
+        },
+        {
+            "name": "insert-cell-below",
+            "command": "notebook:insert-cell-below",
+            "disabled": false,
+            "rank": 50
+        },
+        {
+            "name": "delete-cell",
+            "command": "notebook:delete-cell",
+            "disabled": false,
+            "icon": "ui-components:delete",
+            "rank": 50
+        },
+        {
+            "name": "split-cell",
+            "command": "notebook:split-cell-at-cursor",
+            "disabled": false,
+            "icon": "ui-components:cut",
+            "rank": 50
+        },
+        {
+            "name": "merge-cell-above",
+            "command": "notebook:merge-cell-above",
+            "disabled": false,
+            "icon": "ui-components:caret-up",
+            "rank": 50
+        },
+        {
+            "name": "merge-cell-below",
+            "command": "notebook:merge-cell-below",
+            "disabled": false,
+            "icon": "ui-components:caret-down",
+            "rank": 50
+        }
+    ]
+}

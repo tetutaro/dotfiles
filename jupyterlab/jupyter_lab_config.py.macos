@@ -1,3 +1,5 @@
 c = get_config()  # noqa
 c.ServerApp.use_redirect_file = False
 c.ServerApp.browser = '/Applications/JupyterLab.app/Contents/MacOS/JupyterLab %s'
+c.JupyterLabTemplates.include_default = False
+c.JupyterLabTemplates.include_core_paths = False

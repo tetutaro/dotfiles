@@ -1,12 +1,12 @@
 {
     "fontFamily": "Ricty Discord Nerd",
-    "fontSize": 18,
+    "fontSize": 20,
     "lineHeight": 1,
     "theme": "inherit",
     "screenReaderMode": false,
     "scrollback": 1000,
     "shutdownOnClose": true,
-    "closeOnExit": true,
+    "closeOnExit": false,
     "pasteWithCtrlV": true,
     "macOptionIsMeta": false
 }

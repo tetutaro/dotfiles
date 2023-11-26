@@ -1,20 +1,11 @@
 {
+    "scrollPastEnd": true,
+    "toolbar": [],
     "editorConfig": {
-        "autoClosingBrackets": false,
-        "codeFolding": false,
-        "cursorBlinkRate": 530,
-        "fontFamily": "Ricty Discord Nerd",
-        "fontSize": 18,
-        "insertSpaces": true,
-        "lineHeight": 1,
-        "lineNumbers": true,
-        "lineWrap": "on",
-        "matchBrackets": true,
-        "readOnly": false,
-        "rulers": [],
-        "showTrailingSpace": false,
-        "tabSize": 4,
-        "wordWrapColumn": 80
-    },
-    "toolbar": []
+        "customStyles": {
+            "fontFamily": "Noto Sans JP",
+            "fontSize": 18,
+            "lineHeight": 1
+        }
+    }
 }

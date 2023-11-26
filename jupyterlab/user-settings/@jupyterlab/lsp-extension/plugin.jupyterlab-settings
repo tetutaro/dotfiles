@@ -1,0 +1,11 @@
+{
+    "activate": "off",
+    "setTrace": "off",
+    "logAllCommunication": false,
+    "languageServers": {
+        "pylsp": {
+            "rank": 50,
+            "configuration": {}
+        }
+    }
+}

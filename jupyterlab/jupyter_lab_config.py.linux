@@ -1,3 +1,5 @@
 c = get_config()  # noqa
 c.ServerApp.use_redirect_file = False
-c.ServerApp.browser = '/snap/bin/jupyterlab %s'
+c.ServerApp.browser = '/usr/bin/jlab %s'
+c.JupyterLabTemplates.include_default = False
+c.JupyterLabTemplates.include_core_paths = False

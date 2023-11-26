@@ -16,7 +16,6 @@
     "yapf": {
         "style_config": "google"
     },
-    "autopep8": {},
     "isort": {
         "multi_line_output": 3,
         "include_trailing_comma": true,
@@ -31,7 +30,6 @@
         "wrap": true,
         "width_cutoff": 150
     },
-    "styler": {},
     "formatOnSave": false,
     "cacheFormatters": false,
     "astyle": {
@@ -42,5 +40,7 @@
             "--select=I"
         ]
     },
-    "suppressFormatterErrors": false
+    "suppressFormatterErrors": false,
+    "autopep8": {},
+    "styler": {}
 }
