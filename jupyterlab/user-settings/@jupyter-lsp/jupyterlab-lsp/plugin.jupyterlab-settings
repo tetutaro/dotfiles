@@ -108,7 +108,7 @@
                 "pylsp.plugins.pydocstyle.select": [],
                 "pylsp.plugins.pydocstyle.match": "(?!test_).*\\.py",
                 "pylsp.plugins.pydocstyle.matchDir": "[^\\.].*",
-                "pylsp.plugins.pyflakes.enabled": true,
+                "pylsp.plugins.pyflakes.enabled": false,
                 "pylsp.plugins.pylint.enabled": false,
                 "pylsp.plugins.pylint.args": [],
                 "pylsp.plugins.pylint.executable": null,
@@ -123,7 +123,7 @@
                 "pylsp.configurationSources": [
                     "pyflakes"
                 ],
-                "pylsp.plugins.flake8.config": null,
+                "pylsp.plugins.flake8.config": "~/.jupyter/flake8",
                 "pylsp.plugins.flake8.enabled": true,
                 "pylsp.plugins.flake8.exclude": [],
                 "pylsp.plugins.flake8.executable": "flake8",

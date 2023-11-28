@@ -35,9 +35,6 @@ fi
 if [[ -e ${HOME}/.jupyter/templates ]]; then
     rm -f ${HOME}/.jupyter/templates
 fi
-if [[ -e ${HOME}/.jupyter/flake8 ]]; then
-    rm -f ${HOME}/.jupyter/flake8
-fi
 if [[ ! -d ${HOME}/.jupyter/lab ]]; then
     mkdir ${HOME}/.jupyter/lab
 fi
@@ -51,7 +48,6 @@ elif [[ ${os} == "Darwin" ]]; then
 fi
 echo "c.JupyterLabTemplates.template_dirs = ['$(echo ${HOME})/.jupyter/templates']" >> ${HOME}/.jupyter/jupyter_lab_config.py
 ln -sf ${PWD}/templates ${HOME}/.jupyter/templates
-ln -sf ${PWD}/flake8 ${HOME}/.jupyter/flake8
 ln -sf ${PWD}/user-settings ${HOME}/.jupyter/lab/user-settings
 
 ## check the app is installed
