@@ -24,7 +24,7 @@
         "hotKey": "n"
     },
     "filter": {
-        "regex": "^.*((google-chrome.Google-chrome)|(jupyterlab-desktop.jupyterlab-desktop)|(slack.Slack)).*$",
+        "regex": "^.*((google-chrome.Google-chrome)|(jupyterlab-desktop.jupyterlab-desktop)|(slack.Slack)|(xpad.xpad)).*$",
         "isRecursive": false
     }
 }

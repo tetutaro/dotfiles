@@ -1,12 +1,46 @@
 {
-    "fontFamily": "Ricty Discord Nerd",
-    "fontSize": 20,
-    "lineHeight": 1,
-    "theme": "inherit",
-    "screenReaderMode": false,
-    "scrollback": 1000,
-    "shutdownOnClose": true,
+    // Terminal
+    // @jupyterlab/terminal-extension:plugin
+    // Terminal settings.
+    // *************************************
+
+    // Close on exit
+    // Close the widget when exiting the terminal.
     "closeOnExit": false,
+
+    // Font family
+    // The font family used to render text.
+    "fontFamily": "Ricty Discord Nerd",
+
+    // Font size
+    // The font size used to render text.
+    "fontSize": 21,
+
+    // Line height
+    // The line height used to render text.
+    "lineHeight": 1,
+
+    // Treat option as meta key on macOS
+    // Option key on macOS can be used as meta key. This enables to use shortcuts such as option + f to move cursor forward one word
+    "macOptionIsMeta": false,
+
+    // Paste with Ctrl+V
+    // Enable pasting with Ctrl+V.  This can be disabled to use Ctrl+V in the vi editor, for instance.  This setting has no effect on macOS, where Cmd+V is available
     "pasteWithCtrlV": true,
-    "macOptionIsMeta": false
+
+    // Screen Reader Mode
+    // Add accessibility elements for use with screen readers.
+    "screenReaderMode": false,
+
+    // Scrollback Buffer
+    // The amount of scrollback beyond initial viewport
+    "scrollback": 1000,
+
+    // Shut down on close
+    // Shut down the session when closing the terminal.
+    "shutdownOnClose": true,
+
+    // Theme
+    // The theme for the terminal.
+    "theme": "inherit"
 }
