@@ -17,8 +17,8 @@ fi
 if [[ ! -d "${HOME}/.local/pipx/venvs/jupyterlab" ]]; then
     pipx install jupyterlab
     pipx inject jupyterlab pip
-    pipx runpip jupyterlab install black flake8 python-lsp-server jupyterlab-code-formatter jupyterlab-lsp jupyterlab-templates jupyterlab-widgets ipywidgets ipympl
-    pipx run --spec jupyterlab jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyterlab_templates jupyter-matplotlib
+    pipx runpip jupyterlab install black ruff jupyterlab-lsp python-lsp-server python-lsp-ruff jupyterlab-code-formatter jupyterlab-templates jupyterlab-widgets ipywidgets ipympl
+    pipx run --spec jupyterlab jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyterlab-templates jupyter-matplotlib
     pipx run --spec jupyterlab jupyter lab build
     pipx run --spec jupyterlab jupyter lab clean
 else

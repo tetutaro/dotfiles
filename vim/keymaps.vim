@@ -40,17 +40,15 @@ let g:which_key_map.e = { 'name': 'Error',
 \ }
 
 "" Keymaps begin with R
-nnoremap <silent> <Leader>rr :<C-u>VagueToggleFocusQuickfix<CR>
-nnoremap <silent> <Leader>ri :<C-u>VagueToggleOpenQuickfix<CR>
-nnoremap <silent> <Leader>rh :<C-u>VagueToggleOpenLspHover<CR>
-nnoremap <silent> <Leader>rt :<C-u>LspReferences<CR>
-nnoremap <silent> <Leader>rg :<C-u>LspDefinition<CR>
+nnoremap <silent> <Leader>rr :<C-u>LspReferences<CR>
+nnoremap <silent> <Leader>rd :<C-u>LspDefinition<CR>
+nnoremap <silent> <Leader>rf :<C-u>LspCodeAction<Space>source.fixAll<CR>
+nnoremap <silent> <Leader>rh :<C-u>LspHover<CR>
 let g:which_key_map.r = { 'name': 'Reference',
-    \ 'r': ['VagueToggleFocusQuickfix', 'Focus Reference'],
-    \ 'i': ['VagueToggleOpenQuickfix', 'Open Reference'],
-    \ 'h': ['VagueToggleOpenLspHover', 'Hover Reference'],
-    \ 't': ['LspReferences', 'This Word → Reference'],
-    \ 'g': ['LspDefinition', 'Go to Definition'],
+    \ 'r': ['LspReferences', 'This Word → Reference'],
+    \ 'f': ['LspCodeAction source.fixAll', 'Fix Lint Error'],
+    \ 'd': ['LspDefinition', 'Go to Definition'],
+    \ 'h': ['LspHover', 'Hover Information'],
 \ }
 
 "" Keymaps begin with T

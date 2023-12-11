@@ -37,7 +37,11 @@
     },
     "ruff": {
         "args": [
-            "--select=I"
+            "--select=F,E,W,N,UP,PD,NPY",
+            "--ignore=E203,E402",
+            "--target-version=py310",
+            "--unsafe-fixes",
+            "--silent"
         ]
     },
     "suppressFormatterErrors": false,

@@ -22,7 +22,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'plytophogy/vim-virtualenv'
 " Language Server
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'

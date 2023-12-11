@@ -138,10 +138,10 @@ let g:pymode_indent = 0
 let g:python_pep8_indent_multiline_string = 0
 let g:python_pep8_indent_hang_closing = 0
 
-"" settings for Language Server
-let g:python_host_prog = $VIRTUAL_ENV . '/bin/python3'
+" vim-lsp
+" https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
 let g:python_pylsp_prog = $VIRTUAL_ENV . '/bin/pylsp'
-let g:python_flake8_prog = $VIRTUAL_ENV . '/bin/flake8'
+let g:python_ruff_prog = $VIRTUAL_ENV . '/bin/ruff'
 augroup PythonLanguageServer
     if executable(g:python_pylsp_prog)
         autocmd!
@@ -152,21 +152,47 @@ augroup PythonLanguageServer
             \ 'workspace_config': {
                 \ 'pylsp': {
                     \ 'plugins': {
-                        \ 'pycodestyle': {
-                            \ 'enabled': v:false,
+                        \ 'ruff': {
+                            \ 'enabled': v:true,
+                            \ 'executable': g:python_ruff_prog
                         \ },
-                        \ 'pyflakes': {
-                            \ 'enabled': v:false,
+                        \ 'jedi_completion': {
+                            \ 'enabled': v:true,
+                            \ 'include_params': v:true,
+                            \ 'include_class_objects': v:true,
+                            \ 'include_function_objects': v:true,
+                            \ 'fuzzy': v:false,
+                            \ 'eager': v:false,
+                            \ 'resolve_at_most': 25,
+                            \ 'cache_for': [
+                                \ "pandas",
+                                \ "numpy",
+                                \ "torch",
+                                \ "matplotlib"
+                            \ ],
                         \ },
-                        \ 'rope_completion': {
-                            \ 'enabled': v:false,
+                        \ 'jedi_definition': {
+                            \ 'enabled': v:true,
+                            \ 'follow_imports': v:true,
+                            \ 'follow_builtin_imports': v:true,
+                            \ 'follow_builtin_definitions': v:true,
+                        \ },
+                        \ 'jedi_hover': {
+                            \ 'enabled': v:true,
+                        \ },
+                        \ 'jedi_symbols': {
+                            \ 'enabled': v:true,
+                            \ 'all_scopes': v:true,
+                            \ 'include_import_symbols': v:true,
+                        \ },
+                        \ 'autopep8': {
+                            \ 'enabled': v:false
+                        \ },
+                        \ 'preload': {
+                            \ 'enabled': v:false
                         \ },
                         \ 'yapf': {
-                            \ 'enabled': v:false,
-                        \ },
-                        \ 'flake8': {
-                            \ 'enabled': v:true,
-                            \ 'executable': g:python_flake8_prog
+                            \ 'enabled': v:false
                         \ }
                     \ }
                 \ }
@@ -174,8 +200,33 @@ augroup PythonLanguageServer
         \ })
     endif
 augroup END
-" vim-lsp
-" https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
+augroup TypescriptLanguageServer
+    if executable('typescript-language-server')
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'typescript-language-server',
+            \ 'cmd': { server_info -> [
+                \ &shell,
+                \ &shellcmdflag,
+                \ 'typescript-language-server',
+                \ '--stdio'
+            \ ]},
+            \ 'root_uri': { server_info -> lsp#utils#path_to_uri(
+                \ lsp#utils#find_nearest_parent_file_directory(
+                    \ lsp#utils#get_buffer_path(),
+                    \ 'tsconfig.json'
+                \ )
+            \ )},
+            \ 'whitelist': [
+                \ 'javascript',
+                \ 'javascriptreact',
+                \ 'typescript',
+                \ 'typescriptreact'
+            \ ]
+        \ })
+        autocmd FileType typescript setlocal omnifunc=lsp#complete
+    endif
+augroup END
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 0
@@ -194,6 +245,7 @@ let g:lsp_highlight_references_enabled = 1
 let g:lsp_fold_enabled = 0
 let g:lsp_log_verbose = 0
 let g:lsp_semantic_enabled = 1
+
 " ale
 " https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
 let g:ale_linters_explicit = 1
@@ -206,7 +258,7 @@ let g:ale_echo_msg_format = '[%linter%][%severity%] %code: %%s'
 let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 5
-let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
@@ -220,12 +272,12 @@ let g:ale_cursur_detail = 1
 let g:ale_set_balloons = 0
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_linters = {
-    \ 'python': ['flake8'],
+    \ 'python': ['ruff'],
     \ 'javascript': ['eslint'],
     \ 'javascriptreact': ['eslint'],
     \ 'typescript': ['eslint'],
     \ 'typescriptreact': ['eslint'],
-    \ }
+\ }
 let g:ale_fixers = {
     \ 'python': ['black'],
     \ 'javascript': ['prettier'],
@@ -233,24 +285,12 @@ let g:ale_fixers = {
     \ 'typescript': ['prettier'],
     \ 'typescriptreact': ['prettier'],
     \ 'css': ['prettier'],
-    \ }
-let g:ale_python_flake8_executable = $VIRTUAL_ENV . '/bin/flake8'
+\ }
 let g:ale_fix_on_save = 1
-
-if executable('typescript-language-server')
-    augroup TypescriptLanguageServer
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'typescript-language-server',
-            \ 'cmd': {server_info -> [&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-            \ 'root_uri': {server_info -> lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-            \ 'whitelist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
-        \ })
-        autocmd FileType typescript setlocal omnifunc=lsp#complete
-    augroup END :echomsg "vim-lsp with typescript-language-server enabled"
-else
-    :echomsg "vim-lsp for typescript unavailable"
-endif
+let g:ale_python_auto_poetry = 1
+let g:ale_python_auto_virtualenv = 1
+let g:ale_python_ruff_auto_poetry = 1
+let g:ale_python_ruff_change_directory = 1
 
 "" settings for original plugins
 augroup VagueInputPython
