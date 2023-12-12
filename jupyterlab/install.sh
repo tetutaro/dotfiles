@@ -42,11 +42,10 @@ if [[ -e ${HOME}/.jupyter/lab/user-settings ]]; then
     rm -f ${HOME}/.jupyter/lab/user-settings
 fi
 if [[ ${os} == "Linux" ]]; then
-    cp ${PWD}/jupyter_lab_config.py.linux ${HOME}/.jupyter/jupyter_lab_config.py
+    ln -sf ${PWD}/jupyter_lab_config.py.linux ${HOME}/.jupyter/jupyter_lab_config.py
 elif [[ ${os} == "Darwin" ]]; then
-    cp ${PWD}/jupyter_lab_config.py.macos ${HOME}/.jupyter/jupyter_lab_config.py
+    ln -sf ${PWD}/jupyter_lab_config.py.macos ${HOME}/.jupyter/jupyter_lab_config.py
 fi
-echo "c.JupyterLabTemplates.template_dirs = ['$(echo ${HOME})/.jupyter/templates']" >> ${HOME}/.jupyter/jupyter_lab_config.py
 ln -sf ${PWD}/templates ${HOME}/.jupyter/templates
 ln -sf ${PWD}/user-settings ${HOME}/.jupyter/lab/user-settings
 
