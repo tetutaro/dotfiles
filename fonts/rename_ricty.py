@@ -23,6 +23,9 @@ def rename(font: str, outputdir: Optional[str]) -> None:
     for name in sourceFont.fullname.strip().split():
         if name in ['Ricty', 'Diminished', 'Discord']:
             fam.append(name)
+        if name == 'RictyDiscord':
+            fam.append('Ricty')
+            fam.append('Discord')
         elif name in ['Regular', 'Bold', 'Oblique']:
             if name == 'Oblique':
                 name = 'Italic'
@@ -30,11 +33,15 @@ def rename(font: str, outputdir: Optional[str]) -> None:
         elif name in ['Nerd']:
             pat.append(name)
     if len(fam) == 0:
-        raise ValueError('invalid fullname')
-    fontname = ''.join(fam) + ''.join(pat) + '-' + ''.join(wei)
-    familyname = ' '.join([' '.join(fam), ' '.join(pat)])
-    stylename = ' '.join(wei)
-    fullname = ' '.join([familyname, stylename])
+        raise ValueError(f'invalid fullname: {font}')
+    if len(wei) == 0:
+        for name in os.path.splitext(os.path.basename(font.strip()))[0].split("-"):
+            if name in ["Regular", "Bold", "Oblique"]:
+                wei.append(name)
+    fontname = (''.join(fam) + ''.join(pat) + '-' + ''.join(wei)).strip()
+    familyname = ' '.join([' '.join(fam), ' '.join(pat)]).strip()
+    stylename = ' '.join(wei).strip()
+    fullname = ' '.join([familyname, stylename]).strip()
     sourceFont.fontname = fontname
     sourceFont.fullname = fullname
     sourceFont.familyname = familyname

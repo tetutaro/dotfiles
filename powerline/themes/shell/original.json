@@ -30,7 +30,7 @@
                     "ignored_names": ["venv", ".venv"]
                 },
                 "after": "",
-                "before": " ",
+                "before": "󰇧 ",
                 "priority": 50
             },
             {

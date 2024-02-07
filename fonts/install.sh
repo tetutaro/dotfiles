@@ -3,7 +3,7 @@ set -eu
 
 FONTFORGE_PYTHON="/bin/python3"
 FONTS_DIR="fonts"
-MIGU_VERSION="20200307"
+MIGU_VERSION="2020.0307"
 
 ## download Ricty Generator
 wget -O ricty_generator.sh https://rictyfonts.github.io/files/ricty_generator.sh
@@ -18,11 +18,12 @@ wget -O Inconsolata-Regular.ttf https://github.com/google/fonts/raw/main/ofl/inc
 wget -O Inconsolata-Bold.ttf https://github.com/google/fonts/raw/main/ofl/inconsolata/static/Inconsolata-Bold.ttf
 
 ## download and extract Migu 1M
-wget -O migu-1m-${MIGU_VERSION}.zip https://osdn.net/projects/mix-mplus-ipa/downloads/72511/migu-1m-${MIGU_VERSION}.zip
-unzip migu-1m-${MIGU_VERSION}.zip
-mv -f migu-1m-${MIGU_VERSION}/migu-1m-*.ttf .
-rm -rf migu-1m-${MIGU_VERSION}
-rm -f migu-1m-${MIGU_VERSION}.zip
+MIGU_VERSION_U=${MIGU_VERSION//./}
+wget -O migu-1m-${MIGU_VERSION_U}.zip https://github.com/itouhiro/mixfont-mplus-ipa/releases/download/v${MIGU_VERSION}/migu-1m-${MIGU_VERSION_U}.zip
+unzip migu-1m-${MIGU_VERSION_U}.zip
+mv -f migu-1m-${MIGU_VERSION_U}/migu-1m-*.ttf .
+rm -rf migu-1m-${MIGU_VERSION_U}
+rm -f migu-1m-${MIGU_VERSION_U}.zip
 
 ## download and extract Circle M+ 1M for Ricty Diminished
 # wget -O circle-mplus-1m-${MIGU_VERSION}.zip "https://ja.osdn.net/frs/redir.php?m=gigenet&f=mix-mplus-ipa%2F72512%2Fcircle-mplus-1m-${MIGU_VERSION}.zip"
@@ -73,7 +74,7 @@ if [ -d nerd-fonts ]; then
     for ricty in Ricty*.ttf; do
         mv -f ${ricty} nerd-fonts/.
         cd nerd-fonts
-        ${FONTFORGE_PYTHON} ./font-patcher --fontawesome --fontawesomeextension --fontlinux --octicons --powersymbols --powerline --powerlineextra --material --weather --adjust-line-height ${ricty}
+        ${FONTFORGE_PYTHON} ./font-patcher --complete --boxdrawing --adjust-line-height --progressbars ${ricty}
         rm -f ${ricty}
         cd ..
     done
@@ -88,7 +89,7 @@ wget -O Noto_Sans_JP.zip "https://fonts.google.com/download?family=Noto%20Sans%2
 wget -O Noto_Serif_JP.zip "https://fonts.google.com/download?family=Noto%20Serif%20JP"
 mkdir noto_sans
 unzip -d noto_sans Noto_Sans_JP.zip
-mv -f noto_sans/NotoSansJP-*.otf ${FONTS_DIR}/.
+mv -f noto_sans/static/NotoSansJP-*.ttf ${FONTS_DIR}/.
 rm -rf noto_sans
 rm -f Noto_Sans_JP.zip
 mkdir noto_serif
