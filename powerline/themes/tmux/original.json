@@ -1,52 +1,42 @@
 {
-    "dividers": {
-        "left": {
-            "hard": " ",
-            "soft": " "
-        },
-        "right": {
-            "hard": " ",
-            "soft": " "
-        }
+  "dividers": {
+    "left": {
+      "hard": " ",
+      "soft": " "
     },
-    "alt-dividers": {
-        "left": {
-            "hard": "  ",
-            "soft": "  "
-        },
-        "right": {
-            "hard": "  ",
-            "soft": "  "
-        }
-    },
-    "spaces": 0,
-    "segments": {
-        "left": [
-        ],
-        "right": [
-            {
-                "function": "powerline.segments.common.time.date",
-                "args": {
-                    "format": " %Y/%m/%d(%a)",
-                    "istime": false
-                }
-            },
-            {
-                "function": "powerline.segments.common.time.date",
-                "name": "time",
-                "args": {
-                    "format": " %H:%M",
-                    "istime": true
-                }
-            },
-            {
-                "function": "powerline.segments.common.vcs.branch",
-                "args": {
-                    "status_colors": true
-                },
-                "before": "  ",
-                "after": ""
-            }
-        ]
+    "right": {
+      "hard": " ",
+      "soft": " "
     }
+  },
+  "spaces": 0,
+  "segments": {
+    "left": [
+    ],
+    "right": [
+      {
+        "function": "powerline.segments.common.time.date",
+        "args": {
+          "format": " %Y/%m/%d(%a)",
+          "istime": false
+        }
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "name": "time",
+        "args": {
+          "format": " %H:%M",
+          "istime": true
+        }
+      },
+      {
+        "function": "powerline.segments.common.vcs.branch",
+          "args": {
+            "status_colors": true
+          },
+          "before": "",
+          "after": ""
+        }
+    ]
+  }
 }

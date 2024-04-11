@@ -1,62 +1,52 @@
 {
-    "alt-dividers": {
-        "left": {
-            "hard": "",
-            "soft": ""
-        },
-        "right": {
-            "hard": "",
-            "soft": ""
-        }
+  "dividers": {
+    "left": {
+      "hard": "",
+      "soft": ""
     },
-    "dividers": {
-        "left": {
-            "hard": "  ",
-            "soft": "  "
-        },
-        "right": {
-            "hard": " ",
-            "soft": " "
-        }
-    },
-    "spaces": 1,
-    "segments": {
-        "left": [
-            {
-                "type": "string",
-                "contents": "[Help]",
-                "highlight_groups": ["help:mode"]
-            },
-            {
-                "function": "file_name",
-                "draw_soft_divider": false
-            },
-            {
-                "type": "string",
-                "highlight_groups": ["help:background"],
-                "draw_soft_divider": false,
-                "draw_hard_divider": false,
-                "width": "auto"
-            }
-        ],
-        "right": [
-            {
-                "function": "line_percent",
-                "args": {
-                    "gradient": false
-                },
-                "width": 4,
-                "before": "↓",
-                "after": "%",
-                "align": "r"
-            },
-            {
-                "function": "line_current",
-                "draw_soft_divider": false,
-                "width": 3,
-                "before": "↕",
-                "align": "r"
-            }
-        ]
+    "right": {
+      "hard": "",
+      "soft": ""
     }
+  },
+  "spaces": 1,
+  "segments": {
+    "left": [
+      {
+        "type": "string",
+        "contents": "[Help]",
+        "highlight_groups": ["help:mode"]
+      },
+      {
+        "function": "file_name",
+        "draw_soft_divider": false
+      },
+      {
+        "type": "string",
+        "highlight_groups": ["help:background"],
+        "draw_soft_divider": false,
+        "draw_hard_divider": false,
+        "width": "auto"
+      }
+    ],
+    "right": [
+      {
+        "function": "line_percent",
+        "args": {
+          "gradient": false
+        },
+        "width": 4,
+        "before": "",
+        "after": "%",
+        "align": "r"
+      },
+      {
+        "function": "line_current",
+        "draw_soft_divider": false,
+        "width": 1,
+        "before": "",
+        "align": "r"
+      }
+    ]
+  }
 }

@@ -81,10 +81,24 @@ let g:gitgutter_override_sign_column_highlihgt = 0
 "let g:gitgutter_sign_removed = ''
 "let g:gitgutter_sign_removed_first_line = ''
 "let g:gitgutter_sign_modified_removed = ''
+" ambiwidth
+" powerline として使うフォントまで全角として表示されないように
+let g:ambiwidth_cica_enabled = v:false
+" powerline として使うフォント以外の Font Awesome は全角として表示されるように
+let g:ambiwidth_add_list = [
+    \ [0x2194, 0x2199, 2],
+    \ [0xe0a0, 0xe0af, 2],
+    \ [0xe0c0, 0xe0df, 2],
+    \ [0xe200, 0xe62d, 2],
+    \ [0xe62f, 0xe7ff, 2],
+    \ [0xf000, 0xf314, 2],
+    \ [0xf320, 0xf5ff, 2],
+    \ [0xf0000, 0xf1aff, 2]
+\ ]
 
 "" settings for Zen Mode
 " limelight
-let g:limelight_conceal_ctermfg = 240
+let g:limelight_conceal_ctermfg = 1
 let g:limelight_conceal_guifg = '#303030'
 let g:limelight_default_coefficient = 0.8
 let g:limelight_paragraph_span = 0
@@ -142,8 +156,9 @@ let g:python_pep8_indent_hang_closing = 0
 " https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
 let g:python_pylsp_prog = $VIRTUAL_ENV . '/bin/pylsp'
 let g:python_ruff_prog = $VIRTUAL_ENV . '/bin/ruff'
+let g:python_black_prog = $VIRTUAL_ENV . '/bin/black'
 augroup PythonLanguageServer
-    if executable(g:python_pylsp_prog)
+    if executable(g:python_ruff_prog)
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'pylsp',
@@ -271,36 +286,54 @@ let g:ale_virtualtext_cursor = 0
 let g:ale_cursur_detail = 1
 let g:ale_set_balloons = 0
 let g:ale_warn_about_trailing_whitespace = 1
-let g:ale_linters = {
-    \ 'python': ['ruff'],
-    \ 'javascript': ['eslint'],
-    \ 'javascriptreact': ['eslint'],
-    \ 'typescript': ['eslint'],
-    \ 'typescriptreact': ['eslint'],
-\ }
-let g:ale_fixers = {
-    \ 'python': ['black'],
-    \ 'javascript': ['prettier'],
-    \ 'javascriptreact': ['prettier'],
-    \ 'typescript': ['prettier'],
-    \ 'typescriptreact': ['prettier'],
-    \ 'css': ['prettier'],
-\ }
 let g:ale_fix_on_save = 1
 let g:ale_python_auto_poetry = 1
 let g:ale_python_auto_virtualenv = 1
 let g:ale_python_ruff_auto_poetry = 1
 let g:ale_python_ruff_change_directory = 1
 
-"" settings for original plugins
+"" settings for original plugins and set linter for each language
+function! SetPythonEnvironment()
+    :call vagueinputpython#Configure()
+    if executable(g:python_ruff_prog)
+        let g:ale_linters = { 'python': ['ruff'] }
+    endif
+    if executable(g:python_black_prog)
+        let g:ale_fixers = { 'python': ['black'] }
+    endif
+endfunction
+
 augroup VagueInputPython
     autocmd!
-    autocmd Filetype python call vagueinputpython#Configure()
+    autocmd Filetype python call SetPythonEnvironment()
 augroup END
+
+function! SetJSEnvironment()
+    :call vagueinputpython#Configure()
+    if executable('eslint')
+        let g:ale_linters = {
+            \ 'javascript': ['eslint'],
+            \ 'javascriptreact': ['eslint'],
+            \ 'typescript': ['eslint'],
+            \ 'typescriptreact': ['eslint'],
+        \ }
+    endif
+    if executable('prettier')
+        let g:ale_fixers = {
+            \ 'javascript': ['prettier'],
+            \ 'javascriptreact': ['prettier'],
+            \ 'typescript': ['prettier'],
+            \ 'typescriptreact': ['prettier'],
+            \ 'css': ['prettier'],
+        \ }
+    endif
+endfunction
+
 augroup VagueInputJS
     autocmd!
-    autocmd Filetype javascript,javascriptreact,typescript,typescriptreact call vagueinputpython#Configure()
+    autocmd Filetype javascript,javascriptreact,typescript,typescriptreact call SetJSEnvironment()
 augroup END
+
 augroup VagueInputMarkdown
     autocmd!
     autocmd Filetype markdown call vagueinputmarkdown#Configure()

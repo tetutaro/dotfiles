@@ -73,7 +73,7 @@ set diffopt=internal,filler,iwhiteall,iwhiteeol,vertical
 "" DISPLAY
 set linespace=0  " 行間を縮める
 set showtabline=0  " タブバーを表示しない
-set ambiwidth=double  " □や○など曖昧な幅の文字をどのように扱うか
+set ambiwidth=single  " □や○など曖昧な幅の文字をどのように扱うか
 set t_vb=
 set visualbell  " エラー音の代わりに画面をフラッシュする
 set noerrorbells  " エラーが出てもベルを鳴らさない

@@ -1,25 +1,25 @@
 {
-    "name": "Default color scheme for shell",
-    "groups": {
-        "virtualenv": {
-            "fg": "blue",
-            "bg": "grey",
-            "attrs": []
-        },
-        "cwd": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "cwd:current_folder": {
-            "fg": "lime",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "cwd:divider": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        }
+  "name": "Default color scheme for shell",
+  "groups": {
+    "virtualenv": {
+      "fg": "blue",
+      "bg": "grey",
+      "attrs": []
+    },
+    "cwd": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "cwd:current_folder": {
+      "fg": "lime",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "cwd:divider": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
     }
+  }
 }

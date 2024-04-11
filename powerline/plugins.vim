@@ -13,6 +13,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'luochen1990/rainbow'
 Plug 'airblade/vim-gitgutter'
+Plug 'rbtnn/vim-ambiwidth'
 " Zen Mode
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'

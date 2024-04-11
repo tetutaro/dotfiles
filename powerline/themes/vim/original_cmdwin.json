@@ -1,39 +1,29 @@
 {
-    "alt-dividers": {
-        "left": {
-            "hard": "",
-            "soft": ""
-        },
-        "right": {
-            "hard": "",
-            "soft": ""
-        }
+  "dividers": {
+    "left": {
+      "hard": "",
+      "soft": ""
     },
-    "dividers": {
-        "left": {
-            "hard": "  ",
-            "soft": "  "
-        },
-        "right": {
-            "hard": " ",
-            "soft": " "
-        }
-    },
-    "spaces": 1,
-    "segments": {
-        "left": [
-            {
-                "type": "string",
-                "contents": "[Command Line]",
-                "highlight_groups": ["cmdwin:mode"]
-            },
-            {
-                "type": "string",
-                "highlight_groups": ["cmdwin:background"],
-                "draw_soft_divider": false,
-                "draw_hard_divider": false,
-                "width": "auto"
-            }
-        ]
+    "right": {
+      "hard": "",
+      "soft": ""
     }
+  },
+  "spaces": 1,
+  "segments": {
+    "left": [
+      {
+        "type": "string",
+        "contents": "[Command Line]",
+        "highlight_groups": ["cmdwin:mode"]
+      },
+      {
+        "type": "string",
+        "highlight_groups": ["cmdwin:background"],
+        "draw_soft_divider": false,
+        "draw_hard_divider": false,
+        "width": "auto"
+      }
+    ]
+  }
 }

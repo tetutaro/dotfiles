@@ -1,25 +1,25 @@
 {
-    "common": {
-        "term_truecolor": true
+  "common": {
+    "term_truecolor": true
+  },
+  "ext": {
+    "shell": {
+      "colorscheme": "original",
+      "theme": "original"
     },
-    "ext": {
-        "shell": {
-            "colorscheme": "original",
-            "theme": "original"
-        },
-        "tmux": {
-            "colorscheme": "original",
-            "theme": "original"
-        },
-        "vim": {
-            "colorscheme": "original",
-            "theme": "original",
-            "local_themes": {
-                "__tabline__": "original_tabline",
-                "cmdwin": "original_cmdwin",
-                "help": "original_help",
-                "quickfix": "original_quickfix"
-            }
-        }
+    "tmux": {
+      "colorscheme": "original",
+      "theme": "original"
+    },
+    "vim": {
+      "colorscheme": "original",
+      "theme": "original",
+      "local_themes": {
+        "__tabline__": "original_tabline",
+        "cmdwin": "original_cmdwin",
+        "help": "original_help",
+        "quickfix": "original_quickfix"
+      }
     }
+  }
 }

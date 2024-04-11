@@ -1,309 +1,319 @@
 {
-    "name": "Default color scheme for vim",
-    "groups": {
+  "name": "Default color scheme for vim",
+  "groups": {
+    "background": {
+      "fg": "bright_black",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "background:divider": {
+      "fg": "bright_black",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "mode": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": ["bold"]
+    },
+    "file_directory": {
+      "fg": "silver",
+      "bg": "grey",
+      "attrs": []
+    },
+    "file_name": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "file_name_no_file": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "readonly_indicator": {
+      "fg": "orange",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "file_vcs_status_M": {
+      "fg": "yellow",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "file_vcs_status_A": {
+      "fg": "lime",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "file_vcs_status_?": {
+      "fg": "fuchsia",
+        "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "file_vcs_status_!": {
+      "fg": "red",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "modified_indicator": {
+      "fg": "yellow",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "line_percent": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "line_current": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "line_current_symbol": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "virtcol_current": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "branch": {
+      "fg": "blue",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "branch:divider": {
+      "fg": "bright_black",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "warning": {
+      "fg": "grey",
+      "bg": "yellow",
+      "attrs": ["bold"]
+    },
+    "error": {
+      "fg": "grey",
+      "bg": "red",
+      "attrs": ["bold"]
+    },
+    "tab:background": {
+      "fg": "bright_black",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "buf:file_name": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "buf:file_name_no_file": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "buf:modified_indicator": {
+      "fg": "yellow",
+      "bg": "grey",
+      "attrs": []
+    },
+    "buf_nc:file_name": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "buf_nc:file_name_no_file": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "buf_nc:modified_indicator": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "buf_mod:file_name": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "buf_mod:file_name_no_file": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "buf_mod:modified_indicator": {
+      "fg": "yellow",
+      "bg": "grey",
+      "attrs": []
+    },
+    "buf_nc_mod:file_name": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "buf_nc_mod:file_name_no_file": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "buf_nc_mod:modified_indicator": {
+      "fg": "dark_white",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "tab:message": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": []
+    },
+    "cmdwin:background": {
+      "fg": "bright_black",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "cmdwin:mode": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "help:background": {
+      "fg": "bright_black",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "help:mode": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": ["bold"]
+    },
+    "quickfix:background": {
+      "fg": "bright_black",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "quickfix:mode": {
+      "fg": "dark_white",
+      "bg": "grey",
+      "attrs": ["bold"]
+    }
+  },
+  "mode_translations": {
+    "i": {
+      "groups": {
         "background": {
-            "fg": "bright_black",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "background:divider": {
-            "fg": "bright_black",
-            "bg": "bright_black",
-            "attrs": []
+          "fg": "blue",
+          "bg": "blue",
+          "attrs": []
         },
         "mode": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "readonly_indicator": {
-            "fg": "orange",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "file_directory": {
-            "fg": "silver",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "file_name": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": ["bold"]
-        },
-        "file_name_no_file": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": ["bold"]
-        },
-        "file_vcs_status_M": {
-            "fg": "yellow",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "file_vcs_status_A": {
-            "fg": "lime",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "file_vcs_status_?": {
-            "fg": "fuchsia",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "file_vcs_status_!": {
-            "fg": "red",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "modified_indicator": {
-            "fg": "yellow",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "line_percent": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": []
-        },
-        "line_current": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "line_current_symbol": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "virtcol_current": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "warning": {
-            "fg": "grey",
-            "bg": "yellow",
-            "attrs": ["bold"]
-        },
-        "error": {
-            "fg": "grey",
-            "bg": "red",
-            "attrs": ["bold"]
-        },
-        "tab:background": {
-            "fg": "bright_black",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "buf:file_name": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": []
-        },
-        "buf:file_name_no_file": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": []
-        },
-        "buf:modified_indicator": {
-            "fg": "yellow",
-            "bg": "grey",
-            "attrs": []
-        },
-        "buf_nc:file_name": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "buf_nc:file_name_no_file": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "buf_nc:modified_indicator": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "buf_mod:file_name": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": []
-        },
-        "buf_mod:file_name_no_file": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": []
-        },
-        "buf_mod:modified_indicator": {
-            "fg": "yellow",
-            "bg": "grey",
-            "attrs": []
-        },
-        "buf_nc_mod:file_name": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "buf_nc_mod:file_name_no_file": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "buf_nc_mod:modified_indicator": {
-            "fg": "dark_white",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "tab:message": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": []
-        },
-        "cmdwin:background": {
-            "fg": "bright_black",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "cmdwin:mode": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "help:background": {
-            "fg": "bright_black",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "help:mode": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": ["bold"]
-        },
-        "quickfix:background": {
-            "fg": "bright_black",
-            "bg": "bright_black",
-            "attrs": []
-        },
-        "quickfix:mode": {
-            "fg": "dark_white",
-            "bg": "grey",
-            "attrs": ["bold"]
+          "fg": "bright_black",
+          "bg": "blue",
+          "attrs": ["bold"]
         }
+      }
     },
-    "mode_translations": {
-        "i": {
-            "groups": {
-                "background": {
-                    "fg": "blue",
-                    "bg": "blue",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "blue",
-                    "attrs": ["bold"]
-                }
-            }
+    "v": {
+      "groups": {
+        "background": {
+          "fg": "lime",
+          "bg": "lime",
+          "attrs": []
         },
-        "v": {
-            "groups": {
-                "background": {
-                    "fg": "orange",
-                    "bg": "orange",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "lime",
-                    "attrs": ["bold"]
-                }
-            }
-        },
-        "V": {
-            "groups": {
-                "background": {
-                    "fg": "orange",
-                    "bg": "orange",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "aqua",
-                    "attrs": ["bold"]
-                }
-            }
-        },
-        "^V": {
-            "groups": {
-                "background": {
-                    "fg": "orange",
-                    "bg": "orange",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "fuchsia",
-                    "attrs": ["bold"]
-                }
-            }
-        },
-        "s": {
-            "groups": {
-                "background": {
-                    "fg": "yellow",
-                    "bg": "yellow",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "lime",
-                    "attrs": ["bold"]
-                }
-            }
-        },
-        "S": {
-            "groups": {
-                "background": {
-                    "fg": "yellow",
-                    "bg": "yellow",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "aqua",
-                    "attrs": ["bold"]
-                }
-            }
-        },
-        "^S": {
-            "groups": {
-                "background": {
-                    "fg": "yellow",
-                    "bg": "yellow",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "fuchsia",
-                    "attrs": ["bold"]
-                }
-            }
-        },
-        "R": {
-            "groups": {
-                "background": {
-                    "fg": "red",
-                    "bg": "red",
-                    "attrs": []
-                },
-                "mode": {
-                    "fg": "bright_black",
-                    "bg": "red",
-                    "attrs": ["bold"]
-                }
-            }
+        "mode": {
+          "fg": "bright_black",
+          "bg": "lime",
+          "attrs": ["bold"]
         }
+      }
+    },
+    "V": {
+      "groups": {
+        "background": {
+          "fg": "aqua",
+          "bg": "aqua",
+          "attrs": []
+        },
+        "mode": {
+          "fg": "bright_black",
+          "bg": "aqua",
+          "attrs": ["bold"]
+        }
+      }
+    },
+    "^V": {
+      "groups": {
+        "background": {
+          "fg": "fuchsia",
+          "bg": "fuchsia",
+          "attrs": []
+        },
+        "mode": {
+          "fg": "bright_black",
+          "bg": "fuchsia",
+          "attrs": ["bold"]
+        }
+      }
+    },
+    "s": {
+      "groups": {
+        "background": {
+          "fg": "lime",
+          "bg": "lime",
+          "attrs": []
+        },
+        "mode": {
+          "fg": "bright_black",
+          "bg": "lime",
+          "attrs": ["bold"]
+        }
+      }
+    },
+    "S": {
+      "groups": {
+        "background": {
+          "fg": "aqua",
+          "bg": "aqua",
+          "attrs": []
+        },
+        "mode": {
+          "fg": "bright_black",
+          "bg": "aqua",
+          "attrs": ["bold"]
+        }
+      }
+    },
+    "^S": {
+      "groups": {
+        "background": {
+          "fg": "fuchsia",
+          "bg": "fuchsia",
+          "attrs": []
+        },
+        "mode": {
+          "fg": "bright_black",
+          "bg": "fuchsia",
+          "attrs": ["bold"]
+        }
+      }
+    },
+    "R": {
+      "groups": {
+        "background": {
+          "fg": "red",
+          "bg": "red",
+          "attrs": []
+        },
+        "mode": {
+          "fg": "bright_black",
+          "bg": "red",
+          "attrs": ["bold"]
+        }
+      }
     }
+  }
 }

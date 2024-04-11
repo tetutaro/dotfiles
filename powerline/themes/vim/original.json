@@ -1,140 +1,139 @@
 {
-    "dividers": {
-        "left": {
-            "hard": "",
-            "soft": ""
-        },
-        "right": {
-            "hard": "",
-            "soft": ""
-        }
+  "dividers": {
+    "left": {
+      "hard": "",
+      "soft": ""
     },
-    "alt-dividers": {
-        "left": {
-            "hard": "  ",
-            "soft": "  "
-        },
-        "right": {
-            "hard": "  ",
-            "soft": "  "
-        }
-    },
-    "spaces": 1,
-    "segments": {
-        "left": [
-            {
-                "function": "mode",
-                "args": {
-                    "override": {
-                        "n":  "n",
-                        "no": "no",
-                        "nov": "nov",
-                        "noV": "noV",
-                        "no^V": "no^V",
-                        "niI": "niI",
-                        "niR": "niR",
-                        "niV": "niV",
-                        "v":  "v",
-                        "V":  "V",
-                        "^V": "^V",
-                        "s":  "s",
-                        "S":  "S",
-                        "^S": "^S",
-                        "i":  "i",
-                        "ic": "ic",
-                        "ix": "ix",
-                        "R":  "R",
-                        "Rc": "Rc",
-                        "Rv": "Rv",
-                        "Rx": "Rx",
-                        "c":  "c",
-                        "cv": "cv",
-                        "ce": "ce",
-                        "r":  "r",
-                        "rm": "rm",
-                        "r?": "r?",
-                        "!":  "!",
-                        "t":  "FZF"
-                    }
-                },
-                "priority": 50
-            },
-            {
-                "function": "readonly_indicator",
-                "args": {
-                    "text": ""
-                },
-                "priority": 45
-            },
-            {
-                "function": "file_directory",
-                "draw_soft_divider": false,
-                "priority": 5
-            },
-            {
-                "function": "file_name",
-                "draw_soft_divider": false,
-                "priority": 40
-            },
-            {
-                "function": "file_vcs_status",
-                "priority": 50
-            },
-            {
-                "function": "modified_indicator",
-                "args": {
-                    "text": ""
-                },
-                "priority": 50
-            },
-            {
-                "type": "string",
-                "highlight_groups": ["background"],
-                "draw_soft_divider": false,
-                "draw_hard_divider": false,
-                "width": "auto"
-            }
-        ],
-        "right": [
-            {
-                "function": "line_percent",
-                "args": {
-                    "gradient": false
-                },
-                "priority": 50,
-                "before": "↓",
-                "width": 4,
-                "align": "r",
-                "priority": 10
-            },
-            {
-                "function": "line_current",
-                "draw_soft_divider": false,
-                "before": "↕",
-                "width": 3,
-                "align": "r",
-                "priority": 20
-            },
-            {
-                "function": "virtcol_current",
-                "args": {
-                    "gradient": false
-                },
-                "draw_soft_divider": false,
-                "priority": 20,
-                "before": "↔",
-                "width": 3,
-                "align": "l",
-                "priority": 20
-            },
-            {
-                "function": "powerline.segments.vim.plugin.ale.ale",
-                "args": {
-                    "err_format": " {num}",
-                    "warn_format": " {num}"
-                },
-                "priority": 50
-            }
-        ]
+    "right": {
+      "hard": "",
+      "soft": ""
     }
+  },
+  "spaces": 1,
+  "segments": {
+    "left": [
+      {
+        "function": "mode",
+        "args": {
+          "override": {
+            "n":  "n",
+            "no": "no",
+            "nov": "nov",
+            "noV": "noV",
+            "no^V": "no^V",
+            "niI": "niI",
+            "niR": "niR",
+            "niV": "niV",
+            "v":  "v",
+            "V":  "V",
+            "^V": "^V",
+            "s":  "s",
+            "S":  "S",
+            "^S": "^S",
+            "i":  "i",
+            "ic": "ic",
+            "ix": "ix",
+            "R":  "R",
+            "Rc": "Rc",
+            "Rv": "Rv",
+            "Rx": "Rx",
+            "c":  "c",
+            "cv": "cv",
+            "ce": "ce",
+            "r":  "r",
+            "rm": "rm",
+            "r?": "r?",
+            "!":  "!",
+            "t":  "FZF"
+          }
+        },
+        "priority": 5
+      },
+      {
+        "function": "file_directory",
+        "draw_soft_divider": false,
+        "before": " ",
+        "priority": 50
+      },
+      {
+        "function": "file_name",
+        "priority": 10
+      },
+      {
+        "function": "readonly_indicator",
+        "args": {
+          "text": " R"
+        },
+          "priority": 40
+      },
+      {
+        "function": "modified_indicator",
+        "args": {
+          "text": " +"
+        },
+        "priority": 30
+      },
+      {
+        "function": "file_vcs_status",
+        "before": " ",
+        "priority": 30
+      },
+      {
+        "type": "string",
+        "highlight_groups": ["background"],
+        "draw_soft_divider": false,
+        "draw_hard_divider": false,
+        "width": "auto"
+      }
+    ],
+    "right": [
+      {
+        "function": "line_percent",
+        "args": {
+          "gradient": false
+        },
+        "priority": 50,
+        "after": "%",
+        "width": 2,
+        "align": "l",
+        "priority": 40
+      },
+      {
+        "function": "line_current",
+        "draw_soft_divider": false,
+        "draw_hard_divider": false,
+        "width": 1,
+        "align": "l",
+        "priority": 40
+      },
+      {
+        "function": "virtcol_current",
+        "args": {
+          "gradient": false
+        },
+        "draw_soft_divider": false,
+        "draw_hard_divider": false,
+        "priority": 20,
+        "before": ":",
+        "after": " ",
+        "width": 3,
+        "align": "l",
+        "priority": 20
+      },
+      {
+        "function": "branch",
+        "before": "",
+        "after": " ",
+        "priority": 30
+      },
+      {
+        "function": "powerline.segments.vim.plugin.ale.ale",
+        "args": {
+          "err_format": "E:{num}",
+          "warn_format": "W:{num}"
+        },
+        "priority": 50
+      }
+    ]
+  }
 }

@@ -23,6 +23,10 @@ fi
 if [[ -d ${HOME}/.local/bin ]]; then
     export PATH=${PATH}:${HOME}/.local/bin
 fi
+# cargo
+if [[ -d ${HOME}/.cargo/bin ]]; then
+    export PATH=${PATH}:${HOME}/.cargo/bin
+fi
 
 # rehash
 function rehash() {
