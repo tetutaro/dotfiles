@@ -19,7 +19,7 @@
     },
     "hotkey": {
         "modifiers": [
-            "<alt>"
+            "<super>"
         ],
         "hotKey": "f"
     },
