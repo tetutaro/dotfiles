@@ -119,10 +119,10 @@ augroup ChangeCursorLineHilight
     autocmd InsertEnter,InsertLeave * set cursorline!
 augroup END
 " 背景色を透過させる
-highlight Normal ctermbg=NONE guibg=NONE
-highlight NonText ctermbg=NONE guibg=NONE
-highlight SpecialKey ctermbg=NONE guibg=NONE
-highlight EndOfBuffer ctermbg=NONE guibg=NONE
+"highlight Normal ctermbg=NONE guibg=NONE
+"highlight NonText ctermbg=NONE guibg=NONE
+"highlight SpecialKey ctermbg=NONE guibg=NONE
+"highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 "" IGNORE WRAP
 "" j,kは折返しされた行も見た目通りに移動する

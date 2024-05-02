@@ -21,6 +21,7 @@ ln -sf ${PWD}/vimrc ${HOME}/.vim/vimrc
 ln -sf ${PWD}/defaults.vim ${HOME}/.vim/defaults.vim
 ln -sf ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
 ln -sf ${PWD}/keymaps.vim ${HOME}/.vim/keymaps.vim
+ln -sf ${PWD}/gvimrc ${HOME}/.vim/gvimrc
 if [ ! -f ${HOME}/.vim/colors.vim ]; then
     cp ${PWD}/colors.vim ${HOME}/.vim/colors.vim
 fi
@@ -33,7 +34,7 @@ else
 fi
 if [ ! -f ${VIM_PATH} ]; then
     if [ "${os}" == "Linux" ]; then
-        sudo apt install vim
+        sudo apt install vim-gtk3
     else
         brew install vim
     fi

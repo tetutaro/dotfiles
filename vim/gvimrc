@@ -1,0 +1,7 @@
+"" gVim
+set guifont=0xProGen\ Nerd\ 16
+set guifontwide=0xProGen\ Nerd\ 16
+set guioptions-=T
+set guioptions-=e
+set columns=90
+set lines=35
