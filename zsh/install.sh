@@ -37,13 +37,6 @@ if [[ "${os}" == "Linux" ]]; then
     fi
 fi
 
-## path of python
-if [[ "${os}" == "Linux" ]]; then
-    PYTHON=/bin/python3
-else
-    PYTHON=/usr/local/bin/python3
-fi
-
 ## pyenv
 if [[ ! -d ${HOME}/.pyenv ]]; then
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
@@ -55,29 +48,10 @@ if [[ ! -d ${HOME}/.pyenv/plugins/pyenv-virtualenv ]]; then
 else
     echo "pyenv-virtualenv is already installed"
 fi
-
-## pipx
-if [[ ! -d ${HOME}/.local/pipx ]]; then
-    if [[ ${os} == "Darwin" ]]; then
-        brew install pipx
-    else
-        sudo apt install python3-pip python3-venv
-        ${PYTHON} -m pip install --user pipx
-    fi
-    export PATH=${PATH}:${HOME}/.local/bin
-    rehash
-    pipx ensurepath
+if [[ ! -d ${HOME}/.pyenv/plugins/pyenv-update ]]; then
+    git clone https://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update
 else
-    echo "pipx is already installed"
-fi
-
-## poetry
-if [[ ! -f ${HOME}/.local/bin/poetry ]]; then
-    pipx install poetry
-    rehash
-    poetry config virtualenvs.path "${HOME}/.pyenv/versions"
-else
-    echo "poetry is already installed"
+    echo "pyenv-update is already installed"
 fi
 
 ## nodenv
@@ -95,6 +69,11 @@ if [[ ! -d ${HOME}/.nodenv/plugins/node-build-update-defs ]]; then
     git clone https://github.com/nodenv/node-build-update-defs.git ~/.nodenv/plugins/node-build-update-defs
 else
     echo "node-build-update-defs is already installed"
+fi
+if [[ ! -d ${HOME}/.nodenv/plugins/nodenv-update ]]; then
+    git clone https://github.com/nodenv/nodenv-update.git ~/.nodenv/plugins/nodenv-update
+else
+    echo "nodenv-update is already installed"
 fi
 
 ## ZSHRCs
