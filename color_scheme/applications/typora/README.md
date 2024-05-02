@@ -2,17 +2,16 @@
 
 ## Install Typora Theme
 
-* https://theme.typora.io/doc/Install-Theme/
+* Typora の document を読んで Themes 設定ファイルの場所を把握
+    * https://theme.typora.io/doc/Install-Theme/
+    * Linux の場合は ~/.config/Typora/themes
 * [themes](themes) の下に作成される css ファイルのシンボリックリンクを上記 themes ディレクトリの下に作る
 
 ## Install fonts for Typora Theme
 
-* Noto Sans JP (woff2)
-    * https://google-webfonts-helper.herokuapp.com/fonts/noto-sans-jp?subsets=japanese,latin
-        * regular, 700 のstyleを選んでダウンロード
-    * https://google-webfonts-helper.herokuapp.com/fonts/noto-sans-jp?subsets=japanese,latin
-        * regular, 700 のstyleを選んでダウンロード
-* Ricty Discord Nerd (woff2)
-    * font セクションでフォントを作る
-    * https://github.com/google/woff2 で ttf を woff2 に変換する
-* themes ディレクトリの下に fonts ディレクトリを作り、上記４種類のフォントを全てその中に入れる
+* 必要なフォント
+    * Noto Sans JP 
+    * Ricty Discord Nerd
+        * font セクションで作ったもの
+* https://github.com/google/woff2 を clone, make して、ttf を woff2 に変換する
+* themes ディレクトリの下に fonts ディレクトリを作り、変換した woff2 を全てその中に入れる
