@@ -33,7 +33,7 @@ else
 fi
 if [ ! -f ${VIM_PATH} ]; then
     if [ "${os}" == "Linux" ]; then
-        sudo apt install vim-gtk3
+        sudo apt install vim
     else
         brew install vim
     fi
