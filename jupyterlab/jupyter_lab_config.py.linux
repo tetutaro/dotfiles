@@ -2,7 +2,7 @@ import os
 
 c = get_config()  # noqa
 c.ServerApp.use_redirect_file = False
-c.ServerApp.browser = '/usr/bin/jlab %s'
+c.ServerApp.browser = '/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=run.sh --file-forwarding org.jupyter.JupyterLab %s'
 c.JupyterLabTemplates.include_default = False
 c.JupyterLabTemplates.include_core_paths = False
 c.JupyterLabTemplates.template_dirs = [os.path.expanduser("~/.jupyter/templates")]
