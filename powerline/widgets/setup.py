@@ -4,7 +4,7 @@ from setuptools import setup
 setup(
     name='powerline-widgets',
     description='original Powerline segments',
-    version='0.2.0',
+    version='0.2.1',
     license='MIT Lisence',
     author='tetutaro',
     author_email='tetsutaro.maruyama@gmail.com',

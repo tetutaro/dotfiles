@@ -17,21 +17,17 @@ def poetry_virtualenv(
         for cand in cands:
             if cand == "" or cand in ignored_names:
                 continue
-            sps = cand.split("-")
+            sps = [x for x in cand.split("-") if x != ""]
             if len(sps) > 2:
-                return [
-                    {
-                        "contents": "-".join(sps[:-2]),
-                        "highlight_groups": ["virtualenv"],
-                    }
-                ]
-            else:
-                return [
-                    {
-                        "contents": cand,
-                        "highlight_groups": ["virtualenv"],
-                    }
-                ]
+                cand = "-".join(sps[:-2])
+            if cand.endswith("-"):
+                cand = cand[:-1]
+            return [
+                {
+                    "contents": cand,
+                    "highlight_groups": ["virtualenv"],
+                }
+            ]
     if not ignore_conda:
         cands = reversed(
             segment_info["environ"].get("CONDA_DEFAULT_ENV", "").split(os.sep)
