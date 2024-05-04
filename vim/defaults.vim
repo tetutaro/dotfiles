@@ -5,9 +5,10 @@ endif
 
 "" ENCODING
 set encoding=utf-8  " ファイル読み込み時の文字コード
-scriptencoding utf-8  " Vim script内でマルチバイト文字を使う場合の設定（vimrcを含む）
 set fileencoding=utf-8  " 保存時の文字コード
 set fileencodings=utf-8  " 読み込み時の文字コードの自動判別
+set termencoding=utf-8
+scriptencoding utf-8  " Vim script内でマルチバイト文字を使う場合の設定（vimrcを含む）
 set fileformats=unix,dos,mac  " 改行コードの自動判別
 "set bomb  " BOMを付ける
 "set binary  " バイナリモード
