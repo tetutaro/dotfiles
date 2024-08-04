@@ -299,7 +299,7 @@ function! SetPythonEnvironment()
         let g:ale_linters = { 'python': ['ruff'] }
     endif
     if executable(g:python_black_prog)
-        let g:ale_fixers = { 'python': ['black'] }
+        let g:ale_fixers = { 'python': ['isort', 'black'] }
     endif
 endfunction
 

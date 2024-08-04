@@ -12,11 +12,11 @@
         "content-font-family": "Noto Sans JP",
         "content-font-size1": "18px",
         "ui-font-family": "Noto Sans JP",
-        "ui-font-size1": "14px",
+        "ui-font-size1": "14px"
     },
 
     // Selected Theme
-    // Application-level visual styling theme
+    // Application-level visual styling theme. Ignored when Adaptive Theme is enabled.
     "theme": "JupyterLab Dark",
 
     // Scrollbar Theming

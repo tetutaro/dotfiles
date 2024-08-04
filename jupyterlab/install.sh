@@ -12,7 +12,7 @@ fi
 if [[ -z $(command -v jupyter-lab) ]]; then
     pipx install jupyterlab
     pipx inject jupyterlab pip
-    pipx runpip jupyterlab install black ruff jupyterlab-lsp python-lsp-server python-lsp-ruff jupyterlab-code-formatter jupyterlab-templates jupyterlab-widgets ipywidgets ipympl
+    pipx runpip jupyterlab install black isort ruff jupyterlab-lsp python-lsp-server python-lsp-ruff jupyterlab-code-formatter jupyterlab-templates jupyterlab-widgets ipywidgets ipympl
     pipx run --spec jupyterlab jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyterlab-templates jupyter-matplotlib
     pipx run --spec jupyterlab jupyter lab build
     pipx run --spec jupyterlab jupyter lab clean
