@@ -27,6 +27,10 @@ fi
 if [[ -d ${HOME}/.cargo/bin ]]; then
     export PATH=${PATH}:${HOME}/.cargo/bin
 fi
+# direnv
+if builtin command -v direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
 
 # rehash
 function rehash() {
