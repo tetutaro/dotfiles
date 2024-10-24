@@ -21,6 +21,7 @@ export EDITOR=$(which vim)
 export XDG_DATA_HOME=${HOME}/.config
 export XDG_DATA_DIRS=${XDG_DATA_DIRS}:${HOME}/.config/flatpak/exports/share
 export UV_TOOL_BIN_DIR=${HOME}/.local/bin
+export DIRENV_LOG_FORMAT=
 ##########################################################################
 ## aliases
 alias rm="rm -i"
