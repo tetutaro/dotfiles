@@ -16,7 +16,8 @@ When installing for the first time, it is recommended to install and configure i
     * go to [tmux](/tmux/)
 1. install pipx
     * powerline is installed using pipx. so you should install pipx before install powerline.
-    * My recommendation is to install pipx as a package of your Python virtualenv.
+    * My recommendation is to install pipx with uv
+        * `uv tool install pipx`
 1. installation and configuration of powerline
     * go to [powerline](/powerline/)
 1. installation and configuration of color scheme

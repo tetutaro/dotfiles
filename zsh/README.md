@@ -5,7 +5,7 @@
 * install required applications (if they have not been installed)
     * fzf, silversearcher, tree, xsel (ubuntu only)
 * install Python environments (if they have not been installed)
-    * pyenv, pyenv-virtualenv, poetry, pipx
+    * uv
 * install Node.js environments (if they have not been installed)
     * nodenv, node-build, node-build-update-defs
 * create (or overwrite) symbolic links of config files

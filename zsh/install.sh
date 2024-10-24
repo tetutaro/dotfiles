@@ -37,21 +37,11 @@ if [[ "${os}" == "Linux" ]]; then
     fi
 fi
 
-## pyenv
-if [[ ! -d ${HOME}/.pyenv ]]; then
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+## uv
+if [ -z $(command -v uv) ]; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 else
-    echo "pyenv is already installed"
-fi
-if [[ ! -d ${HOME}/.pyenv/plugins/pyenv-virtualenv ]]; then
-    git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-else
-    echo "pyenv-virtualenv is already installed"
-fi
-if [[ ! -d ${HOME}/.pyenv/plugins/pyenv-update ]]; then
-    git clone https://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update
-else
-    echo "pyenv-update is already installed"
+    echo "uv is already installed"
 fi
 
 ## nodenv

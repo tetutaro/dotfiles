@@ -27,7 +27,6 @@ import argparse
 import curses
 import os
 import subprocess
-import pkg_resources
 
 COLOR_SCHEME_SHELL_PATH = '~/.config/color_scheme/shell.sh'
 COLOR_SCHEME_SHELL_DIR = '~/.config/color_scheme/shell'
@@ -383,7 +382,6 @@ keys:
     parser.add_argument(
         '--version',
         action='version',
-        version=pkg_resources.get_distribution('manage_color').version
     )
     parser.parse_args()
     try:
