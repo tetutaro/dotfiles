@@ -57,7 +57,7 @@ fi
 # tmux
 if [[ -z $(command -v tmux) ]]; then
     if [[ "${os}" == "Linux" ]]; then
-        sudo apt install bison
+        sudo apt install -y bison
     fi
     asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
     asdf install tmux latest
@@ -126,4 +126,11 @@ if [[ ! -d "${HOME}/.asdf/installs/direnv" ]]; then
     asdf plugin add direnv
     asdf direnv setup --shell zsh --version latest
     asdf global direnv latest
+fi
+
+# docker
+if [[ -z $(command -v docker) ]]; then
+    if [[ "${os}" == "Linux" ]]; then
+        sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    fi
 fi

@@ -21,9 +21,11 @@ fi
 for f in ${PWD}/zsh-completions/*; do
     ln -sf $f ${HOME}/.config/zsh-completions/${f##*/}
 done
-# download completion of docker, docker-compose
-curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker -o ${HOME}/.config/zsh-completions/_docker
-curl -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose  -o ${HOME}/.config/zsh-completions/_docker-compose
+
+# create completion of docker
+if [ "${os}" == "Linux" ]; then
+    docker completion zsh > ${HOME}/.config/zsh-completions/_docker
+fi
 
 ## installation of ZSH
 if [ "${os}" == "Linux" ]; then
