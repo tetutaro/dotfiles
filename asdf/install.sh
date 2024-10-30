@@ -21,7 +21,8 @@ fi
 # cannot compile latest ag so use apt
 #if [[ ! -d "${HOME}/.asdf/installs/ag" ]]; then
 #    if [[ "${os}" == "Linux" ]]; then
-#        sudo apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+#        sudo apt build-dep silverseacher-ag
+#        sudo apt install -y libpcre3-dev
 #    else
 #        brew install automake pkg-config pcre xz
 #    fi
@@ -54,8 +55,8 @@ if [[ "${os}" == "Linux" ]]; then
 fi
 
 # tmux
-if [[ ! -d "${HOME}/.asdf/installs/tmux" ]]; then
-    asdf plugin-add tmux https://github.com/aphecetche/asdf-tmux.git
+if [[ -z $(command -v tmux) ]]; then
+    asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
     asdf install tmux latest
     asdf global tmux latest
 fi
@@ -64,7 +65,7 @@ fi
 # cannot enable clipboard support so use apt
 #if [[ ! -d "${HOME}/.asdf/installs/vim" ]]; then
 #    if [[ "${os}" == "Linux" ]]; then
-#        sudo apt install -y libncurses-dev libx11-dev libxtst-dev libxt-dev
+#        sudo apt build-dep vim-gtk3
 #    else
 #        brew installl ncurses
 #    fi
@@ -121,4 +122,5 @@ fi
 if [[ ! -d "${HOME}/.asdf/installs/direnv" ]]; then
     asdf plugin add direnv
     asdf direnv setup --shell zsh --version latest
+    asdf global direnv latest
 fi
