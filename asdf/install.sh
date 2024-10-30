@@ -18,6 +18,7 @@ if [[ ! -d "${HOME}/.asdf/installs/fzf" ]]; then
 fi
 
 # ag (the silver searcher)
+# cannot compile latest ag so use apt
 #if [[ ! -d "${HOME}/.asdf/installs/ag" ]]; then
 #    if [[ "${os}" == "Linux" ]]; then
 #        sudo apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
@@ -43,16 +44,12 @@ if [[ -z $(command -v tree) ]]; then
     else
         brew install tree
     fi
-else
-    echo "tree is already installed"
 fi
 
 # xsel
 if [[ "${os}" == "Linux" ]]; then
     if [[ -z $(command -v xsel) ]]; then
         sudo apt install -y xsel
-    else
-        echo "xsel is already installed"
     fi
 fi
 
@@ -64,15 +61,24 @@ if [[ ! -d "${HOME}/.asdf/installs/tmux" ]]; then
 fi
 
 # vim
-if [[ ! -d "${HOME}/.asdf/installs/vim" ]]; then
+# cannot enable clipboard support so use apt
+#if [[ ! -d "${HOME}/.asdf/installs/vim" ]]; then
+#    if [[ "${os}" == "Linux" ]]; then
+#        sudo apt install -y libncurses-dev libx11-dev libxtst-dev libxt-dev
+#    else
+#        brew installl ncurses
+#    fi
+#    export ASDF_VIM_CONFIG="--with-tlib=ncurses --with-compiledby=asdf --enable-multibyte --enable-cscope --enable-terminal --enable-perlinterp --enable-rubyinterp --enable-python3interp --enable-luainterp --enable-gui=gtk4 --with-x"
+#    asdf plugin-add vim https://github.com/tsuyoshicho/asdf-vim.git
+#    asdf install vim latest
+#    asdf global vim latest
+#fi
+if [[ -z $(command -v vim) ]]; then
     if [[ "${os}" == "Linux" ]]; then
-        sudo apt install -y ncurses-dev
+        sudo apt install -y vim-gtk3
     else
-        brew installl ncurses
+        brew install vim
     fi
-    asdf plugin-add vim https://github.com/tsuyoshicho/asdf-vim.git
-    asdf install vim latest
-    asdf global vim latest
 fi
 
 # nodejs
@@ -90,13 +96,11 @@ fi
 # yarn
 if [[ -z $(command -v yarn) ]]; then
     npm install -g yarn
-    rehash
 fi
 
 # typescript-language-server
 if [[ -z $(command -v typescript-language-server) ]]; then
-    yarn add global typescript typescript-language-server
-    rehash
+    yarn global add typescript typescript-language-server
 fi
 
 # uv
@@ -110,4 +114,11 @@ fi
 # pipx
 if [[ -z $(command -v pipx) ]]; then
     uv tool install pipx
+    pipx ensurepath
+fi
+
+# direnv
+if [[ ! -d "${HOME}/.asdf/installs/direnv" ]]; then
+    asdf plugin add direnv
+    asdf direnv setup --shell zsh --version latest
 fi
