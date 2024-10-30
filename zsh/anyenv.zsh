@@ -1,47 +1,23 @@
-# nodenv
-if [[ -d ${HOME}/.nodenv ]]; then
-    export PATH=${HOME}/.nodenv/bin:${PATH}
-    eval "$(nodenv init -)"
+# asdf
+if [[ -d ${HOME}/.asdf ]]; then
+    . "${HOME}/.asdf/asdf.sh"
 fi
-# phpenv
-if [[ -d ${HOME}/.phpenv ]]; then
-    export PATH=${HOME}/.phpenv/bin:${PATH}
-    eval "$(phpenv init -)"
+# uv
+if [[ $(command -v uv) ]]; then
+    eval "$(uv generate-shell-completion zsh)"
 fi
-# pyenv
-if [[ -d ${HOME}/.pyenv ]]; then
-    export PYENV_ROOT=${HOME}/.pyenv
-    export PATH=${PYENV_ROOT}/bin:${PATH}
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
+if [[ $(command -v uvx) ]]; then
+    eval "$(uvx --generate-shell-completion zsh)"
 fi
-# pyenv-virtualenv
-if [[ -d ${HOME}/.pyenv/plugins/pyenv-virtualenv ]]; then
-    eval "$(pyenv virtualenv-init -)"
-fi
-# poetry & pipx
+# pipx
 if [[ -d ${HOME}/.local/bin ]]; then
     export PATH=${PATH}:${HOME}/.local/bin
 fi
-# cargo
-if [[ -d ${HOME}/.cargo/bin ]]; then
-    export PATH=${PATH}:${HOME}/.cargo/bin
+# yarn
+if [[ -d ${HOME}/.yarn/bin ]]; then
+    export PATH=${PATH}:${HOME}/.yarn/bin
 fi
 # direnv
-if builtin command -v direnv > /dev/null; then
-    eval "$(direnv hook zsh)"
+if [[ -f ${HOME}/.config/asdf-direnv/zshrc ]]; then
+    source "${HOME}/.config/asdf-direnv/zshrc"
 fi
-
-# rehash
-function rehash() {
-    if [[ -d ${HOME}/.nodenv ]]; then
-        nodenv rehash
-    fi
-    if [[ -d ${HOME}/.pyenv ]]; then
-        pyenv rehash
-    fi
-    if [[ -d ${HOME}/.phpenv ]]; then
-        phpenv rehash
-    fi
-    builtin rehash
-}

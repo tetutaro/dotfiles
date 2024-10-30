@@ -120,7 +120,7 @@ bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 ##########################################################################
 ## completion
-fpath=(${HOME}/.config/zsh-completions ${fpath} /usr/local/share/zsh-completions /usr/local/share/zsh/site-functions /usr/local/share/zsh/functions)
+fpath=(${HOME}/.config/zsh-completions ${HOME}/.asdf/completions ${fpath} /usr/local/share/zsh-completions /usr/local/share/zsh/site-functions /usr/local/share/zsh/functions)
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' format '%BCompleting %d%b'
