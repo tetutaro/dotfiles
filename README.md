@@ -8,16 +8,14 @@ When installing for the first time, it is recommended to install and configure i
 
 1. installation of fonts
     * go to [fonts](/fonts/)
+1. installation of tools
+    * go to [asdf](/asdf/)
 1. installation and configuration of zsh
     * go to [zsh](/zsh/)
 1. installation and configuration of vim
     * go to [vim](/vim/)
 1. installation and configuration of tmux
     * go to [tmux](/tmux/)
-1. install pipx
-    * powerline is installed using pipx. so you should install pipx before install powerline.
-    * My recommendation is to install pipx with uv
-        * `uv tool install pipx`
 1. installation and configuration of powerline
     * go to [powerline](/powerline/)
 1. installation and configuration of color scheme

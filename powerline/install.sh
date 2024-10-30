@@ -1,24 +1,6 @@
 #!/bin/bash
 ## check dependencies
 os=$(uname -s)
-if [ -z $(command -v pipx) ]; then
-    echo "install pipx first"
-    exit 1
-else
-    echo "pipx is already installed"
-fi
-if [ -z $(command -v zsh) ]; then
-    echo "install zsh first"
-    exit 1
-else
-    echo "zsh is already installed"
-fi
-if [ -z $(command -v vim) ]; then
-    echo "install vim first"
-    exit 1
-else
-    echo "vim is already installed"
-fi
 
 ## powerline-status on pipx
 if [ -z $(command -v powerline) ]; then

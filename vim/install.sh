@@ -2,17 +2,6 @@
 ## OS
 os=$(uname -s)
 
-## dependencies
-if [[ -z $(command -v yarn) ]]; then
-    echo "install Node.js and yarn first"
-    exit 1
-fi
-# install typescript-language-server
-if [[ -z $(command -v typescript-language-server) ]]; then
-    yarn add global typescript typescript-language-server
-    rehash
-fi
-
 ## RCFILES
 if [ ! -d ${HOME}/.vim ]; then
     mkdir ${HOME}/.vim

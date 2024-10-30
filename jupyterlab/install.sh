@@ -1,12 +1,6 @@
 #!/bin/bash
 ## check dependencies
 os=$(uname -s)
-if [[ -z $(command -v pipx) ]]; then
-    echo "install pipx first"
-    exit 1
-else
-    echo "pipx is already installed"
-fi
 
 ## jupyterlab on pipx
 if [[ -z $(command -v jupyter-lab) ]]; then

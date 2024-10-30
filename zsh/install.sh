@@ -3,69 +3,6 @@
 ## get system name
 os=$(uname -s)
 
-## installation of fzf, silversearcher, tree
-if [[ ! -d ${HOME}/.fzf ]]; then
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --xdg --key-bindings --completion --no-update-rc --no-bash --no-fish
-else
-    echo "fzf is already installed"
-fi
-if [[ -z $(command -v ag) ]]; then
-    if [[ "${os}" == "Linux" ]]; then
-        sudo apt install silversearcher-ag
-    else
-        brew install ag
-    fi
-else
-    echo "silversearcher is already installed"
-fi
-if [[ -z $(command -v tree) ]]; then
-    if [[ "${os}" == "Linux" ]]; then
-        sudo apt install tree
-    else
-        brew install tree
-    fi
-else
-    echo "tree is already installed"
-fi
-## installation of xsel
-if [[ "${os}" == "Linux" ]]; then
-    if [[ -z $(command -v xsel) ]]; then
-        sudo apt install xsel
-    else
-        echo "xsel is already installed"
-    fi
-fi
-
-## uv
-if [ -z $(command -v uv) ]; then
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-else
-    echo "uv is already installed"
-fi
-
-## nodenv
-if [[ ! -d ${HOME}/.nodenv ]]; then
-    git clone https://github.com/nodenv/nodenv.git ~/.nodenv
-else
-    echo "nodenv is already installed"
-fi
-if [[ ! -d ${HOME}/.nodenv/plugins/node-build ]]; then
-    git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
-else
-    echo "node-build is already installed"
-fi
-if [[ ! -d ${HOME}/.nodenv/plugins/node-build-update-defs ]]; then
-    git clone https://github.com/nodenv/node-build-update-defs.git ~/.nodenv/plugins/node-build-update-defs
-else
-    echo "node-build-update-defs is already installed"
-fi
-if [[ ! -d ${HOME}/.nodenv/plugins/nodenv-update ]]; then
-    git clone https://github.com/nodenv/nodenv-update.git ~/.nodenv/plugins/nodenv-update
-else
-    echo "nodenv-update is already installed"
-fi
-
 ## ZSHRCs
 ln -sf ${PWD}/zshrc ${HOME}/.zshrc
 if [[ ! -d ${HOME}/.config/zsh ]]; then
