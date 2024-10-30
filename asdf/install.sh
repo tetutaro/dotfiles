@@ -56,6 +56,9 @@ fi
 
 # tmux
 if [[ -z $(command -v tmux) ]]; then
+    if [[ "${os}" == "Linux" ]]; then
+        sudo apt install bison
+    fi
     asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
     asdf install tmux latest
     asdf global tmux latest
