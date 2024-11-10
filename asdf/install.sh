@@ -2,6 +2,8 @@
 
 os=$(uname -s)
 
+cd ${HOME}
+
 # asdf itself
 if [[ ! -d "${HOME}/.asdf" ]]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
@@ -58,9 +60,15 @@ fi
 if [[ -z $(command -v tmux) ]]; then
     if [[ "${os}" == "Linux" ]]; then
         sudo apt install -y bison
+    else
+        brew install utf8proc
     fi
     asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
-    asdf install tmux latest
+    if [[ "${os}" == "Linux" ]]; then
+        asdf install tmux latest
+    else
+        asdf install tmux latest --enable-utf8proc
+    fi
     asdf global tmux latest
 fi
 
@@ -134,3 +142,5 @@ if [[ -z $(command -v docker) ]]; then
         sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     fi
 fi
+
+cd -
