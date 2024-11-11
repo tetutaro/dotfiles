@@ -121,15 +121,6 @@
         "priority": 20
       },
       {
-        "function": "branch",
-        "args": {
-          "status_colors": true
-        },
-        "before": "",
-        "after": "",
-        "priority": 30
-      },
-      {
         "function": "powerline.segments.vim.plugin.ale.ale",
         "args": {
           "err_format": "E:{num}",
