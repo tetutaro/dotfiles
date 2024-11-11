@@ -86,6 +86,16 @@
       "bg": "bright_black",
       "attrs": []
     },
+    "branch_clean": {
+      "fg": "blue",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "branch_dirty": {
+      "fg": "red",
+      "bg": "bright_black",
+      "attrs": []
+    },
     "branch:divider": {
       "fg": "bright_black",
       "bg": "bright_black",

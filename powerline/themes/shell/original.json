@@ -38,6 +38,15 @@
       }
     ],
     "right": [
+      {
+        "function": "powerline.segments.common.vcs.branch",
+        "args": {
+          "status_colors": true
+        },
+        "before": "",
+        "after": "",
+        "priority": 50
+      }
     ]
   }
 }

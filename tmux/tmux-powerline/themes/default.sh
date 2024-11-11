@@ -90,7 +90,7 @@ fi
 if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
 		"date 16 19" \
-		"time 17 19" \
-        "git_branch 16 12"
+		"time 17 19"
+        # "git_branch 16 12"
 	)
 fi

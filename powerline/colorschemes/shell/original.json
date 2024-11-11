@@ -20,6 +20,21 @@
       "fg": "dark_white",
       "bg": "bright_black",
       "attrs": []
+    },
+    "branch": {
+      "fg": "blue",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "branch_clean": {
+      "fg": "blue",
+      "bg": "bright_black",
+      "attrs": []
+    },
+    "branch_dirty": {
+      "fg": "red",
+      "bg": "bright_black",
+      "attrs": []
     }
   }
 }

@@ -122,8 +122,11 @@
       },
       {
         "function": "branch",
+        "args": {
+          "status_colors": true
+        },
         "before": "",
-        "after": " ",
+        "after": "",
         "priority": 30
       },
       {
