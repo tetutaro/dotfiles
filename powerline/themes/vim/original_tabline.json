@@ -46,15 +46,6 @@
         "type": "string",
         "contents": "Buffers",
         "highlight_groups": ["tab:message"]
-      },
-      {
-        "function": "branch",
-        "args": {
-          "status_colors": true
-        },
-        "before": "",
-        "after": "",
-        "priority": 30
       }
     ]
   }
