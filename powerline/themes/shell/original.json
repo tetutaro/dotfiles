@@ -13,7 +13,7 @@
   "segments": {
     "left": [
       {
-        "function": "powerline_widgets.common.poetry_virtualenv",
+        "function": "powerline_widgets.common.virtualenv",
         "args": {
           "ignore_venv": false,
           "ignore_conda": false,

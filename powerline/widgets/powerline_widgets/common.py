@@ -5,7 +5,7 @@ from powerline.theme import requires_segment_info
 
 
 @requires_segment_info
-def poetry_virtualenv(
+def virtualenv(
     pl,
     segment_info,
     ignore_venv=False,
@@ -17,11 +17,6 @@ def poetry_virtualenv(
         for cand in cands:
             if cand == "" or cand in ignored_names:
                 continue
-            sps = [x for x in cand.split("-") if x != ""]
-            if len(sps) > 2:
-                cand = "-".join(sps[:-2])
-            if cand.endswith("-"):
-                cand = cand[:-1]
             return [
                 {
                     "contents": cand,
