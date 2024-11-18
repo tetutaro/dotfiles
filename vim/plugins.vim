@@ -38,6 +38,8 @@ Plug 'tetutaro/vague-input-markdown.vim'
 " Status Line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Copilot
+Plug 'github/copilot.vim'
 call plug#end()
 
 "" setting fotStatus Line

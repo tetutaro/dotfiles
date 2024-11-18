@@ -17,6 +17,10 @@ fi
 if [[ -d ${HOME}/.yarn/bin ]]; then
     export PATH=${PATH}:${HOME}/.yarn/bin
 fi
+# cargo
+if [[ -d ${HOME}/.cargo/bin ]]; then
+    export PATH=${PATH}:${HOME}/.cargo/bin
+fi
 # direnv
 if [[ -f ${HOME}/.config/asdf-direnv/zshrc ]]; then
     source "${HOME}/.config/asdf-direnv/zshrc"

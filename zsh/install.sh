@@ -27,6 +27,12 @@ if [ "${os}" == "Linux" ]; then
     docker completion zsh > ${HOME}/.config/zsh-completions/_docker
 fi
 
+# copy completion of cargo
+cargo_comp="${HOME}/.asdf/rust/$(asdf current rust | sed -e \"s/ \+/\t/g\" | cut -f2)/share/zsh/site-functions/_cargo"
+if [ -f ${cargo_comp} ]; then
+    cp ${cargo_comp} ${HOME}/.config/zsh-completions/_cargo
+fi
+
 ## installation of ZSH
 if [ "${os}" == "Linux" ]; then
     ZSH_PATH="/usr/bin/zsh"

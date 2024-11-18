@@ -14,9 +14,8 @@ fi
 if [[ ! -d "${HOME}/.asdf/installs/fzf" ]]; then
     asdf plugin add fzf https://github.com/kompiro/asdf-fzf.git
     asdf install fzf latest
-    FZF_VERSION=$(echo $(asdf list fzf) | tr -d ' ')
-    .asdf/installs/fzf/${FZF_VERSION}/install --xdg --key-bindings --completion --no-update-rc --no-bash --no-fish
     asdf global fzf latest
+    .asdf/installs/fzf/$(asdf current fzf | sed -e "s/ \+/\t/g" | cut -f2)/install --xdg --key-bindings --completion --no-update-rc --no-bash --no-fish
 fi
 
 # ag (the silver searcher)
@@ -129,11 +128,40 @@ if [[ -z $(command -v pipx) ]]; then
     pipx ensurepath
 fi
 
+# golang
+if [[ -z $(command -v go) ]]; then
+    asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+    asdf install golang latest
+    asdf global golang latest
+fi
+
+# rust
+export RUST_WITHOUT=rust-docs,rust-other-component
+if [[ -z $(command -v rustc) ]]; then
+    asdf plugin add rust https://github.com/asdf-community/asdf-rust.git
+    asdf install rust latest
+    asdf global rust latest
+fi
+
 # direnv
 if [[ ! -d "${HOME}/.asdf/installs/direnv" ]]; then
     asdf plugin add direnv
     asdf direnv setup --shell zsh --version latest
     asdf global direnv latest
+fi
+
+# tig
+if [[ -z $(command -v tig) ]]; then
+    asdf plugin add tig https://github.com/koketani/asdf-tig.git
+    asdf install tig latest
+    asdf global tig latest
+fi
+
+# git-open
+if [[ -z $(command -v git-open) ]]; then
+    asdf plugin add git-open https://github.com/tetutaro/asdf-git-open.git
+    asdf install git-open latest
+    asdf global git-open latest
 fi
 
 # docker

@@ -22,6 +22,10 @@ export XDG_CONFIG_HOME=${HOME}/.config
 export XDG_DATA_HOME=${HOME}/.config
 export XDG_DATA_DIRS=${XDG_DATA_DIRS}:${HOME}/.config/flatpak/exports/share
 export UV_TOOL_BIN_DIR=${HOME}/.local/bin
+export GOBIN=${HOME}/.local/bin
+export GOPATH=${HOME}/goProjects
+export RUST_WITHOUT=rust-docs,rust-other-component
+export CARGO_HOME=${HOME}/.cargo
 export DIRENV_LOG_FORMAT=
 ##########################################################################
 ## aliases

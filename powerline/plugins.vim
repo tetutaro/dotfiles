@@ -35,4 +35,6 @@ Plug 'tetutaro/vague-input-python.vim'
 Plug 'tetutaro/vague-input-markdown.vim'
 " Status Line
 Plug '~/.vim/plugged/powerline.vim'
+" Copilot
+Plug 'github/copilot.vim'
 call plug#end()
