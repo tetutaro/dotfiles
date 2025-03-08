@@ -29,25 +29,25 @@
     font-family: "Noto Sans JP";
     font-style: normal;
     font-weight: normal;
-    src: url("./fonts/noto-sans-jp-v40-latin_japanese-regular.woff2") format("woff2");
+    src: url("./fonts/NotoSansJP-Regular.woff2") format("woff2");
 }
 @font-face {
     font-family: "Noto Sans JP";
     font-style: normal;
     font-weight: bold;
-    src: url("./fonts/noto-sans-jp-v40-latin_japanese-700.woff2") format("woff2");
+    src: url("./fonts/NotoSansJP-Bold.woff2") format("woff2");
 }
 @font-face {
     font-family: "Noto Sans JP";
     font-style: italic;
     font-weight: normal;
-    src: url("./fonts/noto-serif-jp-v19-latin_japanese-regular.woff2") format("woff2");
+    src: url("./fonts/NotoSerifJP-Regular.woff2") format("woff2");
 }
 @font-face {
     font-family: "Noto Sans JP";
     font-style: italic;
     font-weight: bold;
-    src: url("./fonts/noto-serif-jp-v19-latin_japanese-700.woff2") format("woff2");
+    src: url("./fonts/NotoSerifJP-Bold.woff2") format("woff2");
 }
 
 /* define variables */
