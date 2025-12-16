@@ -1,7 +1,3 @@
-# asdf
-if [[ -d ${HOME}/.asdf ]]; then
-    . "${HOME}/.asdf/asdf.sh"
-fi
 # uv
 if [[ $(command -v uv) ]]; then
     eval "$(uv generate-shell-completion zsh)"
@@ -25,3 +21,8 @@ fi
 if [[ -f ${HOME}/.config/asdf-direnv/zshrc ]]; then
     source "${HOME}/.config/asdf-direnv/zshrc"
 fi
+# asdf
+export ASDF_TOOL_VERSIONS_FILENAME=".tool-versions"
+export ASDF_DATA_DIR="${HOME}/.asdf"
+export ASDF_CONFIG_FILE="${HOME}/.asdfrc"
+export PATH="${ASDF_DATA_DIR}/shims:${PATH}"
