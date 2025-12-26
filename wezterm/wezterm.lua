@@ -18,9 +18,27 @@ config.window_padding = {
     top = 0,
     bottom = 0,
 }
+config.colors = {
+    cursor_bg = "#b7becc",
+    cursor_border = "#8a8f99",
+    cursor_fg = "#000000",
+}
 config.harfbuzz_features = {
     "calt=0",
     "clig=0",
     "liga=0",
 }
+config.adjust_window_size_when_changing_font_size = false
+config.disable_default_key_bindings = true
+--wezterm.on('window-resized', function(window, pane)
+--    local window_dims = window:get_dimensions()
+--    local current_height = window_dims.pixel_height
+--    local current_width = window_dims.pixel_width
+--    local screen = wezterm.gui.screens()["active"]
+--    local screen_height = screen.height
+--    local screen_width = screen.width
+--    window:toast_notification("Window Resized", string.format("Screen Width: %d\nScreen Height: %d\nWindow Width: %d\nWindow Height: %d", screen_width, screen_height, current_width, current_height), nil, 4000)
+--end)
+config.keys = require("keybinds").keys
+config.key_tables = require("keybinds").key_tables
 return config
