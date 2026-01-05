@@ -1,0 +1,69 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+      },
+      "models": {
+        "gpt-oss:20b": {
+          "name": "gpt-oss:20b",
+        },
+        "qwen3-vl:8b": {
+          "name": "qwen3-vl:8b",
+        },
+      },
+    },
+  },
+  "mcp": {
+    "spec-workflow": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@pimzino/spec-workflow-mcp@2.1.7",
+        "{env:PWD}",
+      ],
+      "enabled": true,
+    },
+    "serena": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena-mcp-server",
+        "--context",
+        "desktop-app",
+        "--project",
+        "{env:PWD}",
+        "--enable-web-dashboard",
+        "false",
+      ],
+      "enabled": true,
+    },
+    "context7": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp@latest",
+      ],
+      "enabled": true,
+    },
+    "gemini-cli": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "gemini-mcp-tool"
+      ],
+      "enabled": true,
+    },
+  },
+  "model": "github-copilot:GPT-5-mini",
+  "enabled_providers": ["ollama", "github-copilot"],
+}
