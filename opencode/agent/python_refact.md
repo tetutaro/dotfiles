@@ -6,6 +6,7 @@ permission:
     write: allow
     edit: allow
     bash:
+        "*": ask
         pytest: allow
         mypy: allow
         ruff: allow
@@ -16,7 +17,6 @@ permission:
         "make lint": allow
         "make format": allow
         "make tests": allow
-        "*": ask
     webfetch: ask
 ---
 
