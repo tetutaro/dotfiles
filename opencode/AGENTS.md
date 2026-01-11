@@ -1,6 +1,6 @@
 # General
 
-Using following MCP services if needed.
+Use following MCP services if needed.
 
 * context7: Refer the latest documentation of 3rd party Python Libraries.
 * serena: Perform project-wide searches for symbol definitions and references (functions, classes, variables) with high precision.
@@ -39,7 +39,7 @@ Using following MCP services if needed.
 
 ## Python
 
-* **Code Style**: Version 3.11 or latest. Follow Google guidelines for naming and formatting.
+* **Code Style**: Version 3.12 or latest. Follow Google guidelines for naming and formatting.
 * **Type Hints**: Use type annotations with mypy compatibility. Require type hints for all variables.
 * **Explicit Returns and Type Hints**: Every Python function must include an explicit return type hint. If a function returns nothing, you must specify `-> None` in the function signature and explicitly write `return` at the end of the function body. Implicit returns are strictly prohibited.
 * **Explicit Function Calling**: When calling functions, explicitly include the parameter names for every argument passed.
