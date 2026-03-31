@@ -63,7 +63,7 @@ endif
 set mouse=ni  " NORMALモードとINSERTモードでマウスでカーソル移動（ドラッグは無効）
 set ttymouse=xterm2  " マウスで色々なことが出来るように
 set mousefocus  " マウスの場所がフォーカスされる
-set modeline  " モードライン（ファイルの先頭か一番下に書かれているvimの設定）を利用する
+set nomodeline  " モードライン（ファイルの先頭か一番下に書かれているvimの設定）を利用しない
 set modelines=0  " モードラインを読み込む行数（0 なので結局モードラインは使わない）
 set splitright  " ウィンドウを分割する時に新しいウィンドウを右に作る
 set splitbelow  " ウィンドウを分割する時に新しいウィンドウを下に作る
