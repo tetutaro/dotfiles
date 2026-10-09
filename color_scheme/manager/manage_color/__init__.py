@@ -22,11 +22,11 @@ Attributes:
         Your vim config script will read this file.
 """
 
-from typing import List, Optional
 import argparse
 import curses
 import os
 import subprocess
+import traceback
 
 COLOR_SCHEME_SHELL_PATH = '~/.config/color_scheme/shell.sh'
 COLOR_SCHEME_SHELL_DIR = '~/.config/color_scheme/shell'
@@ -94,8 +94,12 @@ class Theme(object):
         return
 
     def run(self) -> None:
-        """run the color scheme script"""
-        subprocess.Popen([self.shell, self.path])
+        """run the color scheme script and wait for it to finish"""
+        subprocess.run(
+            [self.shell, self.path],
+            stdin=subprocess.DEVNULL,
+            check=False,
+        )
 
     def setup(self) -> None:
         """setup the color scheme script"""
@@ -146,7 +150,7 @@ class Theme(object):
         return
 
 
-def get_themes() -> List[Theme]:
+def get_themes() -> list[Theme]:
     if not os.path.islink(
         os.path.expanduser(COLOR_SCHEME_SHELL_DIR)
     ):
@@ -160,7 +164,7 @@ def get_themes() -> List[Theme]:
     ]
 
 
-def get_default_theme() -> Optional[Theme]:
+def get_default_theme() -> Theme | None:
     if not os.path.islink(
         os.path.expanduser(COLOR_SCHEME_SHELL_PATH)
     ):
@@ -213,7 +217,7 @@ class PreviewWindow(Window):
         return
 
     def render(self) -> None:
-        curses.init_pair(0, -1, -1)
+        # color pair 0 is reserved (default colors) and cannot be changed
         attr = curses.color_pair(0)
         self.window.addstr(0, 0, 'BGFG', attr)
         for ci, (fgi, fgt) in enumerate(self.fg_names):
@@ -227,17 +231,18 @@ class PreviewWindow(Window):
                 attr = curses.color_pair(i)
                 self.window.addstr(ri + 1, 4 * (ci + 1), ' xx ', attr)
                 i += 1
+        # the theme script writes escape sequences to the tty directly,
+        # so force curses to repaint every cell
+        self.window.redrawwin()
         self.window.refresh()
         return
 
 
 class SchemeListWindow(Window):
-    themes = get_themes()
-    offset = 0
-    selected = 0
-    window = None
-
     def __init__(self) -> None:
+        self.themes = get_themes()
+        self.offset = 0
+        self.selected = 0
         self.window = curses.newwin(
             self.num_colors, self.scheme_list_columns, 0, 0
         )
@@ -251,7 +256,6 @@ class SchemeListWindow(Window):
             self.selected -= 1
         elif self.offset != 0:
             self.offset -= 1
-        self.render()
 
     def down(self) -> None:
         if (self.offset + self.selected) > (len(self.themes) - 2):
@@ -260,7 +264,6 @@ class SchemeListWindow(Window):
             self.offset += 1
         else:
             self.selected += 1
-        self.render()
         return
 
     def render(self) -> None:
@@ -282,17 +285,14 @@ class SchemeListWindow(Window):
                 line, 0, theme.name, attrs
             )
             line += 1
+        self.window.redrawwin()
         self.window.refresh()
         return
 
 
 class WindowController(Window):
-    stdscr = None
-    scheme_list_window = None
-    preview_window = None
-    default_theme = get_default_theme()
-
     def __init__(self) -> None:
+        self.default_theme = get_default_theme()
         self.scheme_list_window = SchemeListWindow()
         self.preview_window = PreviewWindow()
         return
@@ -314,10 +314,12 @@ class WindowController(Window):
 
     def down(self) -> None:
         self.scheme_list_window.down()
+        self.render()
         return
 
     def up(self) -> None:
         self.scheme_list_window.up()
+        self.render()
         return
 
 
@@ -332,7 +334,6 @@ def run_curses_app() -> None:
     controller = WindowController()
     controller.render()
     while True:
-        controller.render()
         c = stdscr.getch()
         if c == ord('j') or c == curses.KEY_DOWN:
             controller.down()
@@ -382,6 +383,7 @@ keys:
     parser.add_argument(
         '--version',
         action='version',
+        version='%(prog)s 0.6.0',
     )
     parser.parse_args()
     try:
@@ -389,6 +391,7 @@ keys:
     except Exception as e:
         end_run()
         print(e)
+        traceback.print_exc()
     else:
         end_run()
     return
