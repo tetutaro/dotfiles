@@ -1,0 +1,5 @@
+configuration {
+    font: "Noto Sans JP 18";
+    show-icons: true;
+}
+@theme "/usr/share/rofi/themes/fullscreen-preview.rasi"
