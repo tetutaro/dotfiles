@@ -65,10 +65,10 @@ def create_symlink(src: str, dst: str) -> None:
     """
     if not os.path.exists(src):
         raise ValueError("{} is not exists".format(src))
-    if os.path.exists(dst):
-        if not os.path.islink(dst):
-            raise ValueError("{} is not symbolic link".format(dst))
+    if os.path.islink(dst):
         os.remove(dst)
+    elif os.path.exists(dst):
+        raise ValueError("{} is not symbolic link".format(dst))
     print(f'{src} -> {dst}')
     os.symlink(src, dst)
     return

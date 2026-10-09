@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+. "$(cd "$(dirname "$0")/.." && pwd)/lib/link.sh"
 # environment
 os=$(uname -s)
 
@@ -32,13 +33,13 @@ else
 fi
 
 # config files
-ln -sf ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
-ln -sf ${PWD}/tmux.conf ${HOME}/.config/tmux/tmux.conf
+safe_link ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
+safe_link ${PWD}/tmux.conf ${HOME}/.config/tmux/tmux.conf
 if [ "${os}" == "Linux" ]; then
-    ln -sf ${PWD}/copy.ubuntu.conf ${HOME}/.config/tmux/copy.conf
+    safe_link ${PWD}/copy.ubuntu.conf ${HOME}/.config/tmux/copy.conf
 else
-    ln -sf ${PWD}/copy.macosx.conf ${HOME}/.config/tmux/copy.conf
+    safe_link ${PWD}/copy.macosx.conf ${HOME}/.config/tmux/copy.conf
 fi
-ln -sf ${PWD}/status.conf ${HOME}/.config/tmux/status.conf
-ln -sf ${PWD}/style.conf ${HOME}/.config/tmux/style.conf
-ln -sf ${PWD}/tmux-powerline ${HOME}/.config/tmux-powerline
+safe_link ${PWD}/status.conf ${HOME}/.config/tmux/status.conf
+safe_link ${PWD}/style.conf ${HOME}/.config/tmux/style.conf
+safe_link ${PWD}/tmux-powerline ${HOME}/.config/tmux-powerline

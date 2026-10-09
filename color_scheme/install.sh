@@ -1,10 +1,11 @@
 #!/bin/sh
+. "$(cd "$(dirname "$0")/.." && pwd)/lib/link.sh"
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 if [ ! -d ${HOME}/.config/color_scheme ]; then
     mkdir ${HOME}/.config/color_scheme
 fi
-ln -sf ${SCRIPT_DIR}/scripts/color_scheme.sh ${HOME}/.config/color_scheme/color_scheme.sh
+safe_link ${SCRIPT_DIR}/scripts/color_scheme.sh ${HOME}/.config/color_scheme/color_scheme.sh
 cd ${SCRIPT_DIR}/applications/shell && ./install.sh && cd -
 cd ${SCRIPT_DIR}/applications/fzf && ./install.sh && cd -
 cd ${SCRIPT_DIR}/applications/vim && ./install.sh && cd -

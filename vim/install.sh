@@ -1,4 +1,5 @@
 #!/bin/bash
+. "$(cd "$(dirname "$0")/.." && pwd)/lib/link.sh"
 ## OS
 os=$(uname -s)
 
@@ -6,11 +7,11 @@ os=$(uname -s)
 if [ ! -d ${HOME}/.vim ]; then
     mkdir ${HOME}/.vim
 fi
-ln -sf ${PWD}/vimrc ${HOME}/.vim/vimrc
-ln -sf ${PWD}/defaults.vim ${HOME}/.vim/defaults.vim
-ln -sf ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
-ln -sf ${PWD}/keymaps.vim ${HOME}/.vim/keymaps.vim
-ln -sf ${PWD}/gvimrc ${HOME}/.vim/gvimrc
+safe_link ${PWD}/vimrc ${HOME}/.vim/vimrc
+safe_link ${PWD}/defaults.vim ${HOME}/.vim/defaults.vim
+safe_link ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
+safe_link ${PWD}/keymaps.vim ${HOME}/.vim/keymaps.vim
+safe_link ${PWD}/gvimrc ${HOME}/.vim/gvimrc
 if [ ! -f ${HOME}/.vim/colors.vim ]; then
     cp ${PWD}/colors.vim ${HOME}/.vim/colors.vim
 fi

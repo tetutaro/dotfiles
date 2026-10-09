@@ -1,7 +1,5 @@
 #!/bin/bash
+. "$(cd "$(dirname "$0")/../../.." && pwd)/lib/link.sh"
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
-if [ -L ${HOME}/.vim/colors ]; then
-    rm -f ${HOME}/.vim/colors
-fi
-ln -sf ${SCRIPT_DIR}/colors ${HOME}/.vim/colors
+safe_link ${SCRIPT_DIR}/colors ${HOME}/.vim/colors

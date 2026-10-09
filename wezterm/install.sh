@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+. "$(cd "$(dirname "$0")/.." && pwd)/lib/link.sh"
 
 if [[ "x$(flatpak list | grep -i wezterm)" == "x" ]]; then
     flatpak install flathub com.wezfurlong.wezterm
@@ -7,12 +8,7 @@ else
     echo "WezTerm has already installed."
 fi
 
-if [[ ! -e ${HOME}/.config/wezterm/wezterm.lua ]]; then
-    echo "Installing WezTerm configuration file..."
-    mkdir -p ${HOME}/.config/wezterm
-    ln -s ${PWD}/wezterm.lua ${HOME}/.config/wezterm/wezterm.lua
-    ln -s ${PWD}/keybinds.lua ${HOME}/.config/wezterm/keybinds.lua
-    echo "WezTerm configuration file installed"
-else
-    echo "WezTerm configuration file already exists."
-fi
+echo "Installing WezTerm configuration file..."
+safe_link ${PWD}/wezterm.lua ${HOME}/.config/wezterm/wezterm.lua
+safe_link ${PWD}/keybinds.lua ${HOME}/.config/wezterm/keybinds.lua
+echo "WezTerm configuration file installed"

@@ -1,4 +1,5 @@
 #!/bin/bash
+. "$(cd "$(dirname "$0")/.." && pwd)/lib/link.sh"
 ## check dependencies
 os=$(uname -s)
 
@@ -14,22 +15,16 @@ fi
 
 ## install bindings
 POWERLINE_ROOT=$(pipx runpip powerline-status show powerline-status | grep Location | cut -d: -f2 | tr -d ' ')
-ln -sf ${POWERLINE_ROOT}/powerline/bindings ${HOME}/.local/share/powerline-bindings
-ln -sf ${POWERLINE_ROOT}/powerline/bindings/vim ${HOME}/.vim/plugged/powerline.vim
+safe_link ${POWERLINE_ROOT}/powerline/bindings ${HOME}/.local/share/powerline-bindings
+safe_link ${POWERLINE_ROOT}/powerline/bindings/vim ${HOME}/.vim/plugged/powerline.vim
 
 ## rcfiles
-ln -sf ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
-ln -sf ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
+safe_link ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
+safe_link ${PWD}/plugins.vim ${HOME}/.vim/plugins.vim
 if [ ! -d ${HOME}/.config/powerline ]; then
     mkdir ${HOME}/.config/powerline
 fi
-ln -sf ${PWD}/config.json ${HOME}/.config/powerline/config.json
-ln -sf ${PWD}/colors.json ${HOME}/.config/powerline/colors.json
-if [ -L ${HOME}/.config/powerline/themes ]; then
-    rm -f ${HOME}/.config/powerline/themes
-fi
-ln -sf ${PWD}/themes ${HOME}/.config/powerline/themes
-if [ -L ${HOME}/.config/powerline/colorschemes ]; then
-    rm -f ${HOME}/.config/powerline/colorschemes
-fi
-ln -sf ${PWD}/colorschemes ${HOME}/.config/powerline/colorschemes
+safe_link ${PWD}/config.json ${HOME}/.config/powerline/config.json
+safe_link ${PWD}/colors.json ${HOME}/.config/powerline/colors.json
+safe_link ${PWD}/themes ${HOME}/.config/powerline/themes
+safe_link ${PWD}/colorschemes ${HOME}/.config/powerline/colorschemes

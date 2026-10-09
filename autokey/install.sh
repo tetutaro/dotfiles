@@ -1,4 +1,5 @@
 #!/bin/bash
+. "$(cd "$(dirname "$0")/.." && pwd)/lib/link.sh"
 ## check dependencies
 os=$(uname -s)
 if [ "${os}" != "Linux" ]; then
@@ -13,12 +14,6 @@ fi
 if [ ! -d ${HOME}/.config/autokey ]; then
     mkdir -p ${HOME}/.config/autokey
 fi
-if [ -e ${HOME}/.config/autokey/autokey.json ]; then
-    rm -f ${HOME}/.config/autokey/autokey.json
-fi
-ln -sf ${PWD}/autokey.json ${HOME}/.config/autokey/autokey.json
+safe_link ${PWD}/autokey.json ${HOME}/.config/autokey/autokey.json
 
-if [ -e ${HOME}/.config/autokey/data ]; then
-    rm -rf ${HOME}/.config/autokey/data
-fi
-ln -sf ${PWD}/data ${HOME}/.config/autokey/data
+safe_link ${PWD}/data ${HOME}/.config/autokey/data

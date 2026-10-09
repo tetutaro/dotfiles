@@ -1,25 +1,26 @@
 #!/bin/bash
+. "$(cd "$(dirname "$0")/.." && pwd)/lib/link.sh"
 
 ## get system name
 os=$(uname -s)
 
 ## ZSHRCs
-ln -sf ${PWD}/zshrc ${HOME}/.zshrc
+safe_link ${PWD}/zshrc ${HOME}/.zshrc
 if [[ ! -d ${HOME}/.config/zsh ]]; then
     mkdir ${HOME}/.config/zsh
 fi
-ln -sf ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
-ln -sf ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
-ln -sf ${PWD}/fzf.zsh ${HOME}/.config/zsh/fzf.zsh
-ln -sf ${PWD}/cdp.zsh ${HOME}/.config/zsh/cdp.zsh
-ln -sf ${PWD}/anyenv.zsh ${HOME}/.config/zsh/anyenv.zsh
+safe_link ${PWD}/prompt.zsh ${HOME}/.config/zsh/prompt.zsh
+safe_link ${PWD}/tmux.zsh ${HOME}/.config/zsh/tmux.zsh
+safe_link ${PWD}/fzf.zsh ${HOME}/.config/zsh/fzf.zsh
+safe_link ${PWD}/cdp.zsh ${HOME}/.config/zsh/cdp.zsh
+safe_link ${PWD}/anyenv.zsh ${HOME}/.config/zsh/anyenv.zsh
 
 ## completion of ZSH
 if [ ! -d ${HOME}/.config/zsh-completions ]; then
     mkdir ${HOME}/.config/zsh-completions
 fi
 for f in ${PWD}/zsh-completions/*; do
-    ln -sf $f ${HOME}/.config/zsh-completions/${f##*/}
+    safe_link $f ${HOME}/.config/zsh-completions/${f##*/}
 done
 
 # create completion of docker
