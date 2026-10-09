@@ -14,6 +14,6 @@ fi
 if [ ! -d ${HOME}/.config/autokey ]; then
     mkdir -p ${HOME}/.config/autokey
 fi
-safe_link ${PWD}/autokey.json ${HOME}/.config/autokey/autokey.json
 
+# safe_link ${PWD}/autokey.json ${HOME}/.config/autokey/autokey.json
 safe_link ${PWD}/data ${HOME}/.config/autokey/data
