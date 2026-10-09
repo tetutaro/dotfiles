@@ -34,9 +34,9 @@ function __cdp_widget() {
         dir=$(echo ${(F)${(@Q)${(z)$(__list_projects)}}} | ${FZF_COMMAND} --prompt "Project > " --preview "tree -L 1 -N ${PROJECT_TOP_DIR}/{} | head -n 40" --preview-window right:50%:nowrap:hidden --bind "?:toggle-preview" --query "${arg}")
         if [[ "${dir}" != "" ]]; then
             pushd "${PROJECT_TOP_DIR}/${dir}" >/dev/null
+            # clear the buffer first so that accept-line does not re-run "cdp xx"
+            BUFFER=""
             zle accept-line
-            LBUFFER=""
-            RBUFFER=""
         else
             zle reset-prompt
             LBUFFER=""

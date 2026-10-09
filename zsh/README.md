@@ -67,7 +67,7 @@ example)
           └── project-d/
 ```
 * `PROJECT_TOP_DIR` = ~/Projects
-* `PROJECT_DEPTH_FROM_TOP` = 3
+* `PROJECT_DEPTH_FROM_TOP` = 2
 
 ### spec of `cdp`
 

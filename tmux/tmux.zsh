@@ -2,6 +2,13 @@ export TERM="tmux-256color"
 export FZF_TMUX=1
 export FZF_COMMAND="fzf-tmux"
 
+# mise 版 fzf には fzf-tmux が含まれないため、fzf 本体の --tmux で代替する
+if [[ -z $(command -v fzf-tmux) ]]; then
+    function fzf-tmux() {
+        fzf --tmux "$@"
+    }
+fi
+
 function __extract_project_from_pwd() {
     local -a new_prj ctp
     ctp=${PWD##$(echo ${PROJECT_TOP_DIR})}
