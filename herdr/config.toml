@@ -1,0 +1,33 @@
+# herdr configuration (keys ported from tmux/tmux.conf)
+onboarding = false
+
+[theme]
+# follow the host terminal's ANSI palette (managed by color_scheme)
+name = "one-dark"
+
+auto_switch = false
+[terminal]
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+space"
+detach = "prefix+d"
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+close_pane = "prefix+q"
+split_vertical = "prefix+\\"
+split_horizontal = "prefix+minus"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+new_tab = "prefix+n"
+next_tab = "prefix+f"
+previous_tab = "prefix+b"
+workspace_picker = "prefix+p"
+toggle_sidebar = "prefix+shift+b"
+
+[ui]
+mouse_capture = true
+copy_on_select = true
+status_indicators = "dots"

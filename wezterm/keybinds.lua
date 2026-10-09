@@ -204,6 +204,7 @@ return {
       { key = 'k', mods = 'NONE', action = act.CopyMode 'MoveUp' },
       { key = 'l', mods = 'NONE', action = act.CopyMode 'MoveRight' },
       { key = 'm', mods = 'ALT', action = act.CopyMode 'MoveToStartOfLineContent' },
+      { key = 'n', mods = 'ALT', action = act.SpawnWindow },
       { key = 'o', mods = 'NONE', action = act.CopyMode 'MoveToSelectionOtherEnd' },
       { key = 'q', mods = 'NONE', action = act.CopyMode 'Close' },
       { key = 't', mods = 'NONE', action = act.CopyMode{ JumpForward = { prev_char = true } } },

@@ -10,6 +10,21 @@ if [[ ! -d "${HOME}/.asdf" ]]; then
     . "${HOME}/.asdf/asdf.sh"
 fi
 
+# zsh
+if [ "${os}" == "Linux" ]; then
+    ZSH_PATH="/usr/bin/zsh"
+else
+    ZSH_PATH="/usr/local/bin/zsh"
+fi
+if [[ ! -x ${ZSH_PATH} ]]; then
+    if [ "${os}" == "Linux" ]; then
+        sudo apt install zsh
+    else
+        brew install zsh
+    fi
+    chsh -s ${ZSH_PATH}
+fi
+
 # fzf
 if [[ ! -d "${HOME}/.asdf/installs/fzf" ]]; then
     asdf plugin add fzf https://github.com/kompiro/asdf-fzf.git

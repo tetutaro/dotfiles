@@ -28,24 +28,7 @@ if [ "${os}" == "Linux" ]; then
 fi
 
 # copy completion of cargo
-cargo_comp="${HOME}/.asdf/rust/$(asdf current rust | sed -e \"s/ \+/\t/g\" | cut -f2)/share/zsh/site-functions/_cargo"
-if [ -f ${cargo_comp} ]; then
-    cp ${cargo_comp} ${HOME}/.config/zsh-completions/_cargo
-fi
-
-## installation of ZSH
-if [ "${os}" == "Linux" ]; then
-    ZSH_PATH="/usr/bin/zsh"
-else
-    ZSH_PATH="/usr/local/bin/zsh"
-fi
-if [[ ! -x ${ZSH_PATH} ]]; then
-    if [ "${os}" == "Linux" ]; then
-        sudo apt install zsh
-    else
-        brew install zsh
-    fi
-    chsh -s ${ZSH_PATH}
-else
-    echo "zsh is already installed"
-fi
+# cargo_comp="${HOME}/.asdf/rust/$(asdf current rust | sed -e \"s/ \+/\t/g\" | cut -f2)/share/zsh/site-functions/_cargo"
+# if [ -f ${cargo_comp} ]; then
+#     cp ${cargo_comp} ${HOME}/.config/zsh-completions/_cargo
+# fi

@@ -17,7 +17,7 @@ export LC_MONETARY=ja_JP.UTF-8
 export LC_NUMERIC=ja_JP.UTF-8
 export LC_TIME=ja_JP.UTF-8
 export LESSCHARSET=UTF-8
-export EDITOR=$(which vim)
+export EDITOR="vim"
 export XDG_CONFIG_HOME=${HOME}/.config
 export XDG_DATA_HOME=${HOME}/.config
 export XDG_DATA_DIRS=${XDG_DATA_DIRS}:${HOME}/.config/flatpak/exports/share
@@ -47,6 +47,7 @@ if [[ ${os} == "Linux" ]]; then
     alias pbcopy="xsel --input --clipboard"
     alias pbpaste="xsel --output --clipboard"
     alias open="xdg-open"
+    alias vi="vim"
 elif [[ ${os} == "Darwin" ]]; then
     export SHELL=/usr/local/bin/zsh
     alias ls="ls -FGv"
