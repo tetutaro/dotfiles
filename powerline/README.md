@@ -26,7 +26,7 @@ But I decided to use [powerline](https://github.com/powerline/powerline).  The r
 ## What this does
 
 * install powerline (powerline-status) with pipx (if it has not been installed)
-* install original widgets of powerline
+* install original widgets of powerline (always (re)installed, even if powerline already exists)
 * create symbolic links of powerline bindings and powerline vim plugin
     * `${POWERLINE_ROOT}/powerline/bindings` -> `~/.local/share/powerline-bindings`
     * `${POWERLINE_ROOT}/powerline/bindings/vim` -> `~/.vim/plugged/powerline.vim`

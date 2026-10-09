@@ -8,10 +8,12 @@ if [ -z $(command -v powerline) ]; then
     pipx install powerline-status
     pipx inject powerline-status pip
     pipx runpip powerline-status install pygit2 psutil
-    cd widgets && ./install.sh && cd -
 else
     echo "powerline server is already installed"
 fi
+
+## original widgets (always (re)install: powerline fails silently without them)
+(cd widgets && ./install.sh)
 
 ## install bindings
 POWERLINE_ROOT=$(pipx runpip powerline-status show powerline-status | grep Location | cut -d: -f2 | tr -d ' ')
