@@ -18,9 +18,6 @@ export LC_NUMERIC=ja_JP.UTF-8
 export LC_TIME=ja_JP.UTF-8
 export LESSCHARSET=UTF-8
 export EDITOR="vim"
-export XDG_CONFIG_HOME=${HOME}/.config
-export XDG_DATA_HOME=${HOME}/.config
-export XDG_DATA_DIRS=${XDG_DATA_DIRS}:${HOME}/.config/flatpak/exports/share
 export UV_TOOL_BIN_DIR=${HOME}/.local/bin
 export GOBIN=${HOME}/.local/bin
 export GOPATH=${HOME}/goProjects
@@ -42,6 +39,12 @@ alias gd="dirs -v;echo -n 'select number: ';read newdir;cd $newdir"
 os=$(uname -s)
 if [[ ${os} == "Linux" ]]; then
     export SHELL=/usr/bin/zsh
+    export XDG_CONFIG_HOME=${HOME}/.config
+    export XDG_DATA_HOME=${HOME}/.config
+    export XDG_DATA_DIRS=/usr/share/budgie-desktop:/usr/share:/var/lib/snapd/desktop:/var/lib/flatpak/exports/share
+    if [[ -d "${HOME}/.config/flatpak/exports/share" ]]; then
+        export XDG_DATA_DIRS=${XDG_DATA_DIRS}:${HOME}/.config/flatpak/exports/share
+    fi
     alias ls="ls --color -Fv"
     alias ll="ls --color -AFhlv"
     alias pbcopy="xsel --input --clipboard"
