@@ -4,6 +4,9 @@ os=$(uname -s)
 
 cd ${HOME}
 
+sudo apt update
+sudo apt install -y build-essential
+
 # mise itself
 if [[ ! -f "${HOME}/.local/bin/mise" ]]; then
     curl -fsSL https://mise.run | sh
@@ -22,12 +25,6 @@ if [[ ! -x ${ZSH_PATH} ]]; then
         brew install zsh
     fi
     chsh -s ${ZSH_PATH}
-fi
-
-# vim
-if [[ -z $(command -v vim) ]]; then
-    mise install vim@latest
-    mise use vim@latest
 fi
 
 # fzf
@@ -63,16 +60,30 @@ if [[ "${os}" == "Linux" ]]; then
     fi
 fi
 
+# tmux
+if [[ -z $(command -v tmux) ]]; then
+    mise install tmux@latest
+    mise use tmux@latest
+fi
+
+# rust
+if [[ -z $(command -v rust) ]]; then
+    mise install rust@1.99.0
+    mise use rust@1.99.0
+fi
+
 # herdr
 if [[ -z $(command -v herdr) ]]; then
     mise install herdr@latest
     mise use herdr@latest
+    herdr plugin install -y iiii1224/herdr-statusline > /dev/null 2>&1
+    hsl > /dev/null 2>&1
 fi
 
-# uv
-if [[ -z $(command -v uv) ]]; then
-    mise install uv@latest
-    mise use uv@latest
+# vim
+if [[ -z $(command -v vim) ]]; then
+    mise install vim@latest
+    mise use vim@latest
 fi
 
 # python
@@ -81,16 +92,22 @@ if [[ ! -d ${HOME}/.local/share/mise/installs/python ]]; then
     mise use python@3.13.16
 fi
 
-# nodejs
-if [[ -z $(command -v node) ]]; then
-    mise install node@24.21.0
-    mise use node@24.21.0
+# uv
+if [[ -z $(command -v uv) ]]; then
+    mise install uv@latest
+    mise use uv@latest
 fi
 
 # pipx
 if [[ -z $(command -v pipx) ]]; then
     uv tool install pipx
     pipx ensurepath
+fi
+
+# nodejs
+if [[ -z $(command -v node) ]]; then
+    mise install node@24.21.0
+    mise use node@24.21.0
 fi
 
 # yarn
@@ -101,6 +118,12 @@ fi
 # typescript-language-server
 if [[ -z $(command -v typescript-language-server) ]]; then
     yarn global add typescript typescript-language-server
+fi
+
+# golang
+if [[ -z $(command -v go) ]]; then
+    mise install golang@1.27.2
+    mise use golang@1.27.2
 fi
 
 # docker
@@ -128,7 +151,7 @@ EOF
         sudo apt update
         export NVIDIA_CONTAINER_TOOLKIT_VERSION=1.20.1-1 sudo apt-get install -y nvidia-container-toolkit=${NVIDIA_CONTAINER_TOOLKIT_VERSION} nvidia-container-toolkit-base=${NVIDIA_CONTAINER_TOOLKIT_VERSION} libnvidia-container-tools=${NVIDIA_CONTAINER_TOOLKIT_VERSION} libnvidia-container1=${NVIDIA_CONTAINER_TOOLKIT_VERSION}
         sudo nvidia-ctk runtime configure --runtime=docker
-	sudo systemctl restart docker
+	    sudo systemctl restart docker
     fi
 fi
 

@@ -4,6 +4,9 @@ os=$(uname -s)
 
 cd ${HOME}
 
+sudo apt update
+sudo apt install -y build-essential
+
 # asdf itself
 if [[ ! -d "${HOME}/.asdf" ]]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
@@ -86,6 +89,22 @@ if [[ -z $(command -v tmux) ]]; then
     asdf global tmux latest
 fi
 
+# rust
+export RUST_WITHOUT=rust-docs,rust-other-component
+if [[ -z $(command -v rustc) ]]; then
+    asdf plugin add rust https://github.com/asdf-community/asdf-rust.git
+    asdf install rust latest
+    asdf global rust latest
+fi
+
+# herdr
+if [[ -z $(command -v herdr) ]]; then
+    asdf install herdr latest
+    asdf global herdr latest
+    herdr plugin install -y iiii1224/herdr-statusline > /dev/null 2>&1
+    hsl > /dev/null 2>&1
+fi
+
 # vim
 # cannot enable clipboard support so use apt
 #if [[ ! -d "${HOME}/.asdf/installs/vim" ]]; then
@@ -105,6 +124,20 @@ if [[ -z $(command -v vim) ]]; then
     else
         brew install vim
     fi
+fi
+
+# uv
+if [[ ! -d "${HOME}/.asdf/installs/uv" ]]; then
+    asdf plugin add uv https://github.com/b1-luettje/asdf-uv.git
+    asdf install uv latest
+    asdf global uv latest
+    uv python install 3.11.10
+fi
+
+# pipx
+if [[ -z $(command -v pipx) ]]; then
+    uv tool install pipx
+    pipx ensurepath
 fi
 
 # nodejs
@@ -129,33 +162,11 @@ if [[ -z $(command -v typescript-language-server) ]]; then
     yarn global add typescript typescript-language-server
 fi
 
-# uv
-if [[ ! -d "${HOME}/.asdf/installs/uv" ]]; then
-    asdf plugin add uv https://github.com/b1-luettje/asdf-uv.git
-    asdf install uv latest
-    asdf global uv latest
-    uv python install 3.11.10
-fi
-
-# pipx
-if [[ -z $(command -v pipx) ]]; then
-    uv tool install pipx
-    pipx ensurepath
-fi
-
 # golang
 if [[ -z $(command -v go) ]]; then
     asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
     asdf install golang latest
     asdf global golang latest
-fi
-
-# rust
-export RUST_WITHOUT=rust-docs,rust-other-component
-if [[ -z $(command -v rustc) ]]; then
-    asdf plugin add rust https://github.com/asdf-community/asdf-rust.git
-    asdf install rust latest
-    asdf global rust latest
 fi
 
 # direnv
