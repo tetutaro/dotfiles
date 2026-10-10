@@ -30,10 +30,10 @@ toggle_sidebar = "prefix+shift+b"
 [[keys.command]]
 key = "prefix+s"
 type = "popup"
-description = "Workspace Switcher Popup"
+description = "Session Switcher Popup"
 width = "50%"
 height = "40%"
-command = "~/.config/herdr/scripts/popup_workspace.sh"
+command = "~/.config/herdr/scripts/popup_session.zsh"
 
 [ui]
 mouse_capture = true
