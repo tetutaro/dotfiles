@@ -52,7 +52,7 @@
     * default Project には default-1 と default-2 の session がある（２個以上の session がある）ため、default-1 の session を stop・delete し、terminal を閉じる
     * default Project には default-2 という session しか無くなる
 * さらに default-2 の terminal を exit した場合
-    * default Project には default-2 というひとつの session しかないので、default-2 は残し、detach のみを行って terminal を閉じる
+    * default Project には default-2 というひとつの session しかないので、default-2 は stop するが delete はせずに残し、terminal を閉じる
 * さらに新しく terminal を立ち上げた場合
     * 新しい terminal は CWD が \${HOME} なので default Project に属し、default-2 が残っており、かつ default-2 は誰も attach していないので、新しい terminal は default-2 に attach する
 * さらに新しい terminal を立ち上げた場合
@@ -65,7 +65,7 @@
     * その pane（AI Agent など）を閉じるだけ
 * session の最後の pane で exit した場合
     * 同じ Project の session が２個以上ある場合は、その session を stop・delete して terminal を閉じる
-    * 同じ Project の session がひとつしか無い場合は、session は残して detach のみを行い terminal を閉じる
+    * 同じ Project の session がひとつしか無い場合は、session は stop するが delete はせずに残し、terminal を閉じる
 * `force-exit` は、他の pane や同じ Project の session の有無に関係なく、その session を stop・delete して terminal を閉じる（herdr の外では単に shell を終了する）
 
 ## 別 Project への移動（cd / cdp）の取り扱い
