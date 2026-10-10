@@ -216,14 +216,44 @@ function __herdr_detach() {
     return 1
 }
 
-# exiting the last pane of the session closes the terminal: remove the
-# session if the project has another one, else keep it and only detach.
+# stop session ${1} and delete it if ${2} is "delete", in the background.
+# the job must outlive this shell, the herdr server and the terminal, which
+# all end with the stop (the terminal closes with its herdr client): a job of
+# this shell stays in the cgroup of the terminal (e.g. the systemd scope of a
+# ghostty surface) and in the session of the pane, and is killed with them.
+# so run it as a transient service of the user manager (output in the journal:
+# journalctl --user -u 'herdr-stop-*'), else at least in its own session
+function __herdr_stop_session() {
+    local herdr=${commands[herdr]} script
+    [[ -n ${herdr} ]] || return 1
+    # delete refuses a session until its server has stopped
+    script='
+        "$1" session stop "$2"
+        [[ $3 == delete ]] || exit 0
+        for i in {1..100}; do
+            "$1" session delete "$2" && exit 0
+            sleep 0.1
+        done
+        exit 1'
+    # the herdr of mise is not in the PATH of the user manager: pass its path
+    if (( ${+commands[systemd-run]} )) && systemd-run --user --collect --quiet \
+        --unit=herdr-stop-$$-${RANDOM} --description="stop herdr session ${1}" \
+        ${commands[zsh]:-zsh} -c ${script} zsh ${herdr} ${1} "${2}" &>/dev/null; then
+        return 0
+    fi
+    (( ${+commands[setsid]} )) || return 1
+    setsid -f nohup zsh -c ${script} zsh ${herdr} ${1} "${2}" &>/dev/null < /dev/null
+}
+
+# exiting the last pane of the session closes the terminal: stop the session,
+# and remove it if the project has another one (else it is resumed by the
+# next terminal of the project, see __herdr_pick_session).
 # only for the interactive shell itself: not in subshells ("(... || exit 1)")
 # nor in non-interactive shells importing this function (e.g. the shell
 # snapshot of an AI agent running in a pane)
 function exit() {
     if [[ ${HERDR_ENV} == 1 && -o interactive ]] && (( ZSH_SUBSHELL == 0 )); then
-        local name cnt
+        local name cnt mode
         name=$(__herdr_session_name)
         cnt=$(herdr workspace list 2>/dev/null \
             | jq -r '[.result.workspaces[].pane_count] | add' 2>/dev/null)
@@ -231,19 +261,8 @@ function exit() {
             cnt=$(herdr session list --json 2>/dev/null \
                 | jq -r --arg p "${HERDR_PROJECT}" \
                 '[.sessions[].name | select(startswith($p + "-") and (ltrimstr($p + "-") | test("^[0-9]+$")))] | length')
-            if (( cnt >= 2 )); then
-                # outlive the server being stopped, which ends this shell: a
-                # disowned job of the interactive shell has its own process
-                # group, nohup ignores the hangup of the terminal and the
-                # redirections detach it from the terminal
-                nohup zsh -c '
-                    herdr session stop "$1"
-                    for i in {1..50}; do
-                        herdr session delete "$1" && break
-                        sleep 0.1
-                    done' zsh ${name} &>/dev/null < /dev/null &!
-                return 0
-            fi
+            (( cnt >= 2 )) && mode=delete
+            __herdr_stop_session ${name} ${mode} && return 0
             __herdr_detach && return 0
             print -u2 -- "last pane of session '${name}': detach with prefix+d, or use force-exit"
             return 1
