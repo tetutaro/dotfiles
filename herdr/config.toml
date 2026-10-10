@@ -41,3 +41,5 @@ copy_on_select = true
 status_indicators = "dots"
 sidebar_start_collapsed = true
 sidebar_collapsed_mode = "hidden"
+# tabs are shown in the herdr-statusline instead
+hide_tab_bar_when_single_tab = true

@@ -10,3 +10,4 @@ safe_link ${PWD}/config.toml ${HOME}/.config/herdr/config.toml
 safe_link ${PWD}/scripts ${HOME}/.config/herdr/scripts
 mkdir -p ${HOME}/.config/herdr/plugins/config/herdr-statusline
 safe_link ${PWD}/herdr-statusline/config.toml ${HOME}/.config/herdr/plugins/config/herdr-statusline/config.toml
+safe_link ${PWD}/herdr-statusline/powerline-tabs.sh ${HOME}/.config/herdr/plugins/config/herdr-statusline/powerline-tabs.sh
