@@ -3,33 +3,21 @@
 # environment
 os=$(uname -s)
 
-if [ ! -d ${HOME}/.config/tmux ]; then
-    mkdir ${HOME}/.config/tmux
-fi
-
 # tmux plugins
 if [ ! -d ${HOME}/.config/tmux/plugins ]; then
-    mkdir ${HOME}/.config/tmux/plugins
+    mkdir -p ${HOME}/.config/tmux/plugins
 fi
 if [ ! -d ${HOME}/.config/tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm.git ~/.config/tmux/plugins/tpm
-else
-    echo "tpm is already installed"
 fi
 if [ ! -d ${HOME}/.config/tmux/plugins/tmux-copycat ]; then
     git clone https://github.com/tmux-plugins/tmux-copycat.git ~/.config/tmux/plugins/tmux-copycat
-else
-    echo "tmux-copycat is already installed"
 fi
 if [ ! -d ${HOME}/.config/tmux/plugins/tmux-sidebar ]; then
     git clone https://github.com/tmux-plugins/tmux-sidebar.git ~/.config/tmux/plugins/tmux-sidebar
-else
-    echo "tmux-sidebar is already installed"
 fi
 if [ ! -d ${HOME}/.config/tmux/plugins/tmux-powerline ]; then
     git clone https://github.com/erikw/tmux-powerline.git ~/.config/tmux/plugins/tmux-powerline
-else
-    echo "tmux-powerline is already installed"
 fi
 
 # config files
