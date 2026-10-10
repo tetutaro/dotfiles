@@ -271,7 +271,17 @@ function exit() {
     builtin exit "$@"
 }
 
+# stop and delete the session of this terminal whatever the panes and the
+# other sessions of the project are, which closes the terminal (outside
+# herdr, or if it cannot be stopped, just exit the shell)
 function force-exit() {
+    if [[ ${HERDR_ENV} == 1 && -o interactive ]] && (( ZSH_SUBSHELL == 0 )); then
+        local name
+        name=$(__herdr_session_name)
+        if [[ ${name} == *-<-> ]] && __herdr_stop_session ${name} delete; then
+            return 0
+        fi
+    fi
     builtin exit "$@"
 }
 

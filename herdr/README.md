@@ -66,7 +66,7 @@
 * session の最後の pane で exit した場合
     * 同じ Project の session が２個以上ある場合は、その session を stop・delete して terminal を閉じる
     * 同じ Project の session がひとつしか無い場合は、session は残して detach のみを行い terminal を閉じる
-* 強制的に shell を終了したい場合は `force-exit` を使う
+* `force-exit` は、他の pane や同じ Project の session の有無に関係なく、その session を stop・delete して terminal を閉じる（herdr の外では単に shell を終了する）
 
 ## 別 Project への移動（cd / cdp）の取り扱い
 
