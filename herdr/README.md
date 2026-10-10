@@ -101,6 +101,7 @@
 
 * prefix+s で起動する popup では、terminal の session（`<project_name>-<N>` という名前の session）の一覧を表示し、選んだ session に terminal を切り替える
     * herdr 自身の default session（名前なしの session。削除できない）などは表示しない
+    * 一覧は Project 名・番号の順に上から並べ、カーソルは最初から current の session に置く
     * 各 session には状態を表示する
         * current: この terminal が attach している session
         * attached: 他の terminal が attach している session

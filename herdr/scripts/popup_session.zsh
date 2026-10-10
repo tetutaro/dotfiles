@@ -4,8 +4,15 @@
 # helpers (only builtin exit is used here: tmux.zsh overrides exit)
 source ~/.config/zsh/tmux.zsh
 
-selected=$(__herdr_session_rows | column -t -s $'\t' \
-    | fzf --header "Select Session") || builtin exit 0
+rows=(${(f)"$(__herdr_session_rows)"})
+# start on the row of the current session
+cur=${rows[(i)*[[:space:]]current]}
+(( cur > ${#rows} )) && cur=1
+# --no-tac/--layout: list in the sorted order from the top whatever
+# FZF_DEFAULT_OPTS says (it has --tac)
+selected=$(print -rl -- ${rows} | column -t -s $'\t' \
+    | fzf --no-tac --layout=reverse --header "Select Session" \
+        --bind "load:pos(${cur})") || builtin exit 0
 name=${${(z)selected}[1]}
 state=${${(z)selected}[2]}
 case ${state} in
