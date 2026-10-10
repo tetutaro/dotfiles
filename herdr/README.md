@@ -2,9 +2,25 @@
 
 ## 基本概念
 
-* Project は Project Directory (\${HOME}/Projects/*/<project\_name>/) に対応するものとする
-    * Project Directory より上の階層の Directory はすべて default Project に属するものとする
-    * すなわち、\${HOME}/Projects/a/project_a/ は project_a Project であり、\${HOME} や /（root directory）は default Project である
+### Project Directory の定義（大前提）
+
+* Project Directory は \${PROJECT\_TOP\_DIR}（= \${HOME}/Projects）の下の、ちょうど２階層目の Directory（\${HOME}/Projects/*/<project\_name>/）だけとする
+    * Project Directory であるための条件は「\${HOME}/Projects の下にあること」と「\${HOME}/Projects から２階層目であること」の両方である
+    * \${HOME} から見た階層の深さは関係ない。\${HOME}/Projects の外にある Directory は、どれだけ深くても Project Directory にはならない
+* Project は Project Directory に対応するものとし、Project 名は Project Directory の名前（`<project_name>`）とする
+    * Project Directory とその sub directory は、すべてその Project に属する
+* Project Directory 以下に無い Directory は、すべて default Project に属する
+    * \${HOME}/Projects/ の外にある Directory（\${HOME}、/（root directory）、\${HOME}/config/c/d など）
+    * \${HOME}/Projects/ の下でも、Project Directory より上の階層の Directory（\${HOME}/Projects/、\${HOME}/Projects/a/ など）
+* 例
+    * \${HOME}/Projects/a/project\_a/ と \${HOME}/Projects/a/project\_a/src/ は project\_a Project
+    * \${HOME}/Projects/a/b/ は b Project（\${HOME}/Projects の下の２階層目なので Project Directory）
+    * \${HOME}/config/c/d/ は default Project（\${HOME} から２階層下だが \${HOME}/Projects の下ではないので Project Directory ではない）
+    * \${HOME}、/、\${HOME}/Projects/、\${HOME}/Projects/a/ は default Project
+* 以下の説明で「CWD から Project を求める」「移動先の Directory から Project を求める」とは、すべてこの定義に従って Project を決めることを指す
+
+### herdr との対応
+
 * terminal は herdr の session に対応するものとする
     * session 名は `<project_name>-<N>`（N は 1 から始まる番号）とする
     * session 内の Workspace の label は `<project_name>`、Tab の label は `<N>` とする
@@ -21,10 +37,13 @@
 ## session の取り扱い
 
 * 各 Project のソースコードは Project Directory (\${HOME}/Projects/*/<project\_name>/) 以下に配置する
-* Project Directory より上の階層の directory は全て default Project とする。
-* terminal を立ち上げた時は、CWD から Project を求め、以下の順で `<project_name>-N` の session を選んで attach する
+* Project Directory 以下に無い Directory（\${HOME}/Projects の外の Directory を含む）は全て default Project とする
+* terminal を立ち上げた時は、CWD から（「Project Directory の定義」に従って）Project を求め、以下の順で `<project_name>-N` の session を選んで attach する
     1. 既に存在し（running / stopped どちらでも）、誰も attach していない session があれば、その中で N が最小のもの
     2. 無ければ、まだ存在しない最小の N で新しく session を作る
+* session の pane の shell が、その session の Project に属さない Directory で起動した場合は、その Project の Project Directory（default Project なら \${HOME}）に移動する
+    * 例: 最後の pane が終了した session では herdr が \${HOME} で pane を作り直すが、project\_b-1 ならその pane は \${HOME}/Projects/*/project\_b/ に移動する
+    * そのため、既存の session に attach した時に、label は project\_b なのに pane が \${HOME} にいる、ということは起きない
 * herdr に何も session が無い時に terminal を立ち上げた場合
     * その terminal の CWD は \${HOME} であるため default Project に属するので、default-1 という session を作成し、その terminal は default-1 に attach する
 * さらに新しく terminal を立ち上げた場合
@@ -58,12 +77,15 @@
 * 同じ Project 内での移動の場合
     * 何もしない（Project Directory 以下の sub directory 間の移動など）
     * 例: project_a-1 の terminal で `cd ~/Projects/a/project_a/src` しても session は変わらない
+    * 例: default-1 の terminal で `cd ~/config/c/d` しても、\${HOME}/Projects の外なので default Project 内の移動であり、session は default-1 のまま変わらない
+    * 例: default-1 の terminal で `cd ~/Projects/a` しても、Project Directory より上の階層なので default Project 内の移動であり、session は変わらない
     * 例: project_a の sub directory で `cdp`（引数なし）を実行すると project_a の Project Directory に移動するだけで、session は変わらない
 * 別 Project への移動の場合
     * 現在の session から detach し、同じ terminal で移動先 Project の session（terminal を立ち上げた時と同じ規則で選ぶ）に attach し直す
         * 例: default-1 の terminal で `cd ~/Projects/a/project_a` すると、その terminal は project_a-1 に attach する
         * 例: default-1 の terminal で `cdp project_b` として project_b を選ぶと、その terminal は project_b-1 に attach する
         * 例: project_a-1 の terminal で `cd`（\${HOME} への移動）すると、default Project への移動なので、その terminal は default Project の session に attach する
+        * 例: project_a-1 の terminal で `cd ~/config/c/d` すると、\${HOME}/Projects の外なので default Project への移動となり、その terminal は default Project の session に attach する
         * 例: project_a の外（\${HOME} など）で `cdp`（引数なし）を実行すると \${PROJECT\_TOP\_DIR} に移動するが、これは default Project なので、default Project の session にいれば session は変わらない
     * 移動先 Project の session を新しく作る場合、その session は移動先の Directory で開始する
     * 移動先 Project に誰も attach していない既存の session がある場合はそれに attach する。その session の pane の Directory は、その session で最後にいた Directory のままとなる（移動先の Directory には移動しない）

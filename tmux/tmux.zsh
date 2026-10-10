@@ -11,11 +11,13 @@ fi
 
 function __extract_project_from_pwd() {
     local -a new_prj ctp
-    ctp=${PWD##$(echo ${PROJECT_TOP_DIR})}
+    # compare with a trailing slash so that siblings like ~/Projects-old
+    # are not taken as being under ${PROJECT_TOP_DIR}
+    ctp=${PWD#${PROJECT_TOP_DIR}/}
     if [[ "${PWD}" == "${ctp}" ]]; then
         new_prj="default"
     else
-        if [[ ${#${(ps:/:)ctp}} -lt ${PROJECT_DEPTH_FROM_TOP} ]]; then
+        if [[ ${(w)#${(ps:/:)ctp}} -lt ${PROJECT_DEPTH_FROM_TOP} ]]; then
             new_prj="default"
         else
             new_prj=${${(s:/:)ctp}[(w)${PROJECT_DEPTH_FROM_TOP}]}

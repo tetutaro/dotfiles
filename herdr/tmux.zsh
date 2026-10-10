@@ -8,11 +8,13 @@ export FZF_COMMAND="fzf"
 
 function __extract_project_from_pwd() {
     local -a new_prj ctp
-    ctp=${PWD##$(echo ${PROJECT_TOP_DIR})}
+    # compare with a trailing slash so that siblings like ~/Projects-old
+    # are not taken as being under ${PROJECT_TOP_DIR}
+    ctp=${PWD#${PROJECT_TOP_DIR}/}
     if [[ "${PWD}" == "${ctp}" ]]; then
         new_prj="default"
     else
-        if [[ ${#${(ps:/:)ctp}} -lt ${PROJECT_DEPTH_FROM_TOP} ]]; then
+        if [[ ${(w)#${(ps:/:)ctp}} -lt ${PROJECT_DEPTH_FROM_TOP} ]]; then
             new_prj="default"
         else
             new_prj=${${(s:/:)ctp}[(w)${PROJECT_DEPTH_FROM_TOP}]}
@@ -27,13 +29,34 @@ function __herdr_session_name() {
     print -r -- ${${HERDR_SOCKET_PATH%/herdr.sock}##*/}
 }
 
+# directory of project ${1} (${HOME} for default; fails if not found)
+function __project_dir() {
+    local pat
+    local -a dirs
+    if [[ ${1} == default ]]; then
+        print -r -- ${HOME}
+        return 0
+    fi
+    # ${PROJECT_TOP_DIR}/*/${1} for the depth 2
+    pat=${(l:$(( (PROJECT_DEPTH_FROM_TOP - 1) * 2 ))::*/:)}
+    dirs=(${PROJECT_TOP_DIR}/${~pat}${1}(N/))
+    (( ${#dirs} )) || return 1
+    print -r -- ${dirs[1]}
+}
+
 # project of this shell: inside herdr it is the one of the session
 # (panes do not inherit the launching shell's env)
 () {
-    local name
+    local name dir
     name=$(__herdr_session_name)
     if [[ ${name} == *-<-> ]]; then
         typeset -g HERDR_PROJECT=${name%-*}
+        # a pane may start outside the project of its session, e.g. the one
+        # herdr respawns in ${HOME} after the last pane died: move it there
+        # (-q: the chpwd hook would move the terminal to another session)
+        if [[ $(__extract_project_from_pwd) != ${HERDR_PROJECT} ]]; then
+            dir=$(__project_dir ${HERDR_PROJECT}) && cd -q ${dir}
+        fi
     else
         typeset -g HERDR_PROJECT=$(__extract_project_from_pwd)
     fi
