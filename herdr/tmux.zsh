@@ -107,23 +107,102 @@ function __herdr_session_rows() {
         done | sort -t $'\t' -k1,1V
 }
 
+# value of ${1} in the [keys] table of the herdr config (empty if not set)
+function __herdr_config_key() {
+    awk -v k="${1}" '
+        /^[[:space:]]*\[/ {
+            in_keys = ($0 ~ /^[[:space:]]*\[keys\][[:space:]]*(#.*)?$/)
+            next
+        }
+        in_keys && $0 ~ "^[[:space:]]*" k "[[:space:]]*=[[:space:]]*\"" {
+            sub(/^[^"]*"/, "")
+            sub(/"[^"]*$/, "")
+            gsub(/\\\\/, "\\")
+            print
+            exit
+        }' ${HERDR_CONFIG_PATH:-${HOME}/.config/herdr/config.toml} 2>/dev/null
+}
+
+# tmux key name of a herdr key (e.g. "ctrl+space" -> "C-Space",
+# "shift+r" -> "R"); fails for keys tmux cannot send
+function __herdr_tmux_key() {
+    local -a parts
+    local key mod mods
+    parts=(${(s:+:)1})
+    key=${parts[-1]}
+    case ${key:l} in
+        space) key=Space ;;
+        enter|return) key=Enter ;;
+        tab) key=Tab ;;
+        esc|escape) key=Escape ;;
+        backspace) key=BSpace ;;
+        delete) key=DC ;;
+        insert) key=IC ;;
+        home) key=Home ;;
+        end) key=End ;;
+        pageup) key=PPage ;;
+        pagedown) key=NPage ;;
+        up|down|left|right) key=${(C)key} ;;
+        f<1-24>) key=${key:u} ;;
+        minus) key=- ;;
+        plus) key=+ ;;
+        comma) key=, ;;
+        ampersand) key=\& ;;
+        backtick) key=\` ;;
+    esac
+    for mod in ${parts[1,-2]}; do
+        case ${mod:l} in
+            ctrl) mods+=C- ;;
+            alt) mods+=M- ;;
+            shift)
+                if [[ ${key} == [a-z] ]]; then
+                    key=${key:u}
+                else
+                    mods+=S-
+                fi
+                ;;
+            *) return 1 ;;
+        esac
+    done
+    print -r -- ${mods}${key}
+}
+
+# tmux keys of the herdr detach action (herdr defaults: prefix "ctrl+b",
+# detach "prefix+q")
+function __herdr_detach_keys() {
+    local prefix detach key
+    local -a keys
+    prefix=$(__herdr_config_key prefix)
+    detach=$(__herdr_config_key detach)
+    : ${prefix:=ctrl+b} ${detach:=prefix+q}
+    if [[ ${detach} == prefix+* ]]; then
+        key=$(__herdr_tmux_key ${prefix}) || return 1
+        keys+=(${key})
+        detach=${detach#prefix+}
+    fi
+    key=$(__herdr_tmux_key ${detach}) || return 1
+    keys+=(${key})
+    print -r -- ${keys}
+}
+
 ## for compatible
-# herdr has no API to detach a client, so send the detach key (prefix+d in
-# herdr/config.toml) to the hsl tmux wrapping the client of this session.
+# herdr has no API to detach a client, so send the detach key (keys.detach
+# in the herdr config) to the hsl tmux wrapping the client of this session.
 # from a popup, send it after ${1} seconds: keys sent while the popup is open
 # go to the popup instead of herdr
 function __herdr_detach() {
-    local name line
+    local name line keys
     name=$(__herdr_session_name) || return 1
+    keys=$(__herdr_detach_keys) || return 1
     for line in ${(f)"$(__herdr_hsl_clients)"}; do
         [[ ${line#* } == ${name} ]] || continue
         if [[ -n ${1} ]]; then
             # outlive the popup being closed: fork into a new session before
             # returning (a background job is killed with the popup)
-            setsid -f zsh -c 'sleep "$1"; tmux -L "$2" send-keys C-Space d' \
-                zsh ${1} ${line%% *} &>/dev/null < /dev/null
+            setsid -f zsh -c 'sleep "$1"; s=$2; shift 2; tmux -L "$s" send-keys -- "$@"' \
+                zsh ${1} ${line%% *} ${=keys} &>/dev/null < /dev/null
         else
-            tmux -L ${line%% *} send-keys C-Space d
+            tmux -L ${line%% *} send-keys -- ${=keys}
         fi
         return 0
     done
