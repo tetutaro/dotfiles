@@ -9,13 +9,13 @@ if [[ ${UID} = 0 ]]; then
 else
     export LANG=ja_JP.UTF-8
 fi
-export LC_ALL=ja_JP.UTF-8
+# export LC_ALL=ja_JP.UTF-8
 export LC_COLLATE=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 export LC_MESSAGES=ja_JP.UTF-8
 export LC_MONETARY=ja_JP.UTF-8
 export LC_NUMERIC=ja_JP.UTF-8
-export LC_TIME=ja_JP.UTF-8
+export LC_TIME=en_US.UTF-8
 export LESSCHARSET=UTF-8
 export EDITOR="vim"
 export UV_TOOL_BIN_DIR=${HOME}/.local/bin
