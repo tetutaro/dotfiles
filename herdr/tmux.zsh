@@ -62,13 +62,6 @@ function __project_dir() {
     fi
 }
 
-# file through which a pane asks the launcher loop of its terminal to attach
-# another session: it holds either the directory to move to (a session of
-# its project is picked) or the name of the session
-function __herdr_next_file() {
-    print -r -- ${XDG_RUNTIME_DIR:-/tmp}/herdr-next-${UID}/${1}
-}
-
 # print "<hsl tmux socket name> <herdr session>" of every terminal attached
 # now (hsl wraps each herdr client in its own tmux server)
 function __herdr_hsl_clients() {
@@ -210,23 +203,14 @@ function __herdr_detach_keys() {
 
 ## for compatible
 # herdr has no API to detach a client, so send the detach key (keys.detach
-# in the herdr config) to the hsl tmux wrapping the client of this session.
-# from a popup, send it after ${1} seconds: keys sent while the popup is open
-# go to the popup instead of herdr
+# in the herdr config) to the hsl tmux wrapping the client of this session
 function __herdr_detach() {
     local name line keys
     name=$(__herdr_session_name) || return 1
     keys=$(__herdr_detach_keys) || return 1
     for line in ${(f)"$(__herdr_hsl_clients)"}; do
         [[ ${line#* } == ${name} ]] || continue
-        if [[ -n ${1} ]]; then
-            # outlive the popup being closed: fork into a new session before
-            # returning (a background job is killed with the popup)
-            setsid -f zsh -c 'sleep "$1"; s=$2; shift 2; tmux -L "$s" send-keys -- "$@"' \
-                zsh ${1} ${line%% *} ${=keys} &>/dev/null < /dev/null
-        else
-            tmux -L ${line%% *} send-keys -- ${=keys}
-        fi
+        tmux -L ${line%% *} send-keys -- ${=keys}
         return 0
     done
     return 1
@@ -248,14 +232,16 @@ function exit() {
                 | jq -r --arg p "${HERDR_PROJECT}" \
                 '[.sessions[].name | select(startswith($p + "-") and (ltrimstr($p + "-") | test("^[0-9]+$")))] | length')
             if (( cnt >= 2 )); then
-                # outlive the server being stopped: fork into a new session
-                # before returning (see __herdr_detach)
-                setsid -f zsh -c '
+                # outlive the server being stopped, which ends this shell: a
+                # disowned job of the interactive shell has its own process
+                # group, nohup ignores the hangup of the terminal and the
+                # redirections detach it from the terminal
+                nohup zsh -c '
                     herdr session stop "$1"
                     for i in {1..50}; do
                         herdr session delete "$1" && break
                         sleep 0.1
-                    done' zsh ${name} &>/dev/null < /dev/null
+                    done' zsh ${name} &>/dev/null < /dev/null &!
                 return 0
             fi
             __herdr_detach && return 0
@@ -271,17 +257,45 @@ function force-exit() {
 }
 
 # move this terminal to ${1}: a directory (a session of its project) or a
-# session name; this session is left for another terminal
-# ${2}: delay of the detach (see __herdr_detach)
+# session name; this session is left for another terminal.
+# replace the herdr client in the hsl tmux of this terminal with a client of
+# the other session: everything goes through tmux, nothing through files
+# ${2}: delay of the switch in seconds, for a popup: the hsl tmux waits for
+# it on its own, so that the switch outlives the popup being closed
 function __herdr_switch_to() {
-    local name next
+    local name line sock next dir
+    local -a panes respawn setenv
     name=$(__herdr_session_name) || return 1
-    next=$(__herdr_next_file ${name})
-    mkdir -p -m 700 ${next:h}
-    print -r -- ${1} > ${next}
-    __herdr_detach ${2} && return 0
-    rm -f ${next}
-    return 1
+    (( ${+commands[herdr]} )) || return 1
+    for line in ${(f)"$(__herdr_hsl_clients)"}; do
+        [[ ${line#* } == ${name} ]] || continue
+        sock=${line%% *}
+        break
+    done
+    [[ -n ${sock} ]] || return 1
+    panes=(${(f)"$(tmux -L ${sock} list-panes -a -F '#{pane_id}' 2>/dev/null)"})
+    (( ${#panes} )) || return 1
+    if [[ ${1} == /* ]]; then
+        next=$(__herdr_pick_session $(PWD=${1} __extract_project_from_pwd))
+        dir=${1}
+    else
+        next=${1}
+        dir=$(__project_dir ${next%-*}) || dir=${HOME}
+    fi
+    [[ -n ${next} && ${next} != ${name} ]] || return 1
+    # -k ends the current client like closing the terminal does, which leaves
+    # this session running; HERDR_SESSION tells which session the terminal
+    # shows (see __herdr_hsl_clients), set only once the respawn succeeded
+    respawn=(respawn-pane -k -t ${panes[1]} -c ${dir}
+        "exec ${(q)commands[herdr]} --session ${(q)next}")
+    setenv=(set-environment -g HERDR_SESSION ${next})
+    if [[ -n ${2} ]]; then
+        tmux -L ${sock} run-shell -b -d ${2} -C \
+            "${(j: :)${(@qq)respawn}} ; ${(j: :)${(@qq)setenv}}" &>/dev/null || return 1
+    else
+        tmux -L ${sock} ${respawn} \; ${setenv} &>/dev/null || return 1
+    fi
+    return 0
 }
 
 # moving to another project moves this terminal to a session of that project
@@ -331,31 +345,19 @@ function __herdr_adopt_session_once() {
 add-zsh-hook precmd __herdr_adopt_session_once
 
 # keep the function name used by zshrc
-# attach a session of the project of ${PWD} (like the tmux session group), and
-# again whenever a pane asks to move to another project or session; close the
-# terminal when the client ends otherwise
+# attach a session of the project of ${PWD} (like the tmux session group);
+# moving to another project or session happens inside hsl (see
+# __herdr_switch_to), so the terminal closes when the client ends
 function __tmux_attach_session_group() {
     if [[ ${HERDR_ENV} == 1 ]]; then
         return 0
     fi
-    local name next target
-    while true; do
-        [[ -n ${name} ]] || name=$(__herdr_pick_session $(__extract_project_from_pwd))
-        next=$(__herdr_next_file ${name})
-        rm -f ${next}
-        if (( ${+commands[hsl]} )); then
-            hsl --session ${name}
-        else
-            herdr --session ${name}
-        fi
-        [[ -f ${next} ]] || builtin exit
-        target=$(<${next})
-        rm -f ${next}
-        if [[ ${target} == /* ]]; then
-            cd "${target}" || builtin exit
-            name=
-        else
-            name=${target}
-        fi
-    done
+    local name
+    name=$(__herdr_pick_session $(__extract_project_from_pwd))
+    if (( ${+commands[hsl]} )); then
+        hsl --session ${name}
+    else
+        herdr --session ${name}
+    fi
+    builtin exit
 }

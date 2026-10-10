@@ -92,7 +92,10 @@
     * 元の session の pane は移動前の Directory に戻し（`cd -`）、元の session は誰も attach していない session として残す（exit と違い、stop・delete はしない）
     * 元の session に他の pane（AI Agent など）があっても、それらは元の session でそのまま動き続ける
 * herdr の外（terminal 起動時のシェルなど）での移動では何もしない
-* これを実現するため、terminal 起動時のシェルは hsl を exec せず、hsl の終了後に「次に attach する Directory」の指示があれば再び session を選んで attach し、指示が無ければ terminal を閉じるループとする
+* これを実現するため、pane からその terminal の hsl の tmux（`tmux -L hsl-*`）に対して `respawn-pane -k` を実行し、herdr の client を移動先の session の client に差し替える（global env の `HERDR_SESSION` も移動先の session に更新する）
+    * やり取りはすべて tmux のコマンドで行い、ファイルやディレクトリは一切作らない
+    * terminal 起動時のシェルは、hsl が終了したら（detach や最後の pane の exit）そのまま terminal を閉じる
+    * pane のシェルは起動時に一度 `tmux.zsh` を読むだけなので、この仕組みを変えたときは動いている herdr の session も再起動する（古い定義のまま動くシェルが残ると、切り替えの代わりに terminal が閉じるなど、新旧が噛み合わなくなる）
 
 ## session の切り替え（prefix+s）
 
@@ -106,4 +109,4 @@
     * detached / stopped の session を選んだ場合は、現在の session から detach し、同じ terminal で選んだ session に attach し直す（元の session は誰も attach していない session として残す）
     * current の session を選んだ場合は何もしない
     * attached の session を選んだ場合は、２つの terminal が同じ Tab を表示してしまうため、切り替えない
-* 別 Project への cd と同じく、terminal 起動時のシェルのループが「次に attach する session」の指示を受け取って attach し直す
+* 別 Project への cd と同じく、hsl の tmux の `respawn-pane -k` で herdr の client を選んだ session の client に差し替える（popup が閉じてから実行する）

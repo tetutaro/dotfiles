@@ -17,7 +17,7 @@ case ${state} in
         sleep 1
         ;;
     *)
-        # detach after this popup is closed
+        # switch after this popup is closed
         __herdr_switch_to ${name} 0.3
         ;;
 esac
