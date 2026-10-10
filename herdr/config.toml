@@ -27,7 +27,17 @@ previous_tab = "prefix+b"
 workspace_picker = "prefix+p"
 toggle_sidebar = "prefix+shift+b"
 
+[[keys.command]]
+key = "prefix+s"
+type = "popup"
+description = "Workspace Switcher Popup"
+width = "50%"
+height = "40%"
+command = "~/.config/herdr/scripts/popup_workspace.sh"
+
 [ui]
 mouse_capture = true
 copy_on_select = true
 status_indicators = "dots"
+sidebar_start_collapsed = true
+sidebar_collapsed_mode = "hidden"
