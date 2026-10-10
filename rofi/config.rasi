@@ -1,5 +1,10 @@
 configuration {
     font: "Noto Sans JP 18";
     show-icons: true;
+    modi: "window,drun,system:~/.config/rofi/rofi_system.sh";
+    sidebar-mode: true;
+    kb-cancel: "Escape,Control+Alt+space";
+    kb-mode-previous: "Alt+h";
+    kb-mode-next: "Alt+l";
 }
 @theme "/usr/share/rofi/themes/fullscreen-preview.rasi"

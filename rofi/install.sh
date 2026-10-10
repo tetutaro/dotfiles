@@ -10,4 +10,5 @@ fi
 
 echo "Installing Rofi configuration file..."
 safe_link ${PWD}/config.rasi ${HOME}/.config/rofi/config.rasi
+safe_link ${PWD}/rofi_system.sh ${HOME}/.config/rofi/rofi_system.sh
 echo "Rofi configuration file installed"
