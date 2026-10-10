@@ -31,7 +31,7 @@ toggle_sidebar = "prefix+shift+b"
 key = "prefix+s"
 type = "popup"
 description = "Session Switcher Popup"
-width = "50%"
+width = "80%"
 height = "40%"
 command = "~/.config/herdr/scripts/popup_session.zsh"
 
