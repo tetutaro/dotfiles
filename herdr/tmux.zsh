@@ -131,9 +131,12 @@ function __herdr_detach() {
 }
 
 # exiting the last pane of the session closes the terminal: remove the
-# session if the project has another one, else keep it and only detach
+# session if the project has another one, else keep it and only detach.
+# only for the interactive shell itself: not in subshells ("(... || exit 1)")
+# nor in non-interactive shells importing this function (e.g. the shell
+# snapshot of an AI agent running in a pane)
 function exit() {
-    if [[ ${HERDR_ENV} == 1 ]]; then
+    if [[ ${HERDR_ENV} == 1 && -o interactive ]] && (( ZSH_SUBSHELL == 0 )); then
         local name cnt
         name=$(__herdr_session_name)
         cnt=$(herdr workspace list 2>/dev/null \
@@ -158,11 +161,11 @@ function exit() {
             return 1
         fi
     fi
-    builtin exit
+    builtin exit "$@"
 }
 
 function force-exit() {
-    builtin exit
+    builtin exit "$@"
 }
 
 # move this terminal to ${1}: a directory (a session of its project) or a
@@ -172,7 +175,7 @@ function __herdr_switch_to() {
     local name next
     name=$(__herdr_session_name) || return 1
     next=$(__herdr_next_file ${name})
-    mkdir -p ${next:h}
+    mkdir -p -m 700 ${next:h}
     print -r -- ${1} > ${next}
     __herdr_detach ${2} && return 0
     rm -f ${next}
@@ -185,13 +188,16 @@ function __chpwd_switch_session() {
     if [[ ${HERDR_ENV} != 1 ]] || (( ZSH_SUBSHELL > 0 )); then
         return 0
     fi
-    local new_prj dir
+    local new_prj
     new_prj=$(__extract_project_from_pwd)
     if [[ "${new_prj}" != "${HERDR_PROJECT}" ]]; then
-        dir=${PWD}
-        # this pane stays in this session, so return it to where it was
-        cd - &>/dev/null
-        __herdr_switch_to ${dir}
+        if __herdr_switch_to ${PWD}; then
+            # this pane stays in this session, so return it to where it was
+            # (-q: without running this hook again)
+            cd -q - &>/dev/null
+        else
+            print -u2 -- "could not switch to a session of '${new_prj}': staying in '${HERDR_PROJECT}'"
+        fi
     fi
 }
 autoload -Uz add-zsh-hook
