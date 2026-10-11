@@ -11,9 +11,9 @@ status=$(herdr agent list 2>/dev/null | jq -r '
 
 case "$status" in
     blocked) printf '%s' '#[fg=colour9,bg=colour17,bold] ▲ ' ;;
-    working) printf '%s' '#[fg=colour11,bg=colour17,bold] ◐ ' ;;
-    done)    printf '%s' '#[fg=colour10,bg=colour17,bold] ● ' ;;
-    idle)    printf '%s' '#[fg=colour19,bg=colour17,bold] ○ ' ;;
-    unknown) printf '%s' '#[fg=colour19,bg=colour17,bold] ◇ ' ;;
-    *)       printf '%s' '#[fg=colour19,bg=colour17,bold] □ ' ;;
+    working) printf '%s' '#[fg=colour12,bg=colour17,bold] ▶ ' ;;
+    done)    printf '%s' '#[fg=colour10,bg=colour17,bold] ■ ' ;;
+    idle)    printf '%s' '#[fg=colour19,bg=colour17,bold] ● ' ;;
+    unknown) printf '%s' '#[fg=colour11,bg=colour17,bold] ◆ ' ;;
+    *)       printf '%s' '#[fg=colour19,bg=colour17,bold] ▬ ' ;;
 esac
