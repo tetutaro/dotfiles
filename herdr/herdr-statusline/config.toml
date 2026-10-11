@@ -25,14 +25,14 @@ enabled = true
 [statusline]
 # port of tmux/tmux-powerline (theme: default)
 #   left : hostname | herdr workspace (= tmux session) | herdr tabs (= tmux windows)
-#   right: date | time
+#   right: agent status | date | time
 status_interval = 1
 status_justify = "left"
 status_style = "bg=colour17,fg=colour7"
 status_left_length = 90
 status_right_length = 90
 status_left = "#[fg=colour19,bg=colour16] #h #[fg=colour16,bg=colour17]#($HERDR_PLUGIN_CONFIG_DIR/powerline-tabs.sh)"
-status_right = "#[fg=colour16,bg=colour17]#[fg=colour19,bg=colour16] %Y/%m/%d(%a) #[fg=colour17,bg=colour16]#[fg=colour19,bg=colour17] %H:%M "
+status_right = "#($HERDR_PLUGIN_CONFIG_DIR/agent-status.sh) #[fg=colour16,bg=colour17,nobold]#[fg=colour19,bg=colour16] %Y/%m/%d(%a) #[fg=colour17,bg=colour16]#[fg=colour19,bg=colour17] %H:%M "
 # hsl has a single throwaway tmux window; herdr tabs are drawn in status_left
 window_status_format = ""
 window_status_current_format = ""
