@@ -123,17 +123,103 @@ function __herdr_session_rows() {
                 ' 2>/dev/null)
                 [[ -n ${agent} ]] || agent=none
             fi
-            if [[ ${name} == ${cur} ]]; then
-                state=current
-            elif (( ${attached[(Ie)${name}]} )); then
-                state=attached
-            elif [[ ${running} == true ]]; then
-                state=detached
-            else
-                state=stopped
-            fi
+            state=$(__herdr_session_state ${name} ${running} "${cur}" ${attached})
             print -r -- "${name}"$'\t'"${agent}"$'\t'"${state}"
         done | sort -t $'\t' -k1,1V
+}
+
+# state of session ${1} whose server runs if ${2} is "true": current (this
+# terminal, whose session is ${3}), attached (another terminal, ${4}... are
+# the sessions attached now), detached or stopped
+function __herdr_session_state() {
+    local name=${1} running=${2} cur=${3}
+    shift 3
+    if [[ ${name} == ${cur} ]]; then
+        print current
+    elif (( ${@[(Ie)${name}]} )); then
+        print attached
+    elif [[ ${running} == true ]]; then
+        print detached
+    else
+        print stopped
+    fi
+}
+
+# symbol of the state of the AI agents (the same as the statusline)
+typeset -gA __herdr_agent_marks=(
+    blocked $'\e[1;91m▲\e[0m'
+    working $'\e[1;94m▶\e[0m'
+    done    $'\e[1;92m■\e[0m'
+    idle    $'\e[1;38;5;19m●\e[0m'
+    unknown $'\e[1;93m◆\e[0m'
+    none    $'\e[1;38;5;19m▬\e[0m'
+)
+
+# print the tree of every <project>-<N> session (sorted as
+# __herdr_session_rows) with its workspaces, tabs and panes, one row per
+# line: "<session>\t<kind>\t<workspace id>\t<tab id>\t<agent pane id>\t<text>"
+# where kind is session, workspace, tab or pane, the ids are the ones to
+# focus for the row (the agent pane id only for a pane running an AI agent)
+# and text is the line to show. a session row shows the state of its AI
+# agents that needs the most attention and its state (see
+# __herdr_session_state), a pane row its AI agent and the state of it.
+# stopped sessions have no children (their server cannot be asked)
+function __herdr_tree_rows() {
+    local cur line name running sock state snap k v w=0
+    local -a attached sessions marks
+    cur=$(__herdr_session_name)
+    attached=(${${(f)"$(__herdr_hsl_clients)"}#* })
+    for k v in "${(@kv)__herdr_agent_marks}"; do
+        marks+=(--arg ${k} ${v})
+    done
+    for line in ${(f)"$(herdr session list --json 2>/dev/null \
+        | jq -r '.sessions[] | "\(.name)\t\(.running)\t\(.socket_path)"' \
+        | sort -t $'\t' -k1,1V)"}; do
+        # only sessions of terminals (not e.g. herdr's own "default")
+        [[ ${line%%$'\t'*} == *-<-> ]] || continue
+        sessions+=(${line})
+        (( ${#line%%$'\t'*} > w )) && w=${#line%%$'\t'*}
+    done
+    for line in ${sessions}; do
+        IFS=$'\t' read -r name running sock <<< ${line}
+        state=$(__herdr_session_state ${name} ${running} "${cur}" ${attached})
+        snap=
+        if [[ ${running} == true ]]; then
+            snap=$(HERDR_SOCKET_PATH=${sock} herdr api snapshot 2>/dev/null)
+        fi
+        print -r -- ${snap:-'{}'} | jq -r --arg name ${name} --arg state ${state} \
+            --argjson w ${w} ${marks} '
+            def mark($k): $ARGS.named[$k] // $ARGS.named.none;
+            def pad($n): . + (if $n > length then " " * ($n - length) else "" end);
+            def branch($last): if $last then ["└── ", "    "] else ["├── ", "│   "] end;
+            (.result.snapshot // {}) as $s
+            | ([$s.agents[]?.agent_status] as $a
+                | first(("blocked", "working", "done", "idle", "unknown") as $k
+                        | select($a | index($k)) | $k) // "none") as $agg
+            | ([$name, "session", "", "", "",
+                "\($name | pad($w))  \(mark($agg))  \($state)"],
+               (($s.workspaces // []) | sort_by(.number)) as $ws
+               | range(0; $ws | length) as $i | $ws[$i] as $wk
+               | branch($i == ($ws | length) - 1) as [$b1, $i1]
+               | ([$name, "workspace", $wk.workspace_id, "", "", "\($b1)\($wk.label)"],
+                  ([$s.tabs[] | select(.workspace_id == $wk.workspace_id)]
+                    | sort_by(.number)) as $ts
+                  | range(0; $ts | length) as $j | $ts[$j] as $t
+                  | branch($j == ($ts | length) - 1) as [$b2, $i2]
+                  | ([$name, "tab", $wk.workspace_id, $t.tab_id, "",
+                      "\($i1)\($b2)\($t.label)"],
+                     ([$s.panes[] | select(.tab_id == $t.tab_id)]
+                       | sort_by(.pane_id | split(":p")[1] | tonumber? // 0)) as $ps
+                     | range(0; $ps | length) as $l | $ps[$l] as $p
+                     | branch($l == ($ps | length) - 1) as [$b3, $i3]
+                     | [$name, "pane", $wk.workspace_id, $t.tab_id,
+                        (if $p.agent then $p.pane_id else "" end),
+                        "\($i1)\($i2)\($b3)\($p.pane_id | pad(6))  "
+                        + (if $p.agent then
+                            "\($p.agent | pad(8))  \(mark($p.agent_status // "unknown")) \($p.agent_status // "unknown")"
+                          else "-" end)])))
+            | @tsv' 2>/dev/null
+    done
 }
 
 # stop session ${1} and delete it if ${2} is "delete", in the background.

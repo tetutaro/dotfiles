@@ -111,3 +111,18 @@
     * current の session を選んだ場合は何もしない
     * attached の session を選んだ場合は、２つの terminal が同じ Tab を表示してしまうため、切り替えない
 * 別 Project への cd と同じく、hsl の tmux の `respawn-pane -k` で herdr の client を選んだ session の client に差し替える（popup が閉じてから実行する）
+
+## session のツリー表示（prefix+a）
+
+* prefix+a で起動する popup（terminal の 90% の大きさ）では、prefix+s と同じ session を、その中の Workspace・Tab・pane とともに tree コマンドのような形で表示する
+    * session の行には、session 名・AI Agent の状態（statusline と同じ記号。最も注意が必要なもの）・session の状態（current / attached / detached / stopped）を表示する
+    * その下に Workspace、Tab、pane を１段ずつ下げて表示する。pane の行には pane の ID と、AI Agent を使用していればその名前と状態を表示する（使用していなければ `-`）
+    * stopped の session は server に問い合わせられないため、session の行だけを表示する
+* 操作
+    * j / k: カーソルを下 / 上の行に移動する。カーソルは最初から current の session の行に置く
+    * Enter: 選んだ行の session に terminal を切り替える（prefix+s と同じ。attached の session には切り替えない）
+        * Workspace・Tab・pane の行を選んだ場合は、その Workspace・Tab（AI Agent の pane ならその pane）に focus してから切り替える。current の session ならその場で focus だけを移す
+    * x: 選んだ行の session を削除する
+        * detached の session は stop してから delete し、stopped の session はそのまま delete する
+        * current と attached の session は、削除すると terminal が閉じてしまうため削除しない
+    * Esc: popup を閉じる

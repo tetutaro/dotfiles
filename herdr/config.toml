@@ -35,6 +35,14 @@ width = "80%"
 height = "40%"
 command = "~/.config/herdr/scripts/popup_session.zsh"
 
+[[keys.command]]
+key = "prefix+a"
+type = "popup"
+description = "Session Tree Popup"
+width = "90%"
+height = "90%"
+command = "~/.config/herdr/scripts/popup_tree.zsh"
+
 [ui]
 mouse_capture = true
 copy_on_select = true
