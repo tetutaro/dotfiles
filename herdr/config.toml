@@ -4,8 +4,15 @@ onboarding = false
 [theme]
 # follow the host terminal's ANSI palette (managed by color_scheme)
 name = "one-dark"
-
 auto_switch = false
+
+[theme.custom]
+# active pane border = dimmed foreground (frontemare baseFg)
+# ("reset" would also blank the accent-colored selection rows in menus/tabs)
+accent = "#959AA6"
+# inactive pane border = slightly lighter than the background (frontemare baseBg)
+overlay0 = "#11141A"
+
 [terminal]
 new_cwd = "follow"
 
@@ -39,6 +46,10 @@ command = "~/.config/herdr/scripts/popup_session.zsh"
 mouse_capture = true
 copy_on_select = true
 status_indicators = "dots"
+# share divider borders between split panes (no doubled frames / spacing)
+pane_gaps = false
+# no scrollbar column inside each pane
+pane_scrollbars = false
 sidebar_start_collapsed = true
 sidebar_collapsed_mode = "hidden"
 # tabs are shown in the herdr-statusline instead
