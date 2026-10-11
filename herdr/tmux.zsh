@@ -97,19 +97,32 @@ function __herdr_pick_session() {
     print -r -- ${prj}-${n}
 }
 
-# print "<session>\t<state>" of every <project>-<N> session sorted by
-# project and number, where state is current (this terminal), attached
+# print "<session>\t<agent>\t<state>" of every <project>-<N> session sorted
+# by project and number, where agent is the state of its AI agents that
+# needs the most attention (blocked, working, done, idle, unknown or none,
+# as the statusline) and state is current (this terminal), attached
 # (another terminal), detached or stopped
 function __herdr_session_rows() {
-    local cur name state running
+    local cur name state running sock agent
     local -a attached
     cur=$(__herdr_session_name)
     attached=(${${(f)"$(__herdr_hsl_clients)"}#* })
     herdr session list --json 2>/dev/null \
-        | jq -r '.sessions[] | "\(.name)\t\(.running)"' \
-        | while IFS=$'\t' read -r name running; do
+        | jq -r '.sessions[] | "\(.name)\t\(.running)\t\(.socket_path)"' \
+        | while IFS=$'\t' read -r name running sock; do
             # only sessions of terminals (not e.g. herdr's own "default")
             [[ ${name} == *-<-> ]] || continue
+            agent=none
+            if [[ ${running} == true ]]; then
+                # </dev/null: do not eat the rows read by this loop
+                agent=$(HERDR_SOCKET_PATH=${sock} herdr agent list \
+                    2>/dev/null </dev/null | jq -r '
+                    [.result.agents[].agent_status] as $s
+                    | first(("blocked", "working", "done", "idle", "unknown") as $k
+                            | select($s | index($k)) | $k) // "none"
+                ' 2>/dev/null)
+                [[ -n ${agent} ]] || agent=none
+            fi
             if [[ ${name} == ${cur} ]]; then
                 state=current
             elif (( ${attached[(Ie)${name}]} )); then
@@ -119,7 +132,7 @@ function __herdr_session_rows() {
             else
                 state=stopped
             fi
-            print -r -- "${name}"$'\t'"${state}"
+            print -r -- "${name}"$'\t'"${agent}"$'\t'"${state}"
         done | sort -t $'\t' -k1,1V
 }
 
