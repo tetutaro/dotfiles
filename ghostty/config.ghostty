@@ -8,8 +8,8 @@ font-feature = liga,-calt
 font-codepoint-map = U+23E9-U+23FA=FreeSans
 window-height = 38
 window-width = 85
-window-padding-x = 3,3
-window-padding-y = 0,0
+window-padding-x = 0
+window-padding-y = 0
 window-padding-balance = false
 window-padding-color = extend
 window-subtitle = false
