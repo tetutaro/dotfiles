@@ -45,10 +45,11 @@ if [[ ${os} == "Linux" ]]; then
     if [[ -d "${HOME}/.config/flatpak/exports/share" ]]; then
         export XDG_DATA_DIRS=${XDG_DATA_DIRS}:${HOME}/.config/flatpak/exports/share
     fi
-    # terminals started by the desktop (e.g. ghostty) do not have the agent
-    # of GNOME Keyring in their env: use it, else ssh asks the passphrase
-    if [[ -z ${SSH_AUTH_SOCK} && -S ${XDG_RUNTIME_DIR}/gcr/ssh ]]; then
-        export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gcr/ssh
+    # use the agent of OpenSSH (systemd user unit) instead of the one of
+    # GNOME Keyring (gcr-ssh-agent), which hangs on keys not loaded yet
+    if [[ ( -z ${SSH_AUTH_SOCK} || ${SSH_AUTH_SOCK} == ${XDG_RUNTIME_DIR}/gcr/* ) \
+            && -S ${XDG_RUNTIME_DIR}/openssh_agent ]]; then
+        export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/openssh_agent
     fi
     alias ls="ls --color -Fv"
     alias ll="ls --color -AFhlv"
