@@ -45,6 +45,11 @@ if [[ ${os} == "Linux" ]]; then
     if [[ -d "${HOME}/.config/flatpak/exports/share" ]]; then
         export XDG_DATA_DIRS=${XDG_DATA_DIRS}:${HOME}/.config/flatpak/exports/share
     fi
+    # terminals started by the desktop (e.g. ghostty) do not have the agent
+    # of GNOME Keyring in their env: use it, else ssh asks the passphrase
+    if [[ -z ${SSH_AUTH_SOCK} && -S ${XDG_RUNTIME_DIR}/gcr/ssh ]]; then
+        export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gcr/ssh
+    fi
     alias ls="ls --color -Fv"
     alias ll="ls --color -AFhlv"
     alias pbcopy="xsel --input --clipboard"
