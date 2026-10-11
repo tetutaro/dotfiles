@@ -6,19 +6,12 @@ onboarding = false
 name = "one-dark"
 auto_switch = false
 
-[theme.custom]
-# active pane border = dimmed foreground (frontemare baseFg)
-# ("reset" would also blank the accent-colored selection rows in menus/tabs)
-accent = "#959AA6"
-# inactive pane border = slightly lighter than the background (frontemare baseBg)
-overlay0 = "#11141A"
-
 [terminal]
 new_cwd = "follow"
 
 [keys]
 prefix = "ctrl+space"
-detach = "prefix+d"
+detach = "prefix+x"
 reload_config = "prefix+r"
 resize_mode = "prefix+shift+r"
 close_pane = "prefix+q"
@@ -46,8 +39,6 @@ command = "~/.config/herdr/scripts/popup_session.zsh"
 mouse_capture = true
 copy_on_select = true
 status_indicators = "dots"
-# share divider borders between split panes (no doubled frames / spacing)
-pane_gaps = false
 # no scrollbar column inside each pane
 pane_scrollbars = false
 sidebar_start_collapsed = true
