@@ -1,7 +1,6 @@
 font-family = "0xProGen"
 font-size = 15.5
 adjust-cell-height = -10%
-adjust-icon-height = 10%
 font-synthetic-style = true
 # theme = dark:nord,light:github
 font-feature = liga,-calt
