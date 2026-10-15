@@ -19,10 +19,10 @@ keymap:
       Ctrl-A: Home
       Ctrl-E: End
       Ctrl-H: Backspace
+      Ctrl-K: [Shift-End, Ctrl-X]
       # fcitx5 toggles the IME with Henkan (added to its trigger keys);
       # Zenkaku_Hankaku cannot be sent since it is not mapped in the us layout
       Ctrl-O: Henkan
       Alt-C: Ctrl-C
       Alt-V: Ctrl-V
       Alt-F: Ctrl-F
-      Alt-K: [Shift-End, Ctrl-X]
