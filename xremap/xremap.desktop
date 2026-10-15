@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=xremap
+Comment=Remap keys per application
+Exec=sh -c 'exec "$HOME/.cargo/bin/xremap" --watch=device --ignore "ydotoold virtual device" "$HOME/.config/xremap/config.yml"'
+Terminal=false
+Type=Application
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

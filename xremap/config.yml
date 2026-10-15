@@ -1,0 +1,28 @@
+# key bindings ported from autokey/data (Cursor, CopyPaste)
+# application names are Wayland app_id (or X11 class of XWayland apps)
+# check them with `wlrctl toplevel list`
+# xremap sees raw evdev keys before XKB applies ctrl:nocaps (set by Budgie),
+# so CapsLock must be turned into Ctrl here for Ctrl-* remaps to match
+modmap:
+  - name: capslock to ctrl
+    remap:
+      CapsLock: Ctrl_L
+keymap:
+  - name: cursor
+    application:
+      only: '/(?i)google-chrome|jupyterlab/'
+    remap:
+      Ctrl-P: Up
+      Ctrl-N: Down
+      Ctrl-F: Right
+      Ctrl-B: Left
+      Ctrl-A: Home
+      Ctrl-E: End
+      Ctrl-H: Backspace
+      # fcitx5 toggles the IME with Henkan (added to its trigger keys);
+      # Zenkaku_Hankaku cannot be sent since it is not mapped in the us layout
+      Ctrl-O: Henkan
+      Alt-C: Ctrl-C
+      Alt-V: Ctrl-V
+      Alt-F: Ctrl-F
+      Alt-K: [Shift-End, Ctrl-X]
